@@ -1,0 +1,98 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Manajemen_user extends CI_Controller {
+
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->library('lib_admin');
+		$this->load->model('auth');
+		$this->load->helper(array('form', 'url'));
+		$this->load->library('form_validation');
+		$this->load->model('menu_model');	
+		//$this->preventCache();
+		// Automatic detection for user logged in and menu authority
+		if(checkUserAuthorize()) checkMenuAuthority();
+	}
+
+	public function index()
+	{
+		if($this->session->userdata('user_token')){
+			$data['manajemen_user'] = $this->auth->view()->result();
+			$this->lib_admin->display('manajemen_user/view',$data);
+		} else {
+			return redirect('home/index');
+		}
+	}
+
+
+
+	function add()
+	{
+		if($this->session->userdata('user_token')){
+			if ($this->input->post('submit')) {
+				if ($this->auth->register()) {
+					$this->session->set_flashdata('message', '<div class="alert alert-info">Berhasil diproses</div>');
+				} else {
+					$this->session->set_flashdata('message', '<div class="alert alert-info">Gagal diproses</div>');
+				}
+				redirect('manajemen_user');		
+			} else {
+				$hak_akses = $this->db->get('tabel_login_hak_akses');
+				$data = array(
+					'provinsi' => $this->auth->get_provinsi(),
+					'kota' => $this->auth->get_kota(),
+					'hak_akses' => $hak_akses
+				);
+				$this->lib_admin->display('manajemen_user/add',$data);
+			}
+
+		} else {
+			return redirect('home/index');
+		}	
+	}
+
+	function delete()
+	{
+		$id = $this->uri->segment(3);
+		$delete = $this->auth->delUser($id);
+		if ($delete) {
+			$this->session->set_flashdata('message', '<div class="alert alert-info">Berhasil diproses</div>');
+		} else {
+			$this->session->set_flashdata('message', '<div class="alert alert-info">Gagal diproses</div>');
+		}
+		redirect('manajemen_user');	
+	}
+
+	function edit()
+	{
+		if($this->session->userdata('user_token')){
+			if ($this->input->post('submit')) {
+				$id = $this->input->post('id_user');
+				if ($this->auth->editUser($id)) {
+					$this->session->set_flashdata('message', '<div class="alert alert-info">Berhasil diproses</div>');
+				} else {
+					$this->session->set_flashdata('message', '<div class="alert alert-info">Gagal diproses</div>');
+				}
+				redirect('manajemen_user');		
+			} else {
+				$id = $this->uri->segment(3);
+				$hak_akses = $this->db->get('tabel_login_hak_akses');
+				$data = array(
+					'provinsi' => $this->auth->get_provinsi(),
+					'kota' => $this->auth->get_kota(),
+					'hak_akses' => $hak_akses,
+					'user' => $this->auth->view_by_id($id)->row()
+				);
+				$this->lib_admin->display('manajemen_user/edit',$data);
+			}
+
+		} else {
+			return redirect('home/index');
+		}	
+	}
+}
+
+/* End of file manajemen_user.php */
+/* Location: ./application/controllers/manajemen_user.php */

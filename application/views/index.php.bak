@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>Aplikasi Pelaporan Keamanan Pangan Online</title>
+
+		<meta name="description" content="overview &amp; stats" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<!-- bootstrap & fontawesome -->
+		<link rel="stylesheet" href="<?php echo base_url();?>assets/dashboard/ace-master/assets/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="<?php echo base_url();?>assets/dashboard/ace-master/assets/font-awesome/4.2.0/css/font-awesome.min.css" />
+
+		<!-- page specific plugin styles -->
+		<link rel="stylesheet" href="<?php echo base_url();?>assets/dashboard/ace-master/assets/css/jquery.gritter.min.css" />
+
+		<!-- text fonts -->
+		<link rel="stylesheet" href="<?php echo base_url();?>assets/dashboard/ace-master/assets/fonts/fonts.googleapis.com.css" />
+
+		<!-- Select2 -->
+		<link rel="stylesheet" href="<?php echo base_url();?>assets/dashboard/ace-master/assets/css/select2.min.css" />
+
+		<link rel="stylesheet" href="<?php echo base_url();?>assets/dashboard/ace-master/assets/css/datepicker.min.css" />
+
+
+		<!-- ace styles -->
+		<link rel="stylesheet" href="<?php echo base_url();?>assets/dashboard/ace-master/assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+		<!--[if lte IE 9]>
+			<link rel="stylesheet" href="<?php echo base_url();?>assets/dashboard/ace-master/assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
+		<![endif]-->
+
+		<!--[if lte IE 9]>
+		  <link rel="stylesheet" href="<?php echo base_url();?>assets/dashboard/ace-master/assets/css/ace-ie.min.css" />
+		<![endif]-->
+
+		<!-- inline styles related to this page -->
+
+		<!-- ace settings handler -->
+		<script src="<?php echo base_url();?>assets/dashboard/ace-master/assets/js/ace-extra.min.js"></script>
+
+		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+		<!--[if lte IE 8]>
+		<script src="<?php echo base_url();?>assets/dashboard/ace-master/assets/js/html5shiv.min.js"></script>
+		<script src="<?php echo base_url();?>assets/dashboard/ace-master/assets/js/respond.min.js"></script>
+		<![endif]-->
+		<!-- backup before -->
+		<!-- <link rel="stylesheet/less" type="text/css" href="<?php echo base_url();?>/assets/less/index.less" /> -->
+		<!-- <link rel="stylesheet" href="<?php echo base_url();?>css/responsiveslides.css"> -->
+
+		<!-- Base url for javascript -->
+		<script type="text/javascript"> var base_url='<?php echo base_url();?>';</script>
+
+		<script>
+			less = {
+				env: "development",
+				async: false,
+				fileAsync: false,
+				poll: 1000,
+				functions: {},
+				dumpLineNumbers: "comments",
+				relativeUrls: false,
+				rootpath: ":/a.com/"
+			};			
+		</script>
+		<script src="<?php echo base_url();?>js/less-1.7.4.min.js" type="text/javascript"></script>
+		<script src="<?php echo base_url();?>/js/jquery-2.1.1.min.js"></script>	
+		
+		<script src="<?php echo base_url();?>/js/form_validator/jquery.form-validator.min.js"></script>	
+		<script>
+			jQuery(function(){
+				function getCookie(cname) {
+					var name = cname + "=";
+					var ca = document.cookie.split(';');
+					for(var i=0; i<ca.length; i++) {
+						var c = ca[i];
+						while (c.charAt(0)==' ') c = c.substring(1);
+						if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+					}
+					return "";
+				}
+				if(getCookie('cookie_token') != ''){
+					
+					}else{
+					location.reload();
+				}
+			});
+			
+			function cek_form(){
+				var r = confirm("Apakah Anda yakin?");
+				if (r == true) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		</script>
+		<!-- end backup before -->
+	</head>
+
+	<body class="no-skin">
+		<div id="navbar" class="navbar navbar-default">
+			<script type="text/javascript">
+				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="navbar-container" id="navbar-container">
+				<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+					<span class="sr-only">Toggle sidebar</span>
+
+					<span class="icon-bar"></span>
+
+					<span class="icon-bar"></span>
+
+					<span class="icon-bar"></span>
+				</button>
+
+				<div class="navbar-header pull-left">
+					<a href="https://www.pom.go.id/" class="navbar-brand">
+						<small style="color: black;">
+							<img src="https://lesmanagonzales.com/wp-content/uploads/2018/01/BPOM.png" style="width: 45px; font-weight: bold; font-size: 20px;">
+							Aplikasi Pelaporan Keamanan Pangan Online
+						</small>
+					</a>
+				</div>
+
+				<div class="navbar-buttons navbar-header pull-right" role="navigation">
+					<ul class="nav ace-nav">
+
+						<li class="green"  style="background-color: #2e8965;">
+							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+								<i class="ace-icon fa fa-bell icon-animated-bell"></i>
+								<span class="badge badge-important">8</span>
+							</a>
+
+							<ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
+								<li class="dropdown-header">
+									<i class="ace-icon fa fa-exclamation-triangle"></i>
+									8 Notifications
+								</li>
+
+								<li class="dropdown-content">
+									<ul class="dropdown-menu dropdown-navbar navbar-pink">
+										<li>
+											<a href="#">
+												<div class="clearfix">
+													<span class="pull-left">
+														<i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
+														New Comments
+													</span>
+													<span class="pull-right badge badge-info">+12</span>
+												</div>
+											</a>
+										</li>
+
+										<li>
+											<a href="#">
+												<i class="btn btn-xs btn-primary fa fa-user"></i>
+												Bob just signed up as an editor ...
+											</a>
+										</li>
+
+										<li>
+											<a href="#">
+												<div class="clearfix">
+													<span class="pull-left">
+														<i class="btn btn-xs no-hover btn-success fa fa-shopping-cart"></i>
+														New Orders
+													</span>
+													<span class="pull-right badge badge-success">+8</span>
+												</div>
+											</a>
+										</li>
+
+										<li>
+											<a href="#">
+												<div class="clearfix">
+													<span class="pull-left">
+														<i class="btn btn-xs no-hover btn-info fa fa-twitter"></i>
+														Followers
+													</span>
+													<span class="pull-right badge badge-info">+11</span>
+												</div>
+											</a>
+										</li>
+									</ul>
+								</li>
+
+								<li class="dropdown-footer">
+									<a href="#">
+										See all notifications
+										<i class="ace-icon fa fa-arrow-right"></i>
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li class="light-blue" style="background-color: #62a8d1;">
+							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
+								<img class="nav-user-photo" src="<?php echo base_url();?>assets/dashboard/ace-master/assets/avatars/avatar2.png" alt="Jason's Photo" />
+								<span class="user-info">
+									<small>Welcome,</small>
+									<?php echo $this->session->userdata('user_name');?> 
+								</span>
+
+								<i class="ace-icon fa fa-caret-down"></i>
+							</a>
+
+							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+								<li>
+									<a href="#">
+										<i class="ace-icon fa fa-cog"></i>
+										Settings
+									</a>
+								</li>
+
+								<li>
+									<a href="<?php echo site_url()?>profil">
+										<i class="ace-icon fa fa-user"></i>
+										Profile
+									</a>
+								</li>
+
+								<li class="divider"></li>
+
+								<li>
+									<a href="<?php echo base_url();?>home/logOut">
+										<i class="ace-icon fa fa-power-off"></i>
+										Logout
+									</a>
+								</li>
+							</ul>
+						</li>
+
+
+						<!-- <li class="green">
+							<a class="dropdown-toggle" href="<?php //echo base_url();?>home/logOut" style="background-color: #ffffff;">
+								
+								<span class="badge badge-danger"><i class="glyphicon glyphicon-off"></i> logout</span>
+							</a>
+						</li>
+						-->
+
+
+						<!-- <li class="light-blue">
+							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
+								<img class="nav-user-photo" src="<?php echo base_url();?>assets/dashboard/ace-master/assets/avatars/user.jpg" alt="Jason's Photo" />
+								<span class="user-info">
+									<small>Welcome,</small>
+									Jason
+								</span>
+
+								<i class="ace-icon fa fa-caret-down"></i>
+							</a>
+
+							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+								<li>
+									<a href="#">
+										<i class="ace-icon fa fa-cog"></i>
+										Settings
+									</a>
+								</li>
+
+								<li>
+									<a href="profile.html">
+										<i class="ace-icon fa fa-user"></i>
+										Profile
+									</a>
+								</li>
+
+								<li class="divider"></li>
+
+								<li>
+									<a href="#">
+										<i class="ace-icon fa fa-power-off"></i>
+										Logout
+									</a>
+								</li>
+							</ul>
+						</li> -->
+
+
+					</ul>
+				</div>
+			</div><!-- /.navbar-container -->
+		</div>
+
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div id="sidebar" class="sidebar responsive">
+				<script type="text/javascript">
+					try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+				</script>
+
+				<div class="sidebar-shortcuts" id="sidebar-shortcuts">
+					<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+						<button class="btn btn-purple">
+							B
+						</button>
+
+						<button class="btn btn-success">
+							P
+						</button>
+
+						<button class="btn btn-success">
+							O
+						</button>
+
+						<button class="btn btn-success">
+							M
+						</button>
+					</div>
+
+					<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+						<span class="btn btn-purple"></span>
+
+						<span class="btn btn-purple"></span>
+
+						<span class="btn btn-success"></span>
+
+						<span class="btn btn-success"></span>
+					</div>
+				</div><!-- /.sidebar-shortcuts -->
+
+
+				<!-- Start Dynamic Menus -->
+				<ul class="nav nav-list">
+				<?php
+				$role_user=$this->session->userdata('user_segment');
+				$menu_level1=load_menu_by_criteria($role_user,'Level 1');
+				$menu_place=array('Admin'=>'Administrator Page','Home'=>'Landing Page');
+
+				foreach($menu_level1 as $menu_lvl1)
+				{
+					if($menu_lvl1['place']==$menu_place['Admin'])
+					{
+						// Render menu level 1
+						$menu_level2=load_menu_by_criteria($role_user,'Level 2',$menu_lvl1['id_menu']);
+						$current_url=$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+
+						$active_stat='';
+						$link='';
+						$icon='';
+						$class_dropdown='';
+						$arrow_dropdown='';
+
+						if(count($menu_level2)>0)
+						{						
+							foreach($menu_level2 as $menu_lvl2)
+							{
+								//$menu_context_url=str_replace('http://','',base_url().$menu_lvl2['link']);
+								//$menu_context_url=str_replace('https://','',$menu_context_url);
+								// if(strpos($current_url,$menu_context_url)!==false)
+								// {
+								// 	$active_stat='class="active"';
+								// 	break;
+								// }
+								$menu_context_url=str_replace('http://','',base_url().$menu_lvl2['link']);
+								$menu_context_url=str_replace('https://','',$menu_context_url);
+								if($current_url==$menu_context_url)
+								{
+									$active_stat='class="active open highlight"';
+									break;
+								}
+
+								$menu_level3=load_menu_by_criteria($role_user,'Level 3',$menu_lvl2['id_menu']);
+								if(count($menu_level3)>0)
+								{
+									foreach($menu_level3 as $menu_lvl3)
+									{
+										// $menu_context_url=str_replace('http://','',base_url().$menu_lvl3['link']);
+										// $menu_context_url=str_replace('https://','',$menu_context_url);
+										// if(strpos($current_url,$menu_context_url)!==false)
+										// {
+										// 	$active_stat='class="active"';
+										// 	break;
+										// }
+										$menu_context_url=str_replace('http://','',base_url().$menu_lvl3['link']);
+										$menu_context_url=str_replace('https://','',$menu_context_url);
+										if($current_url==$menu_context_url)
+										{
+											$active_stat='class="active open highlight"';
+											break;
+										}
+									}
+								}
+							}	
+						}
+						else
+						{
+
+							// $menu_context_url=str_replace('http://','',base_url().$menu_lvl1['link']);
+							// $menu_context_url=str_replace('https://','',$menu_context_url);
+							// if(strpos($current_url,$menu_context_url)!==false)
+							// {
+							// 	$active_stat='class="active"';
+							// }
+							// 
+							$menu_context_url=str_replace('http://','',base_url().$menu_lvl1['link']);
+							$menu_context_url=str_replace('https://','',$menu_context_url);
+							if($current_url==$menu_context_url)
+							{
+								$active_stat='class="active open highlight"';
+							}
+
+						}
+
+
+						if($menu_lvl1['link_type']=='Internal')
+						{
+							$link=base_url().$menu_lvl1['link'];	
+						}
+						else
+						{
+							$link=$menu_lvl1['link'];
+						}
+						if($menu_lvl1['fa_icon']!=null)
+						{
+							$icon=$menu_lvl1['fa_icon'];	
+						}
+						if(count($menu_level2)>0)
+						{
+							$class_dropdown='class="dropdown-toggle"';
+							$arrow_dropdown='<b class="arrow fa fa-angle-down"></b>';
+						}
+
+						echo '
+						<li '.$active_stat.'>
+						<a href="'.$link.'" '.$class_dropdown.'>
+							<i class="menu-icon fa '.$icon.'"></i>
+							<span class="menu-text">
+								'.$menu_lvl1['title'].'
+							</span>
+							'.$arrow_dropdown.'
+						</a>
+						<b class="arrow"></b>';
+
+						// Render menu level 2
+						if(count($menu_level2)>0)
+						{
+							echo'<ul class="submenu">';	
+							foreach($menu_level2 as $menu_lvl2)
+							{
+								if($menu_lvl2['place']==$menu_place['Admin'])
+								{
+									$menu_level3=load_menu_by_criteria($role_user,'Level 3',$menu_lvl2['id_menu']);
+
+									$active_stat='';
+									$link='';
+									$icon='';
+									$class_dropdown='';
+									$arrow_dropdown='';
+
+									if(count($menu_level3)>0)
+									{
+										foreach($menu_level3 as $menu_lvl3)
+										{
+											//$menu_context_url=str_replace('http://','',base_url().$menu_lvl3['link']);
+											//$menu_context_url=str_replace('https://','',$menu_context_url);
+											// if(strpos($current_url,$menu_context_url)!==false)
+											// {
+											// 	$active_stat='class="active"';
+											// 	break;
+											// }
+											$menu_context_url=str_replace('http://','',base_url().$menu_lvl3['link']);
+											$menu_context_url=str_replace('https://','',$menu_context_url);
+											if($current_url==$menu_context_url)
+											{
+												$active_stat='class="active open highlight"';
+												break;
+											}
+										}	
+									}
+									else
+									{
+
+										// $menu_context_url=str_replace('http://','',base_url().$menu_lvl2['link']);
+										// $menu_context_url=str_replace('https://','',$menu_context_url);
+										// if(strpos($current_url,$menu_context_url)!==false)
+										// {
+										// 	$active_stat='class="active"';
+										// }
+										$menu_context_url=str_replace('http://','',base_url().$menu_lvl2['link']);
+										$menu_context_url=str_replace('https://','',$menu_context_url);
+										if($current_url==$menu_context_url)
+										{
+											$active_stat='class="active open highlight"';
+										}
+									}
+
+									if($menu_lvl2['link_type']=='Internal')
+									{
+										$link=base_url().$menu_lvl2['link'];	
+									}
+									else
+									{
+										$link=$menu_lvl2['link'];
+									}
+									if($menu_lvl2['fa_icon']!=null)
+									{
+										$icon=$menu_lvl2['fa_icon'];	
+									}
+									if(count($menu_level3)>0)
+									{
+										$class_dropdown='class="dropdown-toggle"';
+										$arrow_dropdown='<b class="arrow fa fa-angle-down"></b>';
+									}
+
+									echo '
+									<li '.$active_stat.'>
+									<a href="'.$link.'" '.$class_dropdown.'>
+										<i class="menu-icon fa fa-caret-right"></i>
+										'.$menu_lvl2['title'].'
+										'.$arrow_dropdown.'
+									</a>
+									<b class="arrow"></b>';
+								}
+								
+
+								if(count($menu_level3)>0)
+								{
+									echo '<ul class="submenu">';
+									foreach($menu_level3 as $menu_lvl3)
+									{
+										if($menu_lvl3['place']==$menu_place['Admin'])
+										{
+											$menu_context_url=str_replace('http://','',base_url().$menu_lvl3['link']);
+											$menu_context_url=str_replace('https://','',$menu_context_url);
+
+											$active_stat='';
+											$link='';
+											$icon='';
+											$class_dropdown='';
+											$arrow_dropdown='';
+
+											// if(strpos($current_url,$menu_context_url)!==false)
+											// {
+											// 	$active_stat='class="active"';
+											// }
+											if($current_url==$menu_context_url)
+											{
+												$active_stat='class="active open highlight"';
+											}
+
+											if($menu_lvl3['link_type']=='Internal')
+											{
+												$link=base_url().$menu_lvl3['link'];	
+											}
+											else
+											{
+												$link=$menu_lvl3['link'];
+											}
+											if($menu_lvl2['fa_icon']!=null)
+											{
+												$icon=$menu_lvl3['fa_icon'];	
+											}
+
+											echo '
+											<li '.$active_stat.'>
+												<a href="'.$link.'">
+													<i class="menu-icon fa fa-caret-right"></i>
+													'.$menu_lvl3['title'].'
+												</a>
+												<b class="arrow"></b>
+											</li>';
+										}
+										
+									}
+									echo '</ul>';
+								}
+
+								echo'</li>';
+							}
+							echo'</ul>';
+						}
+
+						echo '</li>';
+
+					}
+				}
+
+
+
+				?>
+				</ul>
+				<!-- End Dynamic Menus -->
+
+
+
+				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+					<i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+				</div>
+
+				<script type="text/javascript">
+					try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+				</script>
+			</div>
+
+			<div class="main-content">
+			    
+					<?php
+					echo $_content;
+					?>
+			</div><!-- /.main-content -->
+
+			<div class="footer">
+				<div class="footer-inner">
+					<div class="footer-content">
+						<span class="bigger-120">
+							<span class="blue bolder">Aplikasi Pelaporan Keamanan Pangan Online</span> - BPOM RI
+							&copy; <?php $tanggal=getdate(); echo $tanggal['year']; ?> 
+						</span>
+					</div>
+				</div>
+			</div>
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+		<!-- <script src="<?php echo base_url();?>assets/dashboard/ace-master/assets/js/jquery.2.1.1.min.js"></script> -->
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+<script src="<?php echo base_url();?>assets/dashboard/ace-master/assets/js/jquery.1.11.1.min.js"></script>
+<![endif]-->
+
+		<!--[if !IE]> -->
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='<?php echo base_url();?>assets/dashboard/ace-master/assets/js/jquery.min.js'>"+"<"+"/script>");
+		</script>
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+<script type="text/javascript">
+ window.jQuery || document.write("<script src='<?php echo base_url();?>assets/dashboard/ace-master/assets/js/jquery1x.min.js'>"+"<"+"/script>");
+</script>
+<![endif]-->
+		<script type="text/javascript">
+			if('ontouchstart' in document.documentElement) document.write("<script src='<?php echo base_url();?>assets/dashboard/ace-master/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+		<script src="<?php echo base_url();?>assets/dashboard/ace-master/assets/js/bootstrap.min.js"></script>
+
+		<!-- page specific plugin scripts -->
+
+		<!--[if lte IE 8]>
+		  <script src="<?php echo base_url();?>assets/dashboard/ace-master/assets/js/excanvas.min.js"></script>
+		<![endif]-->
+		<script src="<?php echo base_url();?>assets/dashboard/ace-master/assets/js/jquery-ui.custom.min.js"></script>
+		<script src="<?php echo base_url();?>assets/dashboard/ace-master/assets/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="<?php echo base_url();?>assets/dashboard/ace-master/assets/js/jquery.easypiechart.min.js"></script>
+		<script src="<?php echo base_url();?>assets/dashboard/ace-master/assets/js/jquery.sparkline.min.js"></script>
+		<script src="<?php echo base_url();?>assets/dashboard/ace-master/assets/js/jquery.flot.min.js"></script>
+		<script src="<?php echo base_url();?>assets/dashboard/ace-master/assets/js/jquery.flot.pie.min.js"></script>
+		<script src="<?php echo base_url();?>assets/dashboard/ace-master/assets/js/jquery.flot.resize.min.js"></script>
+
+		<script src="<?php echo base_url();?>assets/dashboard/ace-master/assets/js/fuelux.wizard.min.js"></script>
+		<script src="<?php echo base_url();?>assets/dashboard/ace-master/assets/js/bootstrap-datepicker.min.js"></script>
+		<script src="<?php echo base_url();?>assets/dashboard/ace-master/assets/js/jquery.validate.min.js"></script>
+		<script src="<?php echo base_url();?>assets/dashboard/ace-master/assets/js/additional-methods.min.js"></script>
+		<script src="<?php echo base_url();?>assets/dashboard/ace-master/assets/js/bootbox.min.js"></script>
+		<script src="<?php echo base_url();?>assets/dashboard/ace-master/assets/js/jquery.maskedinput.min.js"></script>
+		<script src="<?php echo base_url();?>js/jquery.redirect.js"></script>
+		<script src="<?php echo base_url();?>assets/dashboard/ace-master/assets/js/select2.min.js"></script>
+		
+		
+		<!-- Data Table -->
+
+		<!-- page specific plugin scripts -->
+		<script src="<?php echo base_url()?>assets/dashboard/ace-master/assets/js/jquery.dataTables.min.js"></script>
+		<script src="<?php echo base_url()?>assets/dashboard/ace-master/assets/js/jquery.dataTables.bootstrap.min.js"></script>
+		<script src="<?php echo base_url()?>assets/dashboard/ace-master/assets/js/dataTables.tableTools.min.js"></script>
+		<script src="<?php echo base_url()?>assets/dashboard/ace-master/assets/js/dataTables.colVis.min.js"></script>
+        
+        <script src="<?php echo base_url();?>assets/dashboard/ace-master/assets/js/bootstrap-editable.min.js"></script>
+        <script src="<?php echo base_url();?>assets/dashboard/ace-master/assets/js/ace-editable.js"></script>
+
+		<!-- ace scripts -->
+		<script src="<?php echo base_url();?>assets/dashboard/ace-master/assets/js/ace-elements.min.js"></script>
+		<script src="<?php echo base_url();?>assets/dashboard/ace-master/assets/js/ace.min.js"></script>
+        
+       <script>
+        $(document).ready(function(){
+            $("#filter").click(function(){
+                $("#form").toggle();
+                
+            });
+        });
+        </script>
+		
+		
+		
+		<script type="text/javascript">
+			jQuery(function($) {
+			
+				$('[data-rel=tooltip]').tooltip();
+			
+				$(".select2").css('width','600px').select2({allowClear:true})
+				.on('change', function(){
+					$(this).closest('form').validate().element($(this));
+				}); 
+			    
+			
+				 var $validation = true;
+				$('#fuelux-wizard-container')
+				.ace_wizard({
+					//step: 2 //optional argument. wizard will jump to step "2" at first
+					//buttons: '.wizard-actions:eq(0)'
+				})
+				.on('actionclicked.fu.wizard' , function(e, info){
+					if(info.step == 1 && $validation) {
+						if(!$('#validation-form').valid()) e.preventDefault();
+					}
+				})
+				.on('finished.fu.wizard', function(e) {
+					bootbox.dialog({
+						message: "Terima Kasih Data Anda Sudah Kami Simpan Kedalam Sistem!", 
+						
+						buttons: {
+							"success" : {
+								"label" : "OK",
+								"className" : "btn-sm btn-primary"
+							}
+						}
+					});
+				}).on('stepclick.fu.wizard', function(e){
+					//e.preventDefault();//this will prevent clicking and selecting steps
+				});
+			
+			
+				$('#skip-validation').removeAttr('checked').on('click', function(){
+					$validation = this.checked;
+					if(this.checked ) {
+						$('#sample-form').hide();
+						$('#validation-form').removeClass('hide');
+					}
+					else {
+						$('#validation-form').addClass('hide');
+						$('#sample-form').show();
+					}
+				})
+			
+				
+				
+				
+				$('#modal-wizard-container').ace_wizard();
+				$('#modal-wizard .wizard-actions .btn[data-dismiss=modal]').removeAttr('disabled');
+				
+				
+				/**
+				$('#date').datepicker({autoclose:true}).on('changeDate', function(ev) {
+					$(this).closest('form').validate().element($(this));
+				});
+				
+				$('#mychosen').chosen().on('change', function(ev) {
+					$(this).closest('form').validate().element($(this));
+				});
+				*/
+
+				$('.date-picker').datepicker({
+					autoclose: true,
+					todayHighlight: true
+				})
+				//show datepicker when clicking on the icon
+				.next().on(ace.click_event, function(){
+					$(this).prev().focus();
+				});
+			
+				//or change it into a date range picker
+				$('.input-daterange').datepicker({autoclose:true});
+			
+			
+				//to translate the daterange picker, please copy the "examples/daterange-fr.js" contents here before initialization
+				$('input[name=date-range-picker]').daterangepicker({
+					'applyClass' : 'btn-sm btn-success',
+					'cancelClass' : 'btn-sm btn-default',
+					locale: {
+						applyLabel: 'Apply',
+						cancelLabel: 'Cancel',
+					}
+				})
+				.prev().on(ace.click_event, function(){
+					$(this).next().focus();
+				});
+			
+			
+				$('#timepicker1').timepicker({
+					minuteStep: 1,
+					showSeconds: true,
+					showMeridian: false
+				}).next().on(ace.click_event, function(){
+					$(this).prev().focus();
+				});
+				
+				$('#date-timepicker1').datetimepicker().next().on(ace.click_event, function(){
+					$(this).prev().focus();
+				});
+
+				
+				
+				$(document).one('ajaxloadstart.page', function(e) {
+					//in ajax mode, remove remaining elements before leaving page
+					$('[class*=select2]').remove();
+				});
+			})
+		</script>
+		
+		
+		 <script type="text/javascript">
+			jQuery(function($) {
+				$('.easy-pie-chart.percentage').each(function(){
+					var $box = $(this).closest('.infobox');
+					var barColor = $(this).data('color') || (!$box.hasClass('infobox-dark') ? $box.css('color') : 'rgba(255,255,255,0.95)');
+					var trackColor = barColor == 'rgba(255,255,255,0.95)' ? 'rgba(255,255,255,0.25)' : '#E2E2E2';
+					var size = parseInt($(this).data('size')) || 50;
+					$(this).easyPieChart({
+						barColor: barColor,
+						trackColor: trackColor,
+						scaleColor: false,
+						lineCap: 'butt',
+						lineWidth: parseInt(size/10),
+						animate: /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase()) ? false : 1000,
+						size: size
+					});
+				})
+			
+				$('.sparkline').each(function(){
+					var $box = $(this).closest('.infobox');
+					var barColor = !$box.hasClass('infobox-dark') ? $box.css('color') : '#FFF';
+					$(this).sparkline('html',
+									 {
+										tagValuesAttribute:'data-values',
+										type: 'bar',
+										barColor: barColor ,
+										chartRangeMin:$(this).data('min') || 0
+									 });
+				});
+			
+			
+			  //flot chart resize plugin, somehow manipulates default browser resize event to optimize it!
+			  //but sometimes it brings up errors with normal resize event handlers
+			  $.resize.throttleWindow = false;
+			
+			  var placeholder = $('#piechart-placeholder').css({'width':'90%' , 'min-height':'150px'});
+			  var data = [
+				{ label: "social networks",  data: 38.7, color: "#68BC31"},
+				{ label: "search engines",  data: 24.5, color: "#2091CF"},
+				{ label: "ad campaigns",  data: 8.2, color: "#AF4E96"},
+				{ label: "direct traffic",  data: 18.6, color: "#DA5430"},
+				{ label: "other",  data: 10, color: "#FEE074"}
+			  ]
+			  function drawPieChart(placeholder, data, position) {
+			 	  $.plot(placeholder, data, {
+					series: {
+						pie: {
+							show: true,
+							tilt:0.8,
+							highlight: {
+								opacity: 0.25
+							},
+							stroke: {
+								color: '#fff',
+								width: 2
+							},
+							startAngle: 2
+						}
+					},
+					legend: {
+						show: true,
+						position: position || "ne", 
+						labelBoxBorderColor: null,
+						margin:[-30,15]
+					}
+					,
+					grid: {
+						hoverable: true,
+						clickable: true
+					}
+				 })
+			 }
+			 drawPieChart(placeholder, data);
+			
+			 /**
+			 we saved the drawing function and the data to redraw with different position later when switching to RTL mode dynamically
+			 so that's not needed actually.
+			 */
+			 placeholder.data('chart', data);
+			 placeholder.data('draw', drawPieChart);
+			
+			
+			  //pie chart tooltip example
+			  var $tooltip = $("<div class='tooltip top in'><div class='tooltip-inner'></div></div>").hide().appendTo('body');
+			  var previousPoint = null;
+			
+			  placeholder.on('plothover', function (event, pos, item) {
+				if(item) {
+					if (previousPoint != item.seriesIndex) {
+						previousPoint = item.seriesIndex;
+						var tip = item.series['label'] + " : " + item.series['percent']+'%';
+						$tooltip.show().children(0).text(tip);
+					}
+					$tooltip.css({top:pos.pageY + 10, left:pos.pageX + 10});
+				} else {
+					$tooltip.hide();
+					previousPoint = null;
+				}
+				
+			 });
+			
+				/////////////////////////////////////
+				$(document).one('ajaxloadstart.page', function(e) {
+					$tooltip.remove();
+				});
+			
+			
+			
+			
+				var d1 = [];
+				for (var i = 0; i < Math.PI * 2; i += 0.5) {
+					d1.push([i, Math.sin(i)]);
+				}
+			
+				var d2 = [];
+				for (var i = 0; i < Math.PI * 2; i += 0.5) {
+					d2.push([i, Math.cos(i)]);
+				}
+			
+				var d3 = [];
+				for (var i = 0; i < Math.PI * 2; i += 0.2) {
+					d3.push([i, Math.tan(i)]);
+				}
+				
+			
+				var sales_charts = $('#sales-charts').css({'width':'100%' , 'height':'220px'});
+				$.plot("#sales-charts", [
+					{ label: "Domains", data: d1 },
+					{ label: "Hosting", data: d2 },
+					{ label: "Services", data: d3 }
+				], {
+					hoverable: true,
+					shadowSize: 0,
+					series: {
+						lines: { show: true },
+						points: { show: true }
+					},
+					xaxis: {
+						tickLength: 0
+					},
+					yaxis: {
+						ticks: 10,
+						min: -2,
+						max: 2,
+						tickDecimals: 3
+					},
+					grid: {
+						backgroundColor: { colors: [ "#fff", "#fff" ] },
+						borderWidth: 1,
+						borderColor:'#555'
+					}
+				});
+			
+			
+				$('#recent-box [data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+				function tooltip_placement(context, source) {
+					var $source = $(source);
+					var $parent = $source.closest('.tab-content')
+					var off1 = $parent.offset();
+					var w1 = $parent.width();
+			
+					var off2 = $source.offset();
+					//var w2 = $source.width();
+			
+					if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+					return 'left';
+				}
+			
+			
+				$('.dialogs,.comments').ace_scroll({
+					size: 300
+			    });
+				
+				
+				//Android's default browser somehow is confused when tapping on label which will lead to dragging the task
+				//so disable dragging when clicking on label
+				var agent = navigator.userAgent.toLowerCase();
+				if("ontouchstart" in document && /applewebkit/.test(agent) && /android/.test(agent))
+				  $('#tasks').on('touchstart', function(e){
+					var li = $(e.target).closest('#tasks li');
+					if(li.length == 0)return;
+					var label = li.find('label.inline').get(0);
+					if(label == e.target || $.contains(label, e.target)) e.stopImmediatePropagation() ;
+				});
+			
+				$('#tasks').sortable({
+					opacity:0.8,
+					revert:true,
+					forceHelperSize:true,
+					placeholder: 'draggable-placeholder',
+					forcePlaceholderSize:true,
+					tolerance:'pointer',
+					stop: function( event, ui ) {
+						//just for Chrome!!!! so that dropdowns on items don't appear below other items after being moved
+						$(ui.item).css('z-index', 'auto');
+					}
+					}
+				);
+				$('#tasks').disableSelection();
+				$('#tasks input:checkbox').removeAttr('checked').on('click', function(){
+					if(this.checked) $(this).closest('li').addClass('selected');
+					else $(this).closest('li').removeClass('selected');
+				});
+			
+			
+				//show the dropdowns on top or bottom depending on window height and menu position
+				$('#task-tab .dropdown-hover').on('mouseenter', function(e) {
+					var offset = $(this).offset();
+			
+					var $w = $(window)
+					if (offset.top > $w.scrollTop() + $w.innerHeight() - 100) 
+						$(this).addClass('dropup');
+					else $(this).removeClass('dropup');
+				});
+			
+			})
+		</script>
+		<!-- inline scripts related to this page -->
+
+		<!-- backup -->
+		<script src="<?php echo base_url();?>js/jquery.datetimepicker.js"></script>	
+		<link href="<?php echo base_url();?>css/chosen/chosen.css" rel="stylesheet">	
+		<script type="text/javascript" src="<?=base_url()?>js/chosen/chosen.jquery.min.js"></script>
+		<script type="text/javascript" src="<?=base_url()?>js/chosen/prism.js"></script>
+
+		<script>
+		// You can also use "$(window).load(function() {"
+		$(function () {
+		// Slideshow 1
+		$.validate();  
+		});
+		
+		var config = {
+		'.chosen-select'           : {},
+		'.chosen-select-deselect'  : {allow_single_deselect:true},
+		'.chosen-select-no-single' : {disable_search_threshold:10},
+		'.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+		'.chosen-select-width'     : {width:"100%"}
+		}
+		for (var selector in config) {
+		$(selector).chosen(config[selector]);
+		}
+		
+		$('.datetimepicker').datetimepicker();
+		</script>
+		<!-- backup -->
+
+
+
+		<script type="text/javascript">
+				$('#data_table').dataTable({
+					"language": {
+						"emptyTable":     "Data tidak ditemukan"
+					}
+				});
+		</script>
+		<script>
+			
+			$('#datatable').dataTable({});
+		</script>
+		<script src="<?php echo base_url()?>assets/dashboard/ace-master/assets/js/jquery.gritter.min.js"></script>
+
+		<script type="text/javascript">
+		var $path_assets = "dist";//this will be used in gritter alerts containing images
+
+		$('[data-rel=tooltip]').tooltip();
+				$('[data-rel=popover]').popover({html:true});
+
+		</script>
+
+
+
+	</body>
+</html>

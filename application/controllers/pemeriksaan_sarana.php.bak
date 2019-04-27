@@ -1,0 +1,424 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Pemeriksaan_sarana extends APP_Controller {
+
+public function __construct()
+	{
+		parent::__construct();
+		//load library dan helper yang dibutuhkan
+		// $this->load->library('lib_irtp');
+		$this->load->helper('url');
+		$this->load->model('pemeriksaan_sarana_model','',TRUE);
+		$this->load->model('irtp_model','',TRUE);
+		$this->load->model('menu_model');	
+		//$this->preventCache();
+		// Automatic detection for user logged in and menu authority
+		if(checkUserAuthorize()) checkMenuAuthority();
+	}
+
+	public function index()
+	{
+		return view_dashboard('irtp/pemeriksaan_sarana/input_pemeriksaan_sarana');
+	}
+	public function get_irtp_raw(){
+		$nomor = $this->input->post('nomor');	
+		$mode = $this->input->post('mode');
+		if($mode == "NULL"){
+			$query = '
+			SELECT * FROM 
+			tabel_pen_pengajuan_spp, 
+			tabel_daftar_perusahaan , tabel_kabupaten_kota, tabel_propinsi, tabel_jenis_pangan
+			WHERE 
+			tabel_pen_pengajuan_spp.kode_r_perusahaan = tabel_daftar_perusahaan.kode_perusahaan AND 
+			tabel_daftar_perusahaan.id_r_urut_kabupaten = tabel_kabupaten_kota.id_urut_kabupaten AND
+			tabel_kabupaten_kota.no_kode_propinsi = tabel_propinsi.no_kode_propinsi AND
+			tabel_pen_pengajuan_spp.id_urut_jenis_pangan = tabel_jenis_pangan.id_urut_jenis_pangan AND
+			tabel_pen_pengajuan_spp.nomor_permohonan = "'.$nomor.'"
+			';
+			
+			$data = $this->db->query($query)->result();
+		}else{
+			$query = 'SELECT * FROM tabel_pen_pengajuan_spp, tabel_daftar_perusahaan, tabel_kabupaten_kota, tabel_propinsi, tabel_jenis_pangan, tabel_kemasan
+			WHERE tabel_pen_pengajuan_spp.kode_r_perusahaan = tabel_daftar_perusahaan.kode_perusahaan 
+			AND tabel_pen_pengajuan_spp.id_urut_jenis_pangan = tabel_jenis_pangan.id_urut_jenis_pangan 
+			AND tabel_pen_pengajuan_spp.kode_r_kemasan = tabel_kemasan.kode_kemasan 
+			AND tabel_daftar_perusahaan.id_r_urut_kabupaten = tabel_kabupaten_kota.id_urut_kabupaten 
+			AND tabel_kabupaten_kota.no_kode_propinsi = tabel_propinsi.no_kode_propinsi 
+			AND tabel_pen_pengajuan_spp.nomor_permohonan = "'.$nomor.'" LIMIT 1';	
+			// print_r($query); exit;
+			$data = $this->db->query($query)->result();
+			foreach($data as $data){
+				//$kemasan = str_pad($data->kode_kemasan, 2, '0', STR_PAD_LEFT);
+				$kemasan = $data->kode_kemasan;
+				$jen_pangan = str_pad($data->kode_r_grup_jenis_pangan, 2, '0', STR_PAD_LEFT);
+				$nama_kabupaten = $data->nm_kabupaten;	
+				$nama_propinsi = $data->nama_propinsi;	
+				$no_kabupaten = $data->no_kabupaten;
+				$no_kode_propinsi = $data->no_kode_propinsi;
+				$kode_perusahaan = $data->kode_perusahaan;
+			} # End foreach
+			
+			//Digit 8 dan 9
+			$q_jml_spprit = $this->db->query("select * from tabel_penerbitan_sert_pirt, tabel_pen_pengajuan_spp, tabel_daftar_perusahaan, tabel_kabupaten_kota, tabel_propinsi
+				WHERE tabel_penerbitan_sert_pirt.nomor_r_permohonan = tabel_pen_pengajuan_spp.nomor_permohonan
+				AND tabel_pen_pengajuan_spp.kode_r_perusahaan = tabel_daftar_perusahaan.kode_perusahaan
+				AND tabel_daftar_perusahaan.id_r_urut_kabupaten = tabel_kabupaten_kota.id_urut_kabupaten
+				AND tabel_kabupaten_kota.no_kode_propinsi = tabel_propinsi.no_kode_propinsi
+				AND tabel_kabupaten_kota.no_kode_propinsi = '".$no_kode_propinsi."'
+				AND tabel_kabupaten_kota.no_kabupaten = '".$no_kabupaten."'
+				AND tabel_daftar_perusahaan.kode_perusahaan = '".$kode_perusahaan."'
+				order by tanggal_pemberian_pirt asc")->result_array();
+			$jml_spprit = str_pad((count($q_jml_spprit)+1), 2, '0', STR_PAD_LEFT);
+
+			if(count($q_jml_spprit)==0){
+				$match = $this->db->query("SELECT LPAD( IFNULL( SUBSTRING( nomor_pirt, 11, 4 ) +1, 1 ) , 4,  '0' ) AS id FROM tabel_penerbitan_sert_pirt 
+				WHERE SUBSTRING( nomor_pirt, 4, 2 ) ='".$no_kode_propinsi."'
+				AND SUBSTRING( nomor_pirt, 6, 2 ) ='".$no_kabupaten."'
+				ORDER BY SUBSTRING( nomor_pirt, 11, 4 ) DESC 
+				LIMIT 1")->result_array();
+				$getNum = $match[0]['id'];
+			} else {
+				$getNum = substr($q_jml_spprit[0]['nomor_pirt'], 9, 4);
+
+			}
+			
+			$temp = $kemasan.$jen_pangan.$no_kode_propinsi.$no_kabupaten.$jml_spprit.$getNum.'-'.date("y", strtotime("+ 1825 day"));
+			// print_r($temp); exit;
+			$data = array('no_pirt' => $temp, 'provinsi' => $nama_propinsi, 'kabupaten' => $nama_kabupaten);
+		}	# End if
+		
+		echo(json_encode($data));
+	}
+    
+    public function output_pemeriksaan()
+	{
+		if($this->session->userdata('user_segment')==4 or $this->session->userdata('user_segment')==3){
+			if($this->input->post('no_kode_propinsi')!=""){
+				$provinsi = $this->input->post('no_kode_propinsi');
+			} else {
+				$provinsi = $this->session->userdata('code');
+			}
+		} else {
+			$provinsi = $this->input->post('no_kode_propinsi');
+		}
+		
+		if($this->session->userdata('user_segment')==5){
+			if($this->input->post('nama_kabupaten')!=""){
+				$kabupaten = $this->input->post('nama_kabupaten');
+			} else {
+				$kabupaten = $this->session->userdata('code');
+			}
+		} else {
+			$kabupaten = $this->input->post('nama_kabupaten');
+		}
+		
+		if($provinsi!=""){ $q_provinsi = "and PP.no_kode_propinsi='$provinsi'"; } else { $q_provinsi = ""; }
+		if($kabupaten!=""){ $q_kabupaten = "and KK.id_urut_kabupaten in ($kabupaten)"; } else { $q_kabupaten = ""; }
+		
+		$tanggal_awal = $this->input->post('tanggal_awal');
+		$tanggal_akhir = $this->input->post('tanggal_akhir');
+		if($tanggal_awal!=""){
+			$tanggal_awal = date('Y-m-d', strtotime($this->input->post('tanggal_awal')));
+		}
+		if($tanggal_akhir!=""){
+			$tanggal_akhir = date('Y-m-d', strtotime($this->input->post('tanggal_akhir')));
+		}
+		
+		//load data permohonan
+		//$datas = $this->db->get('tabel_periksa_sarana_produksi_tahap_1')->result();
+		$datas = $this->irtp_model->pemeriksaan_view($provinsi,$kabupaten,$tanggal_awal,$tanggal_akhir)->result();		
+		$data['datas'] = $datas;
+		
+		/* $this->load->library('table');
+		$this->table->set_empty("&nbsp;");
+		
+		$tmpl = array ( 'table_open'  => '<table class="table table-bordered">' );
+		$this->table->set_template($tmpl);
+		
+		$this->table->set_heading(
+			'No.',
+			'Nomor Permohonan',
+			'Nama IRTP',
+			'Alamat',
+			'Nama Jenis Pangan',
+			'Nama Produk Pangan',
+			'Nama Dagang',
+			'Jenis Kemasan',
+			'Jumlah Ketidaksesuain',
+			'Level IRTP',
+			'Frekuensi Audit Internal',
+			'Tanggal Pemeriksaan'
+		);
+
+		
+		//isi
+		$i = 0;
+		foreach($datas as $field){
+			
+			$this->table->add_row(++$i,
+				$field->nomor_permohonan,
+				$field->nama_perusahaan,
+				$field->alamat_irtp,
+				$field->jenis_pangan,
+				$field->deskripsi_pangan,
+				$field->nama_dagang,
+				$field->jenis_kemasan,
+				$this->db->query("select * from tabel_periksa_sarana_produksi where nomor_r_sert_pangan = '".$field->nomor_permohonan."'")->num_rows(),
+				$field->level_irtp,
+				$field->frekuensi_audit,
+				date("d F Y", strtotime($field->tanggal_pemeriksaan))
+				
+			);
+		}
+		
+		$data['table'] = $this->table->generate(); */
+		
+		if($provinsi!='' or $kabupaten!=''){
+			if($this->session->userdata('user_segment')==5){
+				$kab = $this->db->query("select * from tabel_propinsi join tabel_kabupaten_kota on tabel_propinsi.no_kode_propinsi = tabel_kabupaten_kota.no_kode_propinsi where id_urut_kabupaten in (".$this->session->userdata('code').")")->result();
+				
+				$data['filter_kab'] = "";
+				foreach($kab as $r){
+					$prov_arr[] = $r->no_kode_propinsi;
+					if($r->id_urut_kabupaten==$kabupaten){
+						$data['filter_kab'] = $data['filter_kab']."<option value='$r->id_urut_kabupaten' selected>$r->no_kabupaten. $r->nm_kabupaten</option>";
+					} else {
+						$data['filter_kab'] = $data['filter_kab']."<option value='$r->id_urut_kabupaten'>$r->no_kabupaten. $r->nm_kabupaten</option>";
+					}
+				}
+				$prov = $this->db->query("select * from tabel_propinsi where no_kode_propinsi in (".implode(",",$prov_arr).")")->result();
+			} else {
+				$prov = $this->db->query("select * from tabel_propinsi where no_kode_propinsi='$provinsi'")->result();
+				foreach($prov as $r){
+					$kode_propinsi = $r->no_kode_propinsi;
+					$nama_propinsi = $r->nama_propinsi;
+				}
+				$data['filter'] = "<option value='$kode_propinsi' selected>$nama_propinsi</option><option disabled>- Pilih Provinsi -</option>";
+				
+				$kab = $this->db->query("select * from tabel_kabupaten_kota where no_kode_propinsi='$provinsi'")->result();
+				$data['filter_kab'] = "";
+				foreach($kab as $r){
+					if($r->id_urut_kabupaten==$kabupaten){
+						$data['filter_kab'] = $data['filter_kab']."<option value='$r->id_urut_kabupaten' selected>$r->no_kabupaten. $r->nm_kabupaten</option>";
+					} else {
+						$data['filter_kab'] = $data['filter_kab']."<option value='$r->id_urut_kabupaten'>$r->no_kabupaten. $r->nm_kabupaten</option>";
+					}
+				}
+			}
+			
+			
+		} else {
+			if($this->session->userdata('user_segment')==5){
+				$kab = $this->db->query("select * from tabel_propinsi join tabel_kabupaten_kota on tabel_propinsi.no_kode_propinsi = tabel_kabupaten_kota.no_kode_propinsi where id_urut_kabupaten in (".$this->session->userdata('code').")")->result();
+				
+				$data['filter_kab'] = "";
+				foreach($kab as $r){
+					$prov_arr[] = $r->no_kode_propinsi;
+					if($r->id_urut_kabupaten==$kabupaten){
+						$data['filter_kab'] = $data['filter_kab']."<option value='$r->id_urut_kabupaten' selected>$r->no_kabupaten. $r->nm_kabupaten</option>";
+					} else {
+						$data['filter_kab'] = $data['filter_kab']."<option value='$r->id_urut_kabupaten'>$r->no_kabupaten. $r->nm_kabupaten</option>";
+					}
+				}
+				//print_r(); exit;
+				$prov = $this->db->query("select * from tabel_propinsi where no_kode_propinsi in (".implode(",",$prov_arr).")")->result();
+			} else {
+				$data['filter'] = "<option disabled selected>- Pilih Provinsi -</option>";
+				$data['filter_kab'] = "<option disabled selected>- Pilih Provinsi Terlebih Dahulu -</option>";
+			}
+			
+			
+		}
+		
+		//download
+		
+		if($provinsi!='' or $kabupaten!=''){
+			if($provinsi==""){ $data['propinsi'] = 0; } else { $data['propinsi'] = $provinsi; }
+			
+			$data['kabupaten'] = $kabupaten;
+		} else {
+			$data['propinsi'] = 0;
+			$data['kabupaten'] = 0;
+		}
+		$data['tanggal_awal'] = $tanggal_awal;
+		$data['tanggal_akhir'] = $tanggal_akhir;
+		
+		$data['list_jumlah_irtp_kriteria'] = array();
+		foreach(array('Mayor', 'Minor', 'Serius', 'Kritis') as $kriteria) {
+			$data['list_jumlah_irtp_kriteria'][$kriteria] = $this->irtp_model->get_jumlah_irtp_by_kriteria($kriteria,$q_provinsi,$q_kabupaten,$tanggal_awal,$tanggal_akhir);
+		}
+
+		$data['list_jumlah_irtp_level'] = array();
+		foreach(array('Level I', 'Level II', 'Level III', 'Level IV') as $level) {
+			$data['list_jumlah_irtp_level'][$level] = $this->irtp_model->get_jumlah_irtp_by_level($level,$q_provinsi,$q_kabupaten,$tanggal_awal,$tanggal_akhir);
+		}
+
+		if(count(@$prov)>0){
+			$data['data_select'] = @$prov;
+		} else {
+			$data['data_select'] = $this->db->get('tabel_propinsi')->result();
+		}
+		return view_dashboard('irtp/pemeriksaan_sarana/output_pemeriksaan', $data);
+	}
+	
+	public function input()
+	{
+		if($this->session->userdata('user_segment')==4 or $this->session->userdata('user_segment')==3){
+			$provinsi = $this->session->userdata('code');
+			
+		}
+		
+		if($this->session->userdata('user_segment')==5){
+			
+			$kabupaten = $this->session->userdata('code');
+			
+		} 
+		
+		if(@$provinsi!=""){ $q_provinsi = "and tabel_propinsi.no_kode_propinsi='$provinsi'"; } else { $q_provinsi = ""; }
+		if(@$kabupaten!=""){ $q_kabupaten = "and tabel_kabupaten_kota.id_urut_kabupaten in ($kabupaten)"; } else { $q_kabupaten = ""; }
+		
+		
+		$data['no_sert'] = $this->db->query('SELECT distinct nomor_permohonan, nama_perusahaan, nama_pemilik, nama_dagang FROM 
+		tabel_pen_pengajuan_spp, 
+		tabel_daftar_perusahaan, 
+		tabel_ambil_penyuluhan, 
+		tabel_kabupaten_kota, 
+		tabel_propinsi WHERE 
+		tabel_pen_pengajuan_spp.kode_r_perusahaan = tabel_daftar_perusahaan.kode_perusahaan AND 
+		tabel_ambil_penyuluhan.nomor_r_permohonan = tabel_pen_pengajuan_spp.nomor_permohonan and 
+		tabel_daftar_perusahaan.id_r_urut_kabupaten = tabel_kabupaten_kota.id_urut_kabupaten and 
+		tabel_kabupaten_kota.no_kode_propinsi = tabel_propinsi.no_kode_propinsi '.$q_provinsi.''.$q_kabupaten.'')->result();
+		
+		
+		$data['nomor_ketidaksesuaian'] = $this->db->get('tabel_ketidaksesuaian')->result();
+		$data['plor'] = $this->db->get('tabel_plor')->result();
+		$data['sesuaian'] = $this->db->get('tabel_kriteria_ketidaksesuaian')->result();
+		$data['js_kabupaten'] = $this->db->get('tabel_kabupaten_kota')->result();
+		$data['js_propinsi'] = $this->db->get('tabel_propinsi')->result();
+		$data['js_pengawas'] = $this->irtp_model->data_dfi()->result();
+		
+
+		return view_dashboard('irtp/pemeriksaan_sarana/input_pemeriksaan_sarana', $data);
+	}
+
+	function pemeriksaan_lanjut()
+	{
+
+		if($this->session->userdata('user_segment')==4 or $this->session->userdata('user_segment')==3){
+			if($this->input->post('no_kode_propinsi')!=""){
+				$provinsi = $this->input->post('no_kode_propinsi');
+			} else {
+				$provinsi = $this->session->userdata('code');
+			}
+		} else {
+			$provinsi = $this->input->post('no_kode_propinsi');
+		}
+		
+		if($this->session->userdata('user_segment')==5){
+			if($this->input->post('nama_kabupaten')!=""){
+				$kabupaten = $this->input->post('nama_kabupaten');
+			} else {
+				$kabupaten = $this->session->userdata('code');
+			}
+		} else {
+			$kabupaten = $this->input->post('nama_kabupaten');
+		}
+		
+		if($provinsi!=""){ $q_provinsi = "and PP.no_kode_propinsi='$provinsi'"; } else { $q_provinsi = ""; }
+		if($kabupaten!=""){ $q_kabupaten = "and KK.id_urut_kabupaten in ($kabupaten)"; } else { $q_kabupaten = ""; }
+		
+		$tanggal_awal = $this->input->post('tanggal_awal');
+		$tanggal_akhir = $this->input->post('tanggal_akhir');
+		if($tanggal_awal!=""){
+			$tanggal_awal = date('Y-m-d', strtotime($this->input->post('tanggal_awal')));
+		}
+		if($tanggal_akhir!=""){
+			$tanggal_akhir = date('Y-m-d', strtotime($this->input->post('tanggal_akhir')));
+		}
+		
+		//load data permohonan
+		$datas = $this->irtp_model->pemeriksaan_view($provinsi,$kabupaten,$tanggal_awal,$tanggal_akhir)->result();		
+		$data['datas'] = $datas;
+		
+		
+		if($provinsi!='' or $kabupaten!=''){
+			if($this->session->userdata('user_segment')==5){
+				$kab = $this->db->query("select * from tabel_propinsi join tabel_kabupaten_kota on tabel_propinsi.no_kode_propinsi = tabel_kabupaten_kota.no_kode_propinsi where id_urut_kabupaten in (".$this->session->userdata('code').")")->result();
+				
+				$data['filter_kab'] = "";
+				foreach($kab as $r){
+					$prov_arr[] = $r->no_kode_propinsi;
+					if($r->id_urut_kabupaten==$kabupaten){
+						$data['filter_kab'] = $data['filter_kab']."<option value='$r->id_urut_kabupaten' selected>$r->no_kabupaten. $r->nm_kabupaten</option>";
+					} else {
+						$data['filter_kab'] = $data['filter_kab']."<option value='$r->id_urut_kabupaten'>$r->no_kabupaten. $r->nm_kabupaten</option>";
+					}
+				}
+				$prov = $this->db->query("select * from tabel_propinsi where no_kode_propinsi in (".implode(",",$prov_arr).")")->result();
+			} else {
+				$prov = $this->db->query("select * from tabel_propinsi where no_kode_propinsi='$provinsi'")->result();
+				foreach($prov as $r){
+					$kode_propinsi = $r->no_kode_propinsi;
+					$nama_propinsi = $r->nama_propinsi;
+				}
+				$data['filter'] = "<option value='$kode_propinsi' selected>$nama_propinsi</option><option disabled>- Pilih Provinsi -</option>";
+				
+				$kab = $this->db->query("select * from tabel_kabupaten_kota where no_kode_propinsi='$provinsi'")->result();
+				$data['filter_kab'] = "";
+				foreach($kab as $r){
+					if($r->id_urut_kabupaten==$kabupaten){
+						$data['filter_kab'] = $data['filter_kab']."<option value='$r->id_urut_kabupaten' selected>$r->no_kabupaten. $r->nm_kabupaten</option>";
+					} else {
+						$data['filter_kab'] = $data['filter_kab']."<option value='$r->id_urut_kabupaten'>$r->no_kabupaten. $r->nm_kabupaten</option>";
+					}
+				}
+			}
+			
+			
+		} else {
+			if($this->session->userdata('user_segment')==5){
+				$kab = $this->db->query("select * from tabel_propinsi join tabel_kabupaten_kota on tabel_propinsi.no_kode_propinsi = tabel_kabupaten_kota.no_kode_propinsi where id_urut_kabupaten in (".$this->session->userdata('code').")")->result();
+				
+				$data['filter_kab'] = "";
+				foreach($kab as $r){
+					$prov_arr[] = $r->no_kode_propinsi;
+					if($r->id_urut_kabupaten==$kabupaten){
+						$data['filter_kab'] = $data['filter_kab']."<option value='$r->id_urut_kabupaten' selected>$r->no_kabupaten. $r->nm_kabupaten</option>";
+					} else {
+						$data['filter_kab'] = $data['filter_kab']."<option value='$r->id_urut_kabupaten'>$r->no_kabupaten. $r->nm_kabupaten</option>";
+					}
+				}
+				//print_r(); exit;
+				$prov = $this->db->query("select * from tabel_propinsi where no_kode_propinsi in (".implode(",",$prov_arr).")")->result();
+			} else {
+				$data['filter'] = "<option disabled selected>- Pilih Provinsi -</option>";
+				$data['filter_kab'] = "<option disabled selected>- Pilih Provinsi Terlebih Dahulu -</option>";
+			}
+			
+			
+		}
+		
+		//download
+		
+		if($provinsi!='' or $kabupaten!=''){
+			if($provinsi==""){ $data['propinsi'] = 0; } else { $data['propinsi'] = $provinsi; }
+			
+			$data['kabupaten'] = $kabupaten;
+		} else {
+			$data['propinsi'] = 0;
+			$data['kabupaten'] = 0;
+		}
+		$data['tanggal_awal'] = $tanggal_awal;
+		$data['tanggal_akhir'] = $tanggal_akhir;
+		
+		
+		if(count(@$prov)>0){
+			$data['data_select'] = @$prov;
+		} else {
+			$data['data_select'] = $this->db->get('tabel_propinsi')->result();
+		}
+		return view_dashboard('irtp/pemeriksaan_sarana/output_pemeriksaan_lanjut' ,$data);
+		// $this->lib_irtp->display('output_pemeriksaan_lanjut',$data);
+		
+	}
+}

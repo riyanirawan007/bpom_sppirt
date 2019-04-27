@@ -1,0 +1,217 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Materi_penyuluhan extends CI_Controller {
+
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->library('lib_admin');
+		$this->load->model('materi_penyuluhan_model');
+		$this->load->helper(array('form', 'url'));
+		$this->load->library('form_validation');
+		$this->load->model('menu_model');	
+		//$this->preventCache();
+		// Automatic detection for user logged in and menu authority
+		if(checkUserAuthorize()) checkMenuAuthority();
+	}
+
+	public function index()
+	{
+		if($this->session->userdata('user_token')){
+			$data['materi_penyuluhan'] = $this->materi_penyuluhan_model->view()->result();
+			$this->lib_admin->display('materi_penyuluhan/view',$data);
+		} else {
+			return redirect('home/index');
+		}
+	}
+
+	function get_kab_kota(){
+		$id=$this->input->post('id');
+		$data=$this->materi_penyuluhan_model->get_kabupaten_kota($id);
+		echo json_encode($data);
+	}
+
+
+	function add()
+	{
+		if($this->session->userdata('user_token')){
+			if ($this->input->post('submit')) {
+				$this->form_validation->set_rules('nama_materi_penyuluhan', 'nama_materi_penyuluhan', 'required');
+				if ($this->form_validation->run() == FALSE)	{
+					$this->session->set_flashdata('errors', validation_errors());
+					redirect('materi_penyuluhan/add');
+				} else {	
+					if ($_FILES['dokumen']['name'] != "") {
+						$config['upload_path']          = './dok_materi/';
+						$config['allowed_types']        = 'pdf';
+						$config['max_size']             = 13000;
+
+						$this->load->library('upload', $config);
+						if ( ! $this->upload->do_upload('dokumen')){
+							$this->session->set_flashdata('errors',  $this->upload->display_errors());
+							redirect('materi_penyuluhan/add');
+							// $error = array('error' => $this->upload->display_errors());
+							// echo $error;
+						}else{
+							$this->upload->data();
+							$dokumen = str_replace(" ","_",$_FILES['dokumen']['name']);
+							$nama_materi_penyuluhan = $this->input->post('nama_materi_penyuluhan');
+							$status_materi = $this->input->post('status_materi');
+				// 			$jenis = $this->input->post('jenis');
+				// 			$cluster = $this->input->post('cluster');
+				// 			$no_kode_propinsi = $this->input->post('no_kode_propinsi');
+				// 			$id_urut_kabupaten = $this->input->post('id_urut_kabupaten');
+							$data = array(
+								'nama_materi_penyuluhan' => $nama_materi_penyuluhan
+								,'status_materi' => $status_materi
+								// ,'jenis' => $jenis
+								// ,'cluster' => $cluster
+								// ,'no_kode_propinsi' => $no_kode_propinsi
+								// ,'id_urut_kabupaten' => $id_urut_kabupaten
+								,'dokumen' => $dokumen
+							);
+
+							$this->db->insert('tabel_materi_penyuluhan', $data);
+							redirect('materi_penyuluhan');	
+						}
+					} else {
+						$nama_materi_penyuluhan = $this->input->post('nama_materi_penyuluhan');
+						$status_materi = $this->input->post('status_materi');
+				// 		$jenis = $this->input->post('jenis');
+				// 		$cluster = $this->input->post('cluster');
+				// 		$no_kode_propinsi = $this->input->post('no_kode_propinsi');
+				// 		$id_urut_kabupaten = $this->input->post('id_urut_kabupaten');
+						$data = array(
+							'nama_materi_penyuluhan' => $nama_materi_penyuluhan
+							,'status_materi' => $status_materi
+				// 			,'jenis' => $jenis
+				// 			,'cluster' => $cluster
+				// 			,'no_kode_propinsi' => $no_kode_propinsi
+				// 			,'id_urut_kabupaten' => $id_urut_kabupaten
+						);
+
+						$this->db->insert('tabel_materi_penyuluhan', $data);
+						redirect('materi_penyuluhan');	
+					}		
+				}
+
+			} else {
+				$data['propinsi'] = $this->materi_penyuluhan_model->propinsi()->result();
+				$data['kabupaten_kota'] = $this->materi_penyuluhan_model->kabupaten_kota()->result();
+				$data['jenis_materi'] = $this->materi_penyuluhan_model->jenis_materi()->result();
+				$this->lib_admin->display('materi_penyuluhan/add',$data);
+			}
+
+		} else {
+			return redirect('home/index');
+		}	
+	}
+
+	function edit()
+	{
+		if($this->session->userdata('user_token')){
+			if ($this->input->post('submit')) {
+				$this->form_validation->set_rules('nama_materi_penyuluhan', 'nama_materi_penyuluhan', 'required');
+				if ($this->form_validation->run() == FALSE)	{
+					$this->session->set_flashdata('errors', validation_errors());
+					redirect('materi_penyuluhan/edit');
+				} else {	
+					$kode_materi_penyuluhan = $this->input->post('kode_materi_penyuluhan');
+					if ($_FILES['dokumen']['name'] != "") {
+						$config['upload_path']          = './dok_materi/';
+						$config['allowed_types']        = 'pdf';
+						$config['max_size']             = 13000;
+
+						$this->load->library('upload', $config);
+						if ( ! $this->upload->do_upload('dokumen')){
+							$this->session->set_flashdata('errors',  $this->upload->display_errors());
+							redirect('materi_penyuluhan/edit/'.$kode_materi_penyuluhan);
+							// $error = array('error' => $this->upload->display_errors());
+							// echo $error;
+						}else{
+							$this->upload->data();
+							$dokumen = str_replace(" ","_",$_FILES['dokumen']['name']);
+							$nama_materi_penyuluhan = $this->input->post('nama_materi_penyuluhan');
+							$status_materi = $this->input->post('status_materi');
+				// 			$jenis = $this->input->post('jenis');
+				// 			$cluster = $this->input->post('cluster');
+				// 			$no_kode_propinsi = $this->input->post('no_kode_propinsi');
+				// 			if ($this->input->post('id_urut_kabupaten') == '0') {
+				// 				$id_urut_kabupaten = $this->input->post('old_id_urut_kabupaten');								
+				// 			} else {
+				// 				$id_urut_kabupaten = $this->input->post('id_urut_kabupaten');
+				// 			}
+
+							$data = array(
+								'nama_materi_penyuluhan' => $nama_materi_penyuluhan
+								,'status_materi' => $status_materi
+								// ,'jenis' => $jenis
+								// ,'cluster' => $cluster
+								// ,'no_kode_propinsi' => $no_kode_propinsi
+								// ,'id_urut_kabupaten' => $id_urut_kabupaten
+								,'dokumen' => $dokumen
+							);
+
+							$this->db->where('kode_materi_penyuluhan', $kode_materi_penyuluhan);
+							$this->db->update('tabel_materi_penyuluhan', $data);
+							redirect('materi_penyuluhan');	
+						}
+					} else {
+						$nama_materi_penyuluhan = $this->input->post('nama_materi_penyuluhan');
+						$status_materi = $this->input->post('status_materi');
+				// 		$jenis = $this->input->post('jenis');
+				// 		$cluster = $this->input->post('cluster');
+				// 		$no_kode_propinsi = $this->input->post('no_kode_propinsi');
+				// 		$no_kode_propinsi = $this->input->post('no_kode_propinsi');
+				// 			if ($this->input->post('id_urut_kabupaten') == '0') {
+				// 				$id_urut_kabupaten = $this->input->post('old_id_urut_kabupaten');								
+				// 			} else {
+				// 				$id_urut_kabupaten = $this->input->post('id_urut_kabupaten');
+				// 			}
+						$data = array(
+							'nama_materi_penyuluhan' => $nama_materi_penyuluhan
+							,'status_materi' => $status_materi
+				// 			,'jenis' => $jenis
+				// 			,'cluster' => $cluster
+				// 			,'no_kode_propinsi' => $no_kode_propinsi
+				// 			,'id_urut_kabupaten' => $id_urut_kabupaten
+						);
+
+						$this->db->where('kode_materi_penyuluhan', $kode_materi_penyuluhan);
+						$this->db->update('tabel_materi_penyuluhan', $data);
+						redirect('materi_penyuluhan');	
+					}		
+				}
+
+			} else {
+				$id = $this->uri->segment(3);
+				$data['mp'] = $this->materi_penyuluhan_model->select($id)->row_array();
+				$data['propinsi'] = $this->materi_penyuluhan_model->propinsi()->result();
+				$data['kabupaten_kota'] = $this->materi_penyuluhan_model->kabupaten_kota()->result();
+				$data['jenis_materi'] = $this->materi_penyuluhan_model->jenis_materi()->result();
+				$this->lib_admin->display('materi_penyuluhan/edit',$data);
+			}
+
+		} else {
+			return redirect('home/index');
+		}	
+	}
+
+	function delete()
+	{
+		$id = $this->uri->segment(3);
+		$this->db->where('kode_materi_penyuluhan', $id);
+		$delete = $this->db->delete('tabel_materi_penyuluhan');
+		if ($delete) {
+			$this->session->set_flashdata('message', '<div class="alert alert-info">Berhasil diproses</div>');
+		} else {
+			$this->session->set_flashdata('message', '<div class="alert alert-info">Gagal diproses</div>');
+		}
+		redirect('materi_penyuluhan');	
+	}
+
+}
+
+/* End of file materi_penyuluhan.php */
+/* Location: ./application/controllers/materi_penyuluhan.php */
