@@ -1,0 +1,27 @@
+.wrap {
+  margin-left:0;
+  margin-right:0;
+}
+.imagee {
+	background-repeat: no-repeat;
+	background-size:100%;
+	width: 100%;
+	height: 250px;
+}
+.imglain {
+	background-repeat: no-repeat;
+	background-size:100%;
+	width: 100%;
+	height: 30%;
+}
+body{
+	background-color:#1977A5;
+}
+.container{
+	background-color:#8CD9FF;
+}
+
+.foot{
+	background-color:#1977A5;
+	color:white;
+}

@@ -1,0 +1,11 @@
+# IGNORING SOME UNNECESARRY FILES
+.directory
+.ftpquota
+/captcha_images
+/DATABASE
+/foto
+/images
+/dok_materi
+/sql
+/uploads
+/user_guide

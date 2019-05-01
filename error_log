@@ -1,0 +1,454 @@
+[04-Aug-2018 10:38:15 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 33
+[04-Aug-2018 10:59:19 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO) in /home/saht3539/public_html/sppirt/application/views/home.php on line 163
+[04-Aug-2018 10:59:21 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO) in /home/saht3539/public_html/sppirt/application/views/home.php on line 163
+[04-Aug-2018 10:59:51 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO) in /home/saht3539/public_html/sppirt/application/views/home.php on line 163
+[04-Aug-2018 10:59:54 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO) in /home/saht3539/public_html/sppirt/application/views/home.php on line 163
+[06-Sep-2018 15:16:33 Asia/Jakarta] PHP Fatal error:  Call to a member function display() on null in /home/saht3539/public_html/sppirt/application/controllers/jenis_pangan.php on line 19
+[06-Sep-2018 15:16:34 Asia/Jakarta] PHP Fatal error:  Call to a member function display() on null in /home/saht3539/public_html/sppirt/application/controllers/jenis_pangan.php on line 19
+[06-Sep-2018 15:47:32 Asia/Jakarta] PHP Fatal error:  Call to a member function display() on null in /home/saht3539/public_html/sppirt/application/controllers/jenis_pangan.php on line 19
+[06-Sep-2018 15:47:33 Asia/Jakarta] PHP Fatal error:  Call to a member function display() on null in /home/saht3539/public_html/sppirt/application/controllers/jenis_pangan.php on line 19
+[06-Sep-2018 15:47:34 Asia/Jakarta] PHP Fatal error:  Call to a member function display() on null in /home/saht3539/public_html/sppirt/application/controllers/jenis_pangan.php on line 19
+[10-Sep-2018 05:42:29 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/menu_model.php on line 449
+[27-Sep-2018 14:01:47 Asia/Jakarta] PHP Fatal error:  Call to a member function result() on boolean in /home/saht3539/public_html/sppirt/application/controllers/irtp.php on line 152
+[27-Sep-2018 14:01:51 Asia/Jakarta] PHP Fatal error:  Call to a member function result() on boolean in /home/saht3539/public_html/sppirt/application/controllers/irtp.php on line 152
+[27-Sep-2018 14:02:06 Asia/Jakarta] PHP Fatal error:  Call to a member function result() on boolean in /home/saht3539/public_html/sppirt/application/controllers/irtp.php on line 152
+[27-Sep-2018 14:09:57 Asia/Jakarta] PHP Fatal error:  Call to a member function result() on boolean in /home/saht3539/public_html/sppirt/application/controllers/irtp.php on line 152
+[27-Sep-2018 14:10:03 Asia/Jakarta] PHP Fatal error:  Call to a member function result() on boolean in /home/saht3539/public_html/sppirt/application/controllers/irtp.php on line 152
+[27-Sep-2018 14:10:07 Asia/Jakarta] PHP Fatal error:  Call to a member function result() on boolean in /home/saht3539/public_html/sppirt/application/controllers/irtp.php on line 152
+[27-Sep-2018 14:10:09 Asia/Jakarta] PHP Fatal error:  Call to a member function result() on boolean in /home/saht3539/public_html/sppirt/application/controllers/irtp.php on line 152
+[27-Sep-2018 14:10:23 Asia/Jakarta] PHP Fatal error:  Call to a member function result() on boolean in /home/saht3539/public_html/sppirt/application/controllers/irtp.php on line 152
+[27-Sep-2018 14:10:26 Asia/Jakarta] PHP Fatal error:  Call to a member function result() on boolean in /home/saht3539/public_html/sppirt/application/controllers/irtp.php on line 152
+[27-Sep-2018 14:10:50 Asia/Jakarta] PHP Fatal error:  Call to a member function result() on boolean in /home/saht3539/public_html/sppirt/application/controllers/irtp.php on line 152
+[27-Sep-2018 14:11:22 Asia/Jakarta] PHP Fatal error:  Call to a member function result() on boolean in /home/saht3539/public_html/sppirt/application/controllers/irtp.php on line 152
+[27-Sep-2018 14:11:23 Asia/Jakarta] PHP Fatal error:  Call to a member function result() on boolean in /home/saht3539/public_html/sppirt/application/controllers/irtp.php on line 152
+[27-Sep-2018 14:11:41 Asia/Jakarta] PHP Fatal error:  Call to a member function result() on boolean in /home/saht3539/public_html/sppirt/application/controllers/irtp.php on line 152
+[27-Sep-2018 14:13:57 Asia/Jakarta] PHP Fatal error:  Call to a member function result() on boolean in /home/saht3539/public_html/sppirt/application/controllers/irtp.php on line 152
+[27-Sep-2018 14:42:38 Asia/Jakarta] PHP Fatal error:  Call to a member function display() on null in /home/saht3539/public_html/sppirt/application/controllers/irtp.php on line 190
+[27-Sep-2018 14:42:43 Asia/Jakarta] PHP Fatal error:  Call to a member function display() on null in /home/saht3539/public_html/sppirt/application/controllers/irtp.php on line 190
+[02-Oct-2018 05:51:59 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/menu_model.php on line 28
+[02-Oct-2018 05:52:00 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/menu_model.php on line 28
+[02-Oct-2018 05:52:03 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/menu_model.php on line 28
+[02-Oct-2018 05:52:38 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/menu_model.php on line 28
+[02-Oct-2018 05:54:06 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/menu_model.php on line 28
+[02-Oct-2018 05:54:16 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/menu_model.php on line 28
+[02-Oct-2018 05:54:18 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/menu_model.php on line 28
+[02-Oct-2018 05:55:21 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/menu_model.php on line 28
+[02-Oct-2018 05:55:23 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/menu_model.php on line 28
+[02-Oct-2018 05:55:27 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/menu_model.php on line 28
+[02-Oct-2018 05:57:11 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/menu_model.php on line 28
+[02-Oct-2018 05:57:12 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/menu_model.php on line 28
+[02-Oct-2018 05:59:23 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/menu_model.php on line 29
+[02-Oct-2018 06:00:40 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/menu_model.php on line 29
+[02-Oct-2018 06:01:30 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/menu_model.php on line 29
+[02-Oct-2018 06:01:33 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/menu_model.php on line 29
+[17-Nov-2018 15:06:49 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:06:53 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:07:00 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:07:03 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:07:06 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:07:08 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:07:13 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:07:16 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:07:52 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:08:01 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:08:19 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:08:22 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:08:35 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:10:49 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:10:54 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:11:02 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:12:17 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:12:31 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:13:33 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:13:37 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:14:18 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:14:43 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:16:15 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:16:17 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:16:19 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:17:39 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:17:40 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:21:39 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:21:40 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:21:42 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:21:43 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:21:44 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:28:43 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:30:21 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:30:27 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:30:27 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:30:28 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:30:29 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:30:38 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:30:49 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:30:52 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:30:54 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:32:50 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:33:37 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:33:44 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:33:45 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[17-Nov-2018 15:33:48 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[19-Nov-2018 11:50:41 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[19-Nov-2018 11:50:43 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[19-Nov-2018 11:50:45 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[19-Nov-2018 11:50:46 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[19-Nov-2018 11:50:46 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[19-Nov-2018 11:50:47 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[19-Nov-2018 11:51:03 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[19-Nov-2018 11:51:04 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[24-Nov-2018 10:51:46 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ',' in /home/saht3539/public_html/sppirt/application/controllers/pemeriksaan_sarana.php on line 347
+[24-Nov-2018 10:51:50 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ',' in /home/saht3539/public_html/sppirt/application/controllers/pemeriksaan_sarana.php on line 347
+[24-Nov-2018 10:52:07 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ',' in /home/saht3539/public_html/sppirt/application/controllers/pemeriksaan_sarana.php on line 347
+[24-Nov-2018 10:52:10 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ',' in /home/saht3539/public_html/sppirt/application/controllers/pemeriksaan_sarana.php on line 347
+[24-Nov-2018 10:52:12 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ',' in /home/saht3539/public_html/sppirt/application/controllers/pemeriksaan_sarana.php on line 347
+[24-Nov-2018 10:53:34 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ',' in /home/saht3539/public_html/sppirt/application/controllers/pemeriksaan_sarana.php on line 347
+[24-Nov-2018 10:53:39 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ',' in /home/saht3539/public_html/sppirt/application/controllers/pemeriksaan_sarana.php on line 347
+[27-Nov-2018 13:50:24 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[27-Nov-2018 13:50:25 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[27-Nov-2018 13:50:28 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[27-Nov-2018 13:50:28 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[27-Nov-2018 13:50:29 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[01-Dec-2018 14:15:34 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '=', expecting ')' in /home/saht3539/public_html/sppirt/application/views/irtp/pelaksanaan_pkp/input_pkp.php on line 228
+[01-Dec-2018 14:15:52 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '=', expecting ')' in /home/saht3539/public_html/sppirt/application/views/irtp/pelaksanaan_pkp/input_pkp.php on line 228
+[01-Dec-2018 14:15:59 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '=', expecting ')' in /home/saht3539/public_html/sppirt/application/views/irtp/pelaksanaan_pkp/input_pkp.php on line 228
+[01-Dec-2018 14:16:17 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '=', expecting ')' in /home/saht3539/public_html/sppirt/application/views/irtp/pelaksanaan_pkp/input_pkp.php on line 228
+[01-Dec-2018 14:16:20 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '=', expecting ')' in /home/saht3539/public_html/sppirt/application/views/irtp/pelaksanaan_pkp/input_pkp.php on line 228
+[01-Dec-2018 14:17:20 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '=', expecting ')' in /home/saht3539/public_html/sppirt/application/views/irtp/pelaksanaan_pkp/input_pkp.php on line 228
+[01-Dec-2018 14:17:40 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '=', expecting ')' in /home/saht3539/public_html/sppirt/application/views/irtp/pelaksanaan_pkp/input_pkp.php on line 228
+[01-Dec-2018 14:17:43 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '=', expecting ')' in /home/saht3539/public_html/sppirt/application/views/irtp/pelaksanaan_pkp/input_pkp.php on line 228
+[01-Dec-2018 14:17:46 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '=', expecting ')' in /home/saht3539/public_html/sppirt/application/views/irtp/pelaksanaan_pkp/input_pkp.php on line 228
+[01-Dec-2018 14:18:10 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '=', expecting ')' in /home/saht3539/public_html/sppirt/application/views/irtp/pelaksanaan_pkp/input_pkp.php on line 228
+[01-Dec-2018 14:18:16 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '=', expecting ')' in /home/saht3539/public_html/sppirt/application/views/irtp/pelaksanaan_pkp/input_pkp.php on line 228
+[01-Dec-2018 14:18:25 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '=', expecting ')' in /home/saht3539/public_html/sppirt/application/views/irtp/pelaksanaan_pkp/input_pkp.php on line 228
+[01-Dec-2018 15:12:36 Asia/Jakarta] PHP Fatal error:  Call to a member function result() on boolean in /home/saht3539/public_html/sppirt/application/controllers/pelaksanaan_pkp.php on line 56
+[01-Dec-2018 15:43:27 Asia/Jakarta] PHP Fatal error:  Call to a member function result() on boolean in /home/saht3539/public_html/sppirt/application/controllers/pelaksanaan_pkp.php on line 56
+[03-Dec-2018 17:57:40 Asia/Jakarta] PHP Fatal error:  Call to a member function result() on boolean in /home/saht3539/public_html/sppirt/application/controllers/pencabutan_sppirt.php on line 165
+[03-Dec-2018 18:31:16 Asia/Jakarta] PHP Fatal error:  Call to a member function result() on boolean in /home/saht3539/public_html/sppirt/application/controllers/pelaksanaan_pkp.php on line 171
+[05-Dec-2018 21:52:55 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[05-Dec-2018 21:52:56 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[05-Dec-2018 21:52:57 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[05-Dec-2018 21:53:05 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[05-Dec-2018 21:53:05 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[05-Dec-2018 21:53:06 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[05-Dec-2018 21:53:11 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[05-Dec-2018 21:53:12 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[05-Dec-2018 21:53:15 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[05-Dec-2018 21:54:29 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[05-Dec-2018 21:54:31 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[05-Dec-2018 21:54:44 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[05-Dec-2018 21:54:48 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[05-Dec-2018 21:54:52 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[05-Dec-2018 21:55:12 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[05-Dec-2018 21:55:13 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[05-Dec-2018 21:55:14 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[05-Dec-2018 21:55:17 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::group_start() in /home/saht3539/public_html/sppirt/application/models/narasumber_model.php on line 41
+[08-Dec-2018 17:57:53 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';' in /home/saht3539/public_html/sppirt/application/controllers/rekap_irtp.php on line 38
+[08-Dec-2018 17:59:04 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';' in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 40
+[08-Dec-2018 17:59:14 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';' in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 39
+[08-Dec-2018 17:59:17 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';' in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 39
+[08-Dec-2018 17:59:36 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';' in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 39
+[08-Dec-2018 17:59:48 Asia/Jakarta] PHP Fatal error:  Call to a member function get_pengajuan() on null in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 39
+[08-Dec-2018 18:00:15 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '=', expecting variable (T_VARIABLE) in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 11
+[08-Dec-2018 18:00:17 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '=', expecting variable (T_VARIABLE) in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 11
+[08-Dec-2018 18:00:30 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '=', expecting variable (T_VARIABLE) in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 11
+[08-Dec-2018 18:00:33 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '=', expecting variable (T_VARIABLE) in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 11
+[08-Dec-2018 18:00:52 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '=', expecting variable (T_VARIABLE) in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 11
+[08-Dec-2018 18:01:12 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '=', expecting variable (T_VARIABLE) in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 11
+[08-Dec-2018 18:02:00 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '=', expecting variable (T_VARIABLE) in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 11
+[08-Dec-2018 18:02:02 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '=', expecting variable (T_VARIABLE) in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 11
+[08-Dec-2018 18:02:39 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '=', expecting variable (T_VARIABLE) in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 11
+[08-Dec-2018 18:03:34 Asia/Jakarta] PHP Fatal error:  Call to a member function get_pengajuan() on null in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 39
+[08-Dec-2018 18:04:03 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '=', expecting variable (T_VARIABLE) in /home/saht3539/public_html/sppirt/application/models/rekap_pengajuan_model.php on line 13
+[08-Dec-2018 18:04:46 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '=', expecting variable (T_VARIABLE) in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 11
+[08-Dec-2018 18:05:28 Asia/Jakarta] PHP Fatal error:  Call to a member function get_pengajuan() on null in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 39
+[08-Dec-2018 18:05:39 Asia/Jakarta] PHP Fatal error:  Call to a member function get_pengajuan() on null in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 39
+[08-Dec-2018 19:00:37 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';' in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 30
+[08-Dec-2018 19:00:38 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';' in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 30
+[08-Dec-2018 19:01:14 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';' in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 30
+[08-Dec-2018 19:01:15 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';' in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 30
+[08-Dec-2018 19:02:20 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';' in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 30
+[08-Dec-2018 19:02:29 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';' in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 30
+[08-Dec-2018 19:02:29 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';' in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 30
+[08-Dec-2018 19:03:07 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';' in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 30
+[08-Dec-2018 19:03:08 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';' in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 30
+[08-Dec-2018 19:04:11 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';' in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 30
+[08-Dec-2018 19:04:11 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';' in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 30
+[08-Dec-2018 19:04:12 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';' in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 30
+[08-Dec-2018 19:04:13 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';' in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 30
+[08-Dec-2018 19:04:39 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';' in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 30
+[08-Dec-2018 19:04:40 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';' in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 30
+[08-Dec-2018 19:05:58 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';' in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 30
+[08-Dec-2018 19:06:42 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';' in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 30
+[08-Dec-2018 19:06:44 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';' in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 30
+[08-Dec-2018 19:06:58 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';' in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 25
+[08-Dec-2018 19:07:57 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';' in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 25
+[08-Dec-2018 19:07:58 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';' in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 25
+[08-Dec-2018 19:07:59 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';' in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 25
+[08-Dec-2018 19:08:18 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';' in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 25
+[08-Dec-2018 19:08:49 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';' in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 25
+[08-Dec-2018 19:08:50 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';' in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 25
+[08-Dec-2018 19:08:51 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';' in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 25
+[08-Dec-2018 19:09:27 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 39
+[08-Dec-2018 20:03:46 Asia/Jakarta] PHP Fatal error:  Uncaught exception 'PhpOffice\PhpSpreadsheet\Exception' with message 'Invalid range: "B141:B139"' in /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php:516
+Stack trace:
+#0 /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php(389): PhpOffice\PhpSpreadsheet\Cell\Coordinate::validateRange('B141:B139', 2, 3, '141', '139')
+#1 /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php(336): PhpOffice\PhpSpreadsheet\Cell\Coordinate::getReferencesForCellBlock('B141:B139')
+#2 /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Worksheet/Worksheet.php(1695): PhpOffice\PhpSpreadsheet\Cell\Coordinate::extractAllCellReferencesInRange('B141:B139')
+#3 /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php(101): PhpOffice\PhpSpreadsheet\Worksheet\Worksheet->mergeCells(' in /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php on line 516
+[08-Dec-2018 20:04:20 Asia/Jakarta] PHP Fatal error:  Uncaught exception 'PhpOffice\PhpSpreadsheet\Exception' with message 'Invalid range: "B141:B139"' in /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php:516
+Stack trace:
+#0 /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php(389): PhpOffice\PhpSpreadsheet\Cell\Coordinate::validateRange('B141:B139', 2, 3, '141', '139')
+#1 /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php(336): PhpOffice\PhpSpreadsheet\Cell\Coordinate::getReferencesForCellBlock('B141:B139')
+#2 /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Worksheet/Worksheet.php(1695): PhpOffice\PhpSpreadsheet\Cell\Coordinate::extractAllCellReferencesInRange('B141:B139')
+#3 /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php(101): PhpOffice\PhpSpreadsheet\Worksheet\Worksheet->mergeCells(' in /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php on line 516
+[08-Dec-2018 20:04:34 Asia/Jakarta] PHP Fatal error:  Uncaught exception 'PhpOffice\PhpSpreadsheet\Exception' with message 'Invalid range: "B141:B139"' in /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php:516
+Stack trace:
+#0 /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php(389): PhpOffice\PhpSpreadsheet\Cell\Coordinate::validateRange('B141:B139', 2, 3, '141', '139')
+#1 /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php(336): PhpOffice\PhpSpreadsheet\Cell\Coordinate::getReferencesForCellBlock('B141:B139')
+#2 /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Worksheet/Worksheet.php(1695): PhpOffice\PhpSpreadsheet\Cell\Coordinate::extractAllCellReferencesInRange('B141:B139')
+#3 /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php(101): PhpOffice\PhpSpreadsheet\Worksheet\Worksheet->mergeCells(' in /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php on line 516
+[08-Dec-2018 20:04:37 Asia/Jakarta] PHP Fatal error:  Uncaught exception 'PhpOffice\PhpSpreadsheet\Exception' with message 'Invalid range: "B141:B139"' in /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php:516
+Stack trace:
+#0 /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php(389): PhpOffice\PhpSpreadsheet\Cell\Coordinate::validateRange('B141:B139', 2, 3, '141', '139')
+#1 /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php(336): PhpOffice\PhpSpreadsheet\Cell\Coordinate::getReferencesForCellBlock('B141:B139')
+#2 /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Worksheet/Worksheet.php(1695): PhpOffice\PhpSpreadsheet\Cell\Coordinate::extractAllCellReferencesInRange('B141:B139')
+#3 /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php(101): PhpOffice\PhpSpreadsheet\Worksheet\Worksheet->mergeCells(' in /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php on line 516
+[08-Dec-2018 20:06:06 Asia/Jakarta] PHP Fatal error:  Uncaught exception 'PhpOffice\PhpSpreadsheet\Exception' with message 'Invalid range: "B141:B139"' in /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php:516
+Stack trace:
+#0 /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php(389): PhpOffice\PhpSpreadsheet\Cell\Coordinate::validateRange('B141:B139', 2, 3, '141', '139')
+#1 /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php(336): PhpOffice\PhpSpreadsheet\Cell\Coordinate::getReferencesForCellBlock('B141:B139')
+#2 /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Worksheet/Worksheet.php(1695): PhpOffice\PhpSpreadsheet\Cell\Coordinate::extractAllCellReferencesInRange('B141:B139')
+#3 /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php(101): PhpOffice\PhpSpreadsheet\Worksheet\Worksheet->mergeCells(' in /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php on line 516
+[08-Dec-2018 20:06:15 Asia/Jakarta] PHP Fatal error:  Uncaught exception 'PhpOffice\PhpSpreadsheet\Exception' with message 'Invalid range: "B141:B139"' in /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php:516
+Stack trace:
+#0 /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php(389): PhpOffice\PhpSpreadsheet\Cell\Coordinate::validateRange('B141:B139', 2, 3, '141', '139')
+#1 /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php(336): PhpOffice\PhpSpreadsheet\Cell\Coordinate::getReferencesForCellBlock('B141:B139')
+#2 /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Worksheet/Worksheet.php(1695): PhpOffice\PhpSpreadsheet\Cell\Coordinate::extractAllCellReferencesInRange('B141:B139')
+#3 /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php(101): PhpOffice\PhpSpreadsheet\Worksheet\Worksheet->mergeCells(' in /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php on line 516
+[08-Dec-2018 20:06:23 Asia/Jakarta] PHP Fatal error:  Uncaught exception 'PhpOffice\PhpSpreadsheet\Exception' with message 'Invalid range: "B141:B139"' in /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php:516
+Stack trace:
+#0 /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php(389): PhpOffice\PhpSpreadsheet\Cell\Coordinate::validateRange('B141:B139', 2, 3, '141', '139')
+#1 /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php(336): PhpOffice\PhpSpreadsheet\Cell\Coordinate::getReferencesForCellBlock('B141:B139')
+#2 /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Worksheet/Worksheet.php(1695): PhpOffice\PhpSpreadsheet\Cell\Coordinate::extractAllCellReferencesInRange('B141:B139')
+#3 /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php(101): PhpOffice\PhpSpreadsheet\Worksheet\Worksheet->mergeCells(' in /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php on line 516
+[08-Dec-2018 20:06:41 Asia/Jakarta] PHP Fatal error:  Uncaught exception 'PhpOffice\PhpSpreadsheet\Exception' with message 'Invalid range: "B141:B139"' in /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php:516
+Stack trace:
+#0 /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php(389): PhpOffice\PhpSpreadsheet\Cell\Coordinate::validateRange('B141:B139', 2, 3, '141', '139')
+#1 /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php(336): PhpOffice\PhpSpreadsheet\Cell\Coordinate::getReferencesForCellBlock('B141:B139')
+#2 /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Worksheet/Worksheet.php(1695): PhpOffice\PhpSpreadsheet\Cell\Coordinate::extractAllCellReferencesInRange('B141:B139')
+#3 /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php(101): PhpOffice\PhpSpreadsheet\Worksheet\Worksheet->mergeCells(' in /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php on line 516
+[08-Dec-2018 20:07:00 Asia/Jakarta] PHP Fatal error:  Uncaught exception 'PhpOffice\PhpSpreadsheet\Exception' with message 'Invalid range: "B141:B139"' in /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php:516
+Stack trace:
+#0 /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php(389): PhpOffice\PhpSpreadsheet\Cell\Coordinate::validateRange('B141:B139', 2, 3, '141', '139')
+#1 /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php(336): PhpOffice\PhpSpreadsheet\Cell\Coordinate::getReferencesForCellBlock('B141:B139')
+#2 /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Worksheet/Worksheet.php(1695): PhpOffice\PhpSpreadsheet\Cell\Coordinate::extractAllCellReferencesInRange('B141:B139')
+#3 /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php(101): PhpOffice\PhpSpreadsheet\Worksheet\Worksheet->mergeCells(' in /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php on line 516
+[08-Dec-2018 20:10:42 Asia/Jakarta] PHP Fatal error:  Uncaught exception 'PhpOffice\PhpSpreadsheet\Exception' with message 'Invalid range: "B141:B139"' in /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php:516
+Stack trace:
+#0 /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php(389): PhpOffice\PhpSpreadsheet\Cell\Coordinate::validateRange('B141:B139', 2, 3, '141', '139')
+#1 /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php(336): PhpOffice\PhpSpreadsheet\Cell\Coordinate::getReferencesForCellBlock('B141:B139')
+#2 /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Worksheet/Worksheet.php(1695): PhpOffice\PhpSpreadsheet\Cell\Coordinate::extractAllCellReferencesInRange('B141:B139')
+#3 /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php(102): PhpOffice\PhpSpreadsheet\Worksheet\Worksheet->mergeCells(' in /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php on line 516
+[08-Dec-2018 20:14:50 Asia/Jakarta] PHP Fatal error:  Uncaught exception 'PhpOffice\PhpSpreadsheet\Exception' with message 'Merge must be set on a range of cells.' in /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Worksheet/Worksheet.php:1711
+Stack trace:
+#0 /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php(112): PhpOffice\PhpSpreadsheet\Worksheet\Worksheet->mergeCells(2)
+#1 [internal function]: Rekap_pengajuan->rekap()
+#2 /home/saht3539/public_html/sppirt/system/core/CodeIgniter.php(359): call_user_func_array(Array, Array)
+#3 /home/saht3539/public_html/sppirt/index.php(202): require_once('/home/saht3539/...')
+#4 {main}
+  thrown in /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Worksheet/Worksheet.php on line 1711
+[08-Dec-2018 20:14:52 Asia/Jakarta] PHP Fatal error:  Uncaught exception 'PhpOffice\PhpSpreadsheet\Exception' with message 'Merge must be set on a range of cells.' in /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Worksheet/Worksheet.php:1711
+Stack trace:
+#0 /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php(112): PhpOffice\PhpSpreadsheet\Worksheet\Worksheet->mergeCells(2)
+#1 [internal function]: Rekap_pengajuan->rekap()
+#2 /home/saht3539/public_html/sppirt/system/core/CodeIgniter.php(359): call_user_func_array(Array, Array)
+#3 /home/saht3539/public_html/sppirt/index.php(202): require_once('/home/saht3539/...')
+#4 {main}
+  thrown in /home/saht3539/public_html/sppirt/helper/excel/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Worksheet/Worksheet.php on line 1711
+[10-Dec-2018 20:51:56 Asia/Jakarta] PHP Fatal error:  Class 'Spreadsheet' not found in /home/saht3539/public_html/sppirt/application/controllers/rekap_penerbitan.php on line 53
+[10-Dec-2018 20:51:59 Asia/Jakarta] PHP Fatal error:  Class 'Spreadsheet' not found in /home/saht3539/public_html/sppirt/application/controllers/rekap_penerbitan.php on line 53
+[10-Dec-2018 20:52:02 Asia/Jakarta] PHP Fatal error:  Class 'Spreadsheet' not found in /home/saht3539/public_html/sppirt/application/controllers/rekap_penerbitan.php on line 53
+[10-Dec-2018 20:52:03 Asia/Jakarta] PHP Fatal error:  Class 'Spreadsheet' not found in /home/saht3539/public_html/sppirt/application/controllers/rekap_penerbitan.php on line 53
+[10-Dec-2018 20:53:09 Asia/Jakarta] PHP Fatal error:  Class 'Spreadsheet' not found in /home/saht3539/public_html/sppirt/application/controllers/rekap_penerbitan.php on line 53
+[10-Dec-2018 20:53:25 Asia/Jakarta] PHP Fatal error:  Class 'Spreadsheet' not found in /home/saht3539/public_html/sppirt/application/controllers/rekap_penerbitan.php on line 53
+[10-Dec-2018 20:53:32 Asia/Jakarta] PHP Fatal error:  Class 'Spreadsheet' not found in /home/saht3539/public_html/sppirt/application/controllers/rekap_penerbitan.php on line 53
+[10-Dec-2018 20:53:42 Asia/Jakarta] PHP Fatal error:  Class 'Spreadsheet' not found in /home/saht3539/public_html/sppirt/application/controllers/rekap_penerbitan.php on line 53
+[10-Dec-2018 20:53:48 Asia/Jakarta] PHP Fatal error:  Class 'Spreadsheet' not found in /home/saht3539/public_html/sppirt/application/controllers/rekap_penerbitan.php on line 53
+[10-Dec-2018 20:53:51 Asia/Jakarta] PHP Fatal error:  Class 'Spreadsheet' not found in /home/saht3539/public_html/sppirt/application/controllers/rekap_penerbitan.php on line 53
+[10-Dec-2018 20:54:59 Asia/Jakarta] PHP Fatal error:  Class 'Spreadsheet' not found in /home/saht3539/public_html/sppirt/application/controllers/rekap_penerbitan.php on line 53
+[10-Dec-2018 20:55:01 Asia/Jakarta] PHP Fatal error:  Class 'Spreadsheet' not found in /home/saht3539/public_html/sppirt/application/controllers/rekap_penerbitan.php on line 53
+[10-Dec-2018 20:55:09 Asia/Jakarta] PHP Fatal error:  Class 'Spreadsheet' not found in /home/saht3539/public_html/sppirt/application/controllers/rekap_penerbitan.php on line 53
+[10-Dec-2018 20:55:49 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 84
+[10-Dec-2018 20:55:52 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 84
+[10-Dec-2018 20:55:53 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 84
+[10-Dec-2018 20:57:01 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 84
+[10-Dec-2018 20:57:03 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 84
+[10-Dec-2018 20:57:05 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 84
+[10-Dec-2018 21:00:35 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 84
+[10-Dec-2018 21:00:37 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 84
+[10-Dec-2018 21:00:57 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 84
+[10-Dec-2018 21:00:59 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 84
+[10-Dec-2018 21:01:02 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 84
+[10-Dec-2018 21:01:04 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 84
+[10-Dec-2018 21:01:05 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 84
+[10-Dec-2018 21:01:12 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 84
+[10-Dec-2018 21:01:22 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 84
+[10-Dec-2018 21:01:28 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 84
+[10-Dec-2018 21:01:53 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 84
+[10-Dec-2018 21:02:20 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 84
+[10-Dec-2018 21:03:02 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 84
+[10-Dec-2018 21:03:25 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 84
+[10-Dec-2018 21:03:27 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 84
+[10-Dec-2018 21:04:55 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 84
+[10-Dec-2018 21:05:03 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 84
+[10-Dec-2018 21:05:06 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 84
+[10-Dec-2018 21:05:08 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 84
+[10-Dec-2018 21:06:11 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 84
+[10-Dec-2018 21:06:15 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 84
+[10-Dec-2018 21:06:27 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 84
+[10-Dec-2018 21:06:30 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 84
+[10-Dec-2018 21:07:54 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 84
+[10-Dec-2018 21:07:57 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 84
+[10-Dec-2018 21:08:53 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 84
+[10-Dec-2018 21:09:07 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 84
+[10-Dec-2018 21:09:10 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 84
+[10-Dec-2018 21:59:52 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 82
+[10-Dec-2018 22:00:26 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 82
+[11-Dec-2018 09:14:29 Asia/Jakarta] PHP Fatal error:  Call to a member function result() on null in /home/saht3539/public_html/sppirt/application/views/profil/view.php on line 121
+[11-Dec-2018 09:14:36 Asia/Jakarta] PHP Fatal error:  Call to a member function result() on null in /home/saht3539/public_html/sppirt/application/views/profil/view.php on line 121
+[11-Dec-2018 20:23:34 Asia/Jakarta] PHP Fatal error:  Call to a member function num_rows() on boolean in /home/saht3539/public_html/sppirt/application/views/index.php on line 152
+[11-Dec-2018 20:23:39 Asia/Jakarta] PHP Fatal error:  Call to a member function num_rows() on boolean in /home/saht3539/public_html/sppirt/application/views/index.php on line 152
+[11-Dec-2018 20:23:44 Asia/Jakarta] PHP Fatal error:  Call to a member function num_rows() on boolean in /home/saht3539/public_html/sppirt/application/views/index.php on line 152
+[13-Dec-2018 07:03:46 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 56
+[13-Dec-2018 07:23:38 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 60
+[13-Dec-2018 07:23:53 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 60
+[13-Dec-2018 07:24:25 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/saht3539/public_html/sppirt/application/models/rekap_irtp_model.php on line 60
+[13-Dec-2018 11:02:47 Asia/Jakarta] PHP Fatal error:  Class 'IOFactory' not found in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 169
+[13-Dec-2018 11:02:52 Asia/Jakarta] PHP Fatal error:  Class 'IOFactory' not found in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 169
+[13-Dec-2018 11:02:57 Asia/Jakarta] PHP Fatal error:  Class 'IOFactory' not found in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 169
+[13-Dec-2018 11:03:01 Asia/Jakarta] PHP Fatal error:  Class 'IOFactory' not found in /home/saht3539/public_html/sppirt/application/controllers/rekap_pengajuan.php on line 169
+[14-Dec-2018 21:11:35 Asia/Jakarta] PHP Fatal error:  Class 'PHPMailer' not found in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 187
+[14-Dec-2018 21:12:33 Asia/Jakarta] PHP Fatal error:  Class 'PHPMailer' not found in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 187
+[14-Dec-2018 21:12:43 Asia/Jakarta] PHP Fatal error:  Class 'PHPMailer' not found in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 187
+[14-Dec-2018 21:19:25 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'redirect' (T_STRING) in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 288
+[14-Dec-2018 21:20:25 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '}' in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 301
+[14-Dec-2018 21:21:06 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '}' in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 301
+[14-Dec-2018 21:23:43 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '@' in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 221
+[14-Dec-2018 21:29:34 Asia/Jakarta] PHP Fatal error:  Class 'PHPMailer' not found in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 187
+[14-Dec-2018 21:29:58 Asia/Jakarta] PHP Fatal error:  Class 'PHPMailer' not found in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 187
+[14-Dec-2018 21:32:10 Asia/Jakarta] PHP Fatal error:  Class 'PHPMailer' not found in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 187
+[14-Dec-2018 21:35:56 Asia/Jakarta] PHP Fatal error:  Class 'PHPMailer' not found in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 187
+[14-Dec-2018 21:46:18 Asia/Jakarta] PHP Fatal error:  Class 'PHPMailer' not found in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 188
+[14-Dec-2018 21:46:58 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '@' in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 205
+[14-Dec-2018 21:47:26 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '@' in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 205
+[14-Dec-2018 22:45:47 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '@' in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 230
+[14-Dec-2018 22:46:40 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '@' in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 230
+[14-Dec-2018 22:47:02 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '@' in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 230
+[14-Dec-2018 22:47:30 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '@' in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 230
+[14-Dec-2018 22:47:48 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '@' in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 230
+[14-Dec-2018 22:50:52 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '@' in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 230
+[14-Dec-2018 22:52:17 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '@' in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 230
+[14-Dec-2018 22:53:29 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '@' in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 230
+[14-Dec-2018 22:55:38 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '@' in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 230
+[14-Dec-2018 22:59:23 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '@' in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 219
+[15-Dec-2018 13:20:30 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '@' in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 219
+[15-Dec-2018 13:23:48 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '@' in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 219
+[15-Dec-2018 13:23:55 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '@' in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 219
+[15-Dec-2018 13:24:35 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '@' in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 219
+[15-Dec-2018 13:25:03 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '@' in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 219
+[15-Dec-2018 13:25:21 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '@' in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 219
+[15-Dec-2018 13:25:42 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '@' in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 219
+[15-Dec-2018 13:26:16 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '@' in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 219
+[15-Dec-2018 13:26:42 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '@' in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 219
+[15-Dec-2018 13:27:58 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '@' in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 219
+[15-Dec-2018 13:29:05 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '@' in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 219
+[15-Dec-2018 13:30:36 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '@' in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 219
+[15-Dec-2018 13:30:42 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '@' in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 219
+[15-Dec-2018 13:47:24 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '?>', expecting function (T_FUNCTION) in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 299
+[15-Dec-2018 13:47:37 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '?>', expecting function (T_FUNCTION) in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 299
+[15-Dec-2018 13:48:15 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '?>', expecting function (T_FUNCTION) in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 200
+[15-Dec-2018 13:48:31 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '?>', expecting function (T_FUNCTION) in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 200
+[15-Dec-2018 13:48:52 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '?>', expecting function (T_FUNCTION) in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 200
+[15-Dec-2018 13:53:32 Asia/Jakarta] PHP Fatal error:  Class 'PHPMailer' not found in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 202
+[15-Dec-2018 13:56:06 Asia/Jakarta] PHP Fatal error:  Class 'PHPMailer' not found in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 202
+[15-Dec-2018 13:56:50 Asia/Jakarta] PHP Fatal error:  Class 'PHPMailer' not found in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 202
+[15-Dec-2018 13:58:08 Asia/Jakarta] PHP Fatal error:  Class 'PHPMailer' not found in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 202
+[15-Dec-2018 14:00:33 Asia/Jakarta] PHP Fatal error:  Class 'PHPMailer' not found in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 202
+[15-Dec-2018 14:01:08 Asia/Jakarta] PHP Fatal error:  Class 'PHPMailer' not found in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 202
+[15-Dec-2018 14:01:13 Asia/Jakarta] PHP Fatal error:  Class 'PHPMailer' not found in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 202
+[15-Dec-2018 14:02:52 Asia/Jakarta] PHP Fatal error:  Class 'PHPMailer' not found in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 202
+[15-Dec-2018 14:03:15 Asia/Jakarta] PHP Fatal error:  Class 'PHPMailer' not found in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 202
+[15-Dec-2018 14:04:24 Asia/Jakarta] PHP Fatal error:  Class 'PHPMailer' not found in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 202
+[15-Dec-2018 14:04:31 Asia/Jakarta] PHP Fatal error:  Class 'PHPMailer' not found in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 202
+[15-Dec-2018 14:04:46 Asia/Jakarta] PHP Fatal error:  Class 'PHPMailer' not found in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 202
+[15-Dec-2018 14:05:36 Asia/Jakarta] PHP Fatal error:  Class 'PHPMailer' not found in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 202
+[15-Dec-2018 14:05:44 Asia/Jakarta] PHP Fatal error:  Class 'PHPMailer' not found in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 202
+[15-Dec-2018 14:08:28 Asia/Jakarta] PHP Fatal error:  Class 'PHPMailer' not found in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 203
+[15-Dec-2018 14:09:53 Asia/Jakarta] PHP Fatal error:  Class 'PHPMailer' not found in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 203
+[15-Dec-2018 14:10:41 Asia/Jakarta] PHP Fatal error:  Class 'MyPHPMailer' not found in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 203
+[15-Dec-2018 14:14:05 Asia/Jakarta] PHP Fatal error:  Class 'PHPMailer\PHPMailer\PHPMailer' not found in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 206
+[15-Dec-2018 14:18:18 Asia/Jakarta] PHP Fatal error:  Call to a member function load() on null in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 204
+[15-Dec-2018 14:18:47 Asia/Jakarta] PHP Fatal error:  Call to a member function load() on null in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 204
+[15-Dec-2018 14:19:13 Asia/Jakarta] PHP Fatal error:  Call to a member function load() on null in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 204
+[17-Dec-2018 14:01:29 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '"' in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 88
+[17-Dec-2018 14:01:34 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '"' in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 88
+[17-Dec-2018 14:02:00 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '"' in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 87
+[17-Dec-2018 14:02:23 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '"' in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 87
+[17-Dec-2018 14:02:55 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '"' in /home/saht3539/public_html/sppirt/application/controllers/post_user.php on line 87
+[18-Dec-2018 20:56:23 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/phlasean/public_html/sppirt/application/models/rekap_irtp_model.php on line 150
+[18-Dec-2018 21:23:33 Asia/Jakarta] PHP Fatal error:  Class 'Spreadsheet' not found in /home/phlasean/public_html/sppirt/application/controllers/rekap_irtp.php on line 52
+[18-Dec-2018 21:30:52 Asia/Jakarta] PHP Fatal error:  Class 'Rekap_irtp_model' not found in /home/phlasean/public_html/sppirt/system/core/Loader.php on line 303
+[18-Dec-2018 22:11:45 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/phlasean/public_html/sppirt/application/models/rekap_irtp_model.php on line 138
+[18-Dec-2018 22:11:45 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/phlasean/public_html/sppirt/application/models/rekap_irtp_model.php on line 138
+[19-Dec-2018 12:52:46 Asia/Jakarta] PHP Fatal error:  Call to a member function userdata() on null in /home/phlasean/public_html/sppirt/application/views/statistik/sppirt_pengajuan.php on line 122
+[19-Dec-2018 12:53:07 Asia/Jakarta] PHP Fatal error:  Call to a member function userdata() on null in /home/phlasean/public_html/sppirt/application/views/statistik/sppirt_pengajuan.php on line 122
+[19-Dec-2018 12:53:11 Asia/Jakarta] PHP Fatal error:  Call to a member function userdata() on null in /home/phlasean/public_html/sppirt/application/views/statistik/sppirt_pengajuan.php on line 122
+[19-Dec-2018 12:53:14 Asia/Jakarta] PHP Fatal error:  Call to a member function userdata() on null in /home/phlasean/public_html/sppirt/application/views/statistik/sppirt_pengajuan.php on line 122
+[19-Dec-2018 12:53:19 Asia/Jakarta] PHP Fatal error:  Call to a member function userdata() on null in /home/phlasean/public_html/sppirt/application/views/statistik/sppirt_pengajuan.php on line 122
+[19-Dec-2018 12:55:32 Asia/Jakarta] PHP Fatal error:  Call to a member function userdata() on null in /home/phlasean/public_html/sppirt/application/views/statistik/sppirt_pengajuan.php on line 49
+[19-Dec-2018 12:55:36 Asia/Jakarta] PHP Fatal error:  Call to a member function userdata() on null in /home/phlasean/public_html/sppirt/application/views/statistik/sppirt_pengajuan.php on line 49
+[19-Dec-2018 12:56:10 Asia/Jakarta] PHP Fatal error:  Call to a member function userdata() on null in /home/phlasean/public_html/sppirt/application/views/statistik/sppirt_pengajuan.php on line 49
+[19-Dec-2018 21:47:15 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/phlasean/public_html/sppirt/application/models/rekap_irtp_model.php on line 128
+[21-Dec-2018 08:14:50 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/phlasean/public_html/sppirt/application/models/rekap_irtp_model.php on line 89
+[21-Dec-2018 08:15:24 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/phlasean/public_html/sppirt/application/models/rekap_irtp_model.php on line 89
+[21-Dec-2018 08:15:49 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/phlasean/public_html/sppirt/application/models/rekap_irtp_model.php on line 89
+[21-Dec-2018 08:15:54 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/phlasean/public_html/sppirt/application/models/rekap_irtp_model.php on line 89
+[05-Jan-2019 11:45:36 Asia/Jakarta] PHP Fatal error:  Call to a member function num_rows() on boolean in /home/phlasean/public_html/sppirt/application/controllers/pelaksanaan_pkp.php on line 115
+[05-Jan-2019 11:45:57 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/phlasean/public_html/sppirt/application/models/rekap_irtp_model.php on line 90
+[05-Jan-2019 11:47:06 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/phlasean/public_html/sppirt/application/models/rekap_irtp_model.php on line 90
+[05-Jan-2019 12:00:19 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/phlasean/public_html/sppirt/application/models/rekap_irtp_model.php on line 90
+[05-Jan-2019 12:01:11 Asia/Jakarta] PHP Fatal error:  Call to a member function num_rows() on boolean in /home/phlasean/public_html/sppirt/application/controllers/pelaksanaan_pkp.php on line 115
+[05-Jan-2019 12:01:55 Asia/Jakarta] PHP Fatal error:  Call to a member function num_rows() on boolean in /home/phlasean/public_html/sppirt/application/controllers/pelaksanaan_pkp.php on line 115
+[05-Jan-2019 12:02:08 Asia/Jakarta] PHP Fatal error:  Call to a member function num_rows() on boolean in /home/phlasean/public_html/sppirt/application/controllers/pelaksanaan_pkp.php on line 115
+[05-Jan-2019 12:03:16 Asia/Jakarta] PHP Fatal error:  Call to a member function num_rows() on boolean in /home/phlasean/public_html/sppirt/application/controllers/pelaksanaan_pkp.php on line 115
+[05-Jan-2019 12:04:15 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/phlasean/public_html/sppirt/application/models/rekap_irtp_model.php on line 90
+[05-Jan-2019 12:39:47 Asia/Jakarta] PHP Fatal error:  Call to a member function num_rows() on boolean in /home/phlasean/public_html/sppirt/application/controllers/pelaksanaan_pkp.php on line 115
+[05-Jan-2019 21:50:08 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/phlasean/public_html/sppirt/application/models/rekap_irtp_model.php on line 90
+[05-Jan-2019 22:16:20 Asia/Jakarta] PHP Fatal error:  Call to a member function num_rows() on boolean in /home/phlasean/public_html/sppirt/application/controllers/pelaksanaan_pkp.php on line 115
+[08-Jan-2019 11:21:47 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/phlasean/public_html/sppirt/application/models/rekap_irtp_model.php on line 90
+[11-Jan-2019 20:55:45 Asia/Jakarta] PHP Fatal error:  Call to a member function num_rows() on boolean in /home/phlasean/public_html/sppirt/application/controllers/pelaksanaan_pkp.php on line 115
+[11-Jan-2019 20:58:29 Asia/Jakarta] PHP Fatal error:  Call to a member function num_rows() on boolean in /home/phlasean/public_html/sppirt/application/controllers/pelaksanaan_pkp.php on line 115
+[11-Jan-2019 21:01:33 Asia/Jakarta] PHP Fatal error:  Call to a member function num_rows() on boolean in /home/phlasean/public_html/sppirt/application/controllers/pelaksanaan_pkp.php on line 189
+[11-Jan-2019 21:01:59 Asia/Jakarta] PHP Fatal error:  Call to a member function num_rows() on boolean in /home/phlasean/public_html/sppirt/application/controllers/pelaksanaan_pkp.php on line 115
+[11-Jan-2019 21:07:31 Asia/Jakarta] PHP Fatal error:  Call to a member function num_rows() on boolean in /home/phlasean/public_html/sppirt/application/controllers/pelaksanaan_pkp.php on line 189
+[11-Jan-2019 21:31:44 Asia/Jakarta] PHP Fatal error:  Call to a member function num_rows() on boolean in /home/phlasean/public_html/sppirt/application/controllers/pelaksanaan_pkp.php on line 189
+[12-Jan-2019 08:53:05 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/phlasean/public_html/sppirt/application/controllers/perpanjangan_sertifikat.php on line 273
+[12-Jan-2019 08:53:23 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/phlasean/public_html/sppirt/application/controllers/perpanjangan_sertifikat.php on line 273
+[12-Jan-2019 08:54:49 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/phlasean/public_html/sppirt/application/controllers/perpanjangan_sertifikat.php on line 222
+[12-Jan-2019 09:19:16 Asia/Jakarta] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in /home/phlasean/public_html/sppirt/application/controllers/pencabutan_sppirt.php on line 509
+[12-Jan-2019 13:01:55 Asia/Jakarta] PHP Fatal error:  Call to a member function num_rows() on boolean in /home/phlasean/public_html/sppirt/application/controllers/pelaksanaan_pkp.php on line 189
+[12-Jan-2019 13:09:09 Asia/Jakarta] PHP Fatal error:  Call to a member function num_rows() on boolean in /home/phlasean/public_html/sppirt/application/controllers/pelaksanaan_pkp.php on line 189
+[12-Jan-2019 13:11:21 Asia/Jakarta] PHP Fatal error:  Call to a member function num_rows() on boolean in /home/phlasean/public_html/sppirt/application/controllers/pelaksanaan_pkp.php on line 189
+[12-Jan-2019 13:13:33 Asia/Jakarta] PHP Fatal error:  Call to a member function num_rows() on boolean in /home/phlasean/public_html/sppirt/application/controllers/pelaksanaan_pkp.php on line 189
+[12-Jan-2019 13:14:26 Asia/Jakarta] PHP Fatal error:  Call to a member function num_rows() on boolean in /home/phlasean/public_html/sppirt/application/controllers/pelaksanaan_pkp.php on line 189
+[12-Jan-2019 13:15:03 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '"' in /home/phlasean/public_html/sppirt/application/controllers/pelaksanaan_pkp.php on line 194
+[12-Jan-2019 13:15:14 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '"' in /home/phlasean/public_html/sppirt/application/controllers/pelaksanaan_pkp.php on line 194
+[12-Jan-2019 14:40:55 Asia/Jakarta] PHP Fatal error:  Call to undefined method irtp_model::pencabutan_view() in /home/phlasean/public_html/sppirt/application/controllers/pencabutan_sppirt.php on line 83
+[17-Jan-2019 13:48:09 Asia/Jakarta] PHP Fatal error:  Call to a member function num_rows() on boolean in /home/phlasean/public_html/sppirt/application/models/irtp_model.php on line 150
+[21-Jan-2019 13:52:36 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE), expecting function (T_FUNCTION) in /home/phlasean/public_html/sppirt/application/controllers/irtp.php on line 413
+[12-Feb-2019 09:11:41 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/phlasean/public_html/sppirt/application/models/rekap_irtp_model.php on line 90
+[12-Feb-2019 09:26:29 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/phlasean/public_html/sppirt/application/models/rekap_irtp_model.php on line 90
+[12-Feb-2019 09:31:04 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/phlasean/public_html/sppirt/application/models/rekap_irtp_model.php on line 90
+[12-Feb-2019 09:31:17 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/phlasean/public_html/sppirt/application/models/rekap_irtp_model.php on line 90
+[12-Feb-2019 19:51:10 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/phlasean/public_html/sppirt/application/models/rekap_irtp_model.php on line 90
+[13-Feb-2019 12:10:13 Asia/Jakarta] PHP Fatal error:  Call to a member function result_array() on boolean in /home/phlasean/public_html/sppirt/application/models/rekap_irtp_model.php on line 90
