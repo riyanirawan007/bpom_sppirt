@@ -9,3 +9,6 @@
 /sql
 /uploads
 /user_guide
+
+# IGNORING DB Config for each user machine
+/application/config/database.php
