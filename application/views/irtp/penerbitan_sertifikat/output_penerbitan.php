@@ -103,8 +103,10 @@ $(document).ready(function() {
 							foreach ($datas as $field) {
 								if ($this->session->userdata('user_name') == 'admin') {
 													$button ='
-		                    			'.anchor('penerbitan_sertifikat/delete/'.$field->id_urut_penerbitan_sert, '<i class="ace-icon fa fa-trash bigger-130 tooltip-red" data-rel="tooltip" data-placement="bottom" title="Hapus Penerbitan"></i>
-											', array("class" => "red", "onclick"=>"return confirm('Apakah anda yakin ingin menghapus data ini?')")).'
+													'.anchor('penerbitan_sertifikat/edit/'.$field->id_urut_penerbitan_sert, '<i class="ace-icon fa fa-pencil bigger-130 tooltip-blue" data-rel="tooltip" data-placement="bottom" title="Edit Penerbitan"></i>', array("class" => "blue")).'
+													
+					                    			'.anchor('penerbitan_sertifikat/delete/'.$field->id_urut_penerbitan_sert, '<i class="ace-icon fa fa-trash bigger-130 tooltip-red" data-rel="tooltip" data-placement="bottom" title="Hapus Penerbitan"></i>
+														', array("class" => "red", "onclick"=>"return confirm('Apakah anda yakin ingin menghapus data ini?')")).'
 		                    			';
 												}
 												else{

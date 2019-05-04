@@ -1299,6 +1299,18 @@ LIMIT 1");
 	    }
   	}
 
+  	public function edit_penerbitan($param=array())
+  	{
+  		if(count($param)<=0)
+	    {
+	      return $this->db->get("tabel_penerbitan_sert_pirt");
+	    }
+	    else
+	    {
+	      return $this->db->get_where("tabel_penerbitan_sert_pirt",$param);
+	    }
+  	}
+
 
 }
 ?>

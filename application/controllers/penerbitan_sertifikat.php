@@ -628,6 +628,41 @@ public function __construct()
 
 	    function edit()
 	    {
-	    	return view_dashboard('irtp/penerbitan_sertifikat/edit');
+	    	if($this->session->userdata('user_segment')==4 or $this->session->userdata('user_segment')==3){
+			$provinsi = $this->session->userdata('code');
+			
+			}
+			
+			if($this->session->userdata('user_segment')==5){
+				
+				$kabupaten = $this->session->userdata('code');
+				
+			} 
+			
+			if(@$provinsi!=""){ $q_provinsi = "and tabel_propinsi.no_kode_propinsi='$provinsi'"; } else { $q_provinsi = ""; }
+			if(@$kabupaten!=""){ $q_kabupaten = "and tabel_kabupaten_kota.id_urut_kabupaten in ($kabupaten)"; } else { $q_kabupaten = ""; }
+			
+			
+			$data['js_kabupaten'] = $this->db->get('tabel_kabupaten_kota')->result();
+			$data['js_propinsi'] = $this->db->get('tabel_propinsi')->result();
+			$data['no_irtp'] = $this->db->query('SELECT distinct nomor_permohonan, nama_perusahaan, nama_pemilik, nama_dagang FROM 
+			tabel_pen_pengajuan_spp, 
+			tabel_daftar_perusahaan, 
+			tabel_ambil_penyuluhan, 
+			tabel_kabupaten_kota,
+			tabel_propinsi,
+			tabel_periksa_sarana_produksi WHERE 
+			tabel_pen_pengajuan_spp.kode_r_perusahaan = tabel_daftar_perusahaan.kode_perusahaan AND 
+			tabel_ambil_penyuluhan.nomor_r_permohonan = tabel_pen_pengajuan_spp.nomor_permohonan and
+			tabel_ambil_penyuluhan.nomor_r_permohonan = tabel_periksa_sarana_produksi.nomor_r_permohonan and 
+			tabel_daftar_perusahaan.id_r_urut_kabupaten = tabel_kabupaten_kota.id_urut_kabupaten and 
+			tabel_kabupaten_kota.no_kode_propinsi = tabel_propinsi.no_kode_propinsi '.$q_provinsi.''.$q_kabupaten.'')->result();
+			
+			$data['old_inputs'] = (array) $this->session->flashdata('inputs');
+
+			$param=array("id_urut_penerbitan_sert"=>$this->uri->segment(3));
+      		$data['penerbitan'] = $this->irtp_model->edit_penerbitan($param)->row_array();
+
+	    	return view_dashboard('irtp/penerbitan_sertifikat/edit', $data);
 	    }
 }
