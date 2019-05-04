@@ -1287,6 +1287,18 @@ LIMIT 1");
 	    }
   	}
 
+  	public function edit_perpanjangan($param=array())
+	{
+	    if(count($param)<=0)
+	    {
+	      return $this->db->get("tabel_perpanjangan_sert_pirt");
+	    }
+	    else
+	    {
+	      return $this->db->get_where("tabel_perpanjangan_sert_pirt",$param);
+	    }
+  	}
+
 
 }
 ?>

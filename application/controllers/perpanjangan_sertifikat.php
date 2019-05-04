@@ -499,7 +499,45 @@ public function __construct()
 	    }
 	    function edit()
 	    {
-	    	return view_dashboard('irtp/perpanjangan_sertifikat/edit');
+	    	if($this->session->userdata('user_segment')==4 or $this->session->userdata('user_segment')==3){
+			$provinsi = $this->session->userdata('code');
+			
+		}
+		
+		if($this->session->userdata('user_segment')==5){
+			
+			$kabupaten = $this->session->userdata('code');
+			
+			} 
+			
+			if(@$provinsi!=""){ $q_provinsi = "and tabel_propinsi.no_kode_propinsi='$provinsi'"; } else { $q_provinsi = ""; }
+			if(@$kabupaten!=""){ $q_kabupaten = "and tabel_kabupaten_kota.id_urut_kabupaten in ($kabupaten)"; } else { $q_kabupaten = ""; }
+			
+			
+			$data['js_grup_pangan'] = $this->db->get('tabel_grup_jenis_pangan')->result();
+			$data['js_pangan'] = $this->db->query('SELECT * FROM tabel_jenis_pangan, tabel_grup_jenis_pangan WHERE tabel_jenis_pangan.kode_r_grup_jenis_pangan = tabel_grup_jenis_pangan.kode_grup_jenis_pangan')->result();
+			$data['js_kemasan'] = $this->db->get('tabel_kemasan')->result();			
+			$data['js_komp_tmbh'] = $this->db->get('tabel_bahan_tambahan_pangan')->result();
+			$data['js_tek_olah'] = $this->db->get('tabel_teknologi_pengolahan')->result();
+			
+			$data['irtp_lama'] = $this->db->query('
+			SELECT * FROM 
+			tabel_pen_pengajuan_spp, 
+			tabel_daftar_perusahaan, 
+			tabel_penerbitan_sert_pirt, 
+			tabel_propinsi, 
+			tabel_kabupaten_kota WHERE 
+			tabel_penerbitan_sert_pirt.nomor_r_permohonan = tabel_pen_pengajuan_spp.nomor_permohonan AND 
+			tabel_pen_pengajuan_spp.kode_r_perusahaan = tabel_daftar_perusahaan.kode_perusahaan AND
+			tabel_daftar_perusahaan.id_r_urut_kabupaten = tabel_kabupaten_kota.id_urut_kabupaten
+			and tabel_kabupaten_kota.no_kode_propinsi = tabel_propinsi.no_kode_propinsi '.$q_provinsi.''.$q_kabupaten.' 
+			/*and (year(tanggal_pemberian_pirt)+5-year(NOW())) = 1*/
+			ORDER BY nama_perusahaan ASC')->result();
+
+			$param=array("id_penerbitan_sert"=>$this->uri->segment(3));
+      		//$data['perpanjangan'] = $this->irtp_model->edit_perpanjangan($param)->row_array();
+
+	    	return view_dashboard('irtp/perpanjangan_sertifikat/edit', $data);
 	    }
 
 }
