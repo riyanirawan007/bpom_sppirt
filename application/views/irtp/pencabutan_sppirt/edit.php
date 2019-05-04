@@ -309,7 +309,8 @@ $(document).ready(function() {
 
 																		<div class="col-xs-12 col-sm-9">
 																			<div class="clearfix">
-																				<input type="text" class="col-xs-12 col-sm-9" id="nomor_berita_acara" name="nomor_berita_acara" placeholder="Masukan Nomor Berita Acara" />
+																				<input type="text" class="col-xs-12 col-sm-9" id="nomor_berita_acara" name="nomor_berita_acara" placeholder="Masukan Nomor Berita Acara" value="<?php
+																				 echo  $pencabutan['nomor_berita_acara_pencabutan'];?>"/>
 																				<p class="col-xs-12 col-sm-9 help-block">Masukan Nomor Berita Acara Pencabutan Sertifikat P-IRT sesuai dengan ketentuan, Contoh : 1234567890123-45</p>
 																			</div>
 																		</div>
@@ -320,7 +321,9 @@ $(document).ready(function() {
 
 																		<div class="col-xs-12 col-sm-9">
 																			<div class="input-group col-xs-12 col-sm-9">
-																				<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="yyyy-mm-dd" name="tanggal_pencabutan" placeholder="Pilih Tanggal Pencabutan Sertifikat P-IRT" />
+																				<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="yyyy-mm-dd" name="tanggal_pencabutan" placeholder="Pilih Tanggal Pencabutan Sertifikat P-IRT" value="<?php $tanggal =$pencabutan['tanggal_pencabutan'];
+																				$data = explode(" " , $tanggal);
+																				 echo  $data[0];?>"/>
 																				<span class="input-group-addon">
 																					<i class="fa fa-calendar bigger-110"></i>
 																				</span>

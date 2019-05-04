@@ -530,7 +530,40 @@ public function __construct()
 
 	    function edit()
 	    {
-	    	return view_dashboard('irtp/pencabutan_sppirt/edit');
+	    	if($this->session->userdata('user_segment')==4 or $this->session->userdata('user_segment')==3){
+			$provinsi = $this->session->userdata('code');
+			
+			}
+			
+			if($this->session->userdata('user_segment')==5){
+				
+				$kabupaten = $this->session->userdata('code');
+				
+			} 
+			
+			if(@$provinsi!=""){ $q_provinsi = "and tabel_propinsi.no_kode_propinsi='$provinsi'"; } else { $q_provinsi = ""; }
+			if(@$kabupaten!=""){ $q_kabupaten = "and tabel_kabupaten_kota.id_urut_kabupaten in ($kabupaten)"; } else { $q_kabupaten = ""; }
+			
+			$data['irtp_lama'] = $this->db->query('SELECT * FROM 
+			tabel_pen_pengajuan_spp, 
+			tabel_daftar_perusahaan, 
+			tabel_penerbitan_sert_pirt, 
+			tabel_propinsi, 
+			tabel_kabupaten_kota
+			WHERE 
+			tabel_penerbitan_sert_pirt.nomor_r_permohonan = tabel_pen_pengajuan_spp.nomor_permohonan AND 
+			tabel_pen_pengajuan_spp.kode_r_perusahaan = tabel_daftar_perusahaan.kode_perusahaan AND
+			tabel_daftar_perusahaan.id_r_urut_kabupaten = tabel_kabupaten_kota.id_urut_kabupaten
+			and tabel_kabupaten_kota.no_kode_propinsi = tabel_propinsi.no_kode_propinsi '.$q_provinsi.''.$q_kabupaten.'
+			ORDER BY nama_perusahaan ASC')->result();
+			
+			
+			$data['js_pencabutan'] = $this->db->get('tabel_alasan_pencabutan')->result();
+
+			$param=array("id_urut_pencabutan_pirt"=>$this->uri->segment(3));
+      		$data['pencabutan'] = $this->irtp_model->edit_pencabutan($param)->row_array();
+
+	    	return view_dashboard('irtp/pencabutan_sppirt/edit', $data);
 	    }
 	    
 	

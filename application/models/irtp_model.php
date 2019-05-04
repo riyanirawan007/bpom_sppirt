@@ -1275,5 +1275,18 @@ LIMIT 1");
 		return 0;
 	}
 
+	public function edit_pencabutan($param=array())
+	{
+	    if(count($param)<=0)
+	    {
+	      return $this->db->get("tabel_pencabutan_pirt");
+	    }
+	    else
+	    {
+	      return $this->db->get_where("tabel_pencabutan_pirt",$param);
+	    }
+  	}
+
+
 }
 ?>
