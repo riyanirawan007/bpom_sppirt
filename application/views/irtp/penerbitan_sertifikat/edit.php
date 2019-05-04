@@ -205,7 +205,8 @@ $(document).ready(function() {
 
 																		<div class="col-xs-12 col-sm-9">
 																			<div class="input-group col-xs-12 col-sm-9">
-																				<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" value="<?= isset($old_inputs['tanggal_pemberian_pirt'])? $old_inputs['tanggal_pemberian_pirt'] : '' ?>" name="tanggal_pemberian_pirt" required placeholder="Pilih Tanggal Pemberian Nomor Sertifikat PIRT" >
+																				<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="yyyy-dd-mm" name="tanggal_pemberian_pirt" required placeholder="Pilih Tanggal Pemberian Nomor Sertifikat PIRT" value="<?php
+																				echo $penerbitan['tanggal_pemberian_pirt'] ?>">
 																				<span class="input-group-addon">
 																					<i class="fa fa-calendar bigger-110"></i>
 																				</span>
@@ -284,7 +285,7 @@ $(document).ready(function() {
 
 																		<div class="col-xs-12 col-sm-9">
 																			<div class="clearfix">
-																				<input type="text" class="col-xs-12 col-sm-9" value="<?= isset($old_inputs['nama_kepala_dinas'])? $old_inputs['nama_kepala_dinas'] : '' ?>" name="nama_kepala_dinas" data-validation="required" placeholder="Masukan Nama Kepala Dinas"  />
+																				<input type="text" class="col-xs-12 col-sm-9" value="<?= $penerbitan['nama_kepala_dinas']; ?>" name="nama_kepala_dinas" placeholder="Masukan Nama Kepala Dinas"  />
 																				<p class="col-xs-12 col-sm-9 help-block">Masukan Nama Kepala Dinas, Contoh : Samsuri, SE., MM.</p>
 																			</div>
 																		</div>
@@ -295,7 +296,7 @@ $(document).ready(function() {
 
 																		<div class="col-xs-12 col-sm-9">
 																			<div class="clearfix">
-																				<input type="text" class="col-xs-12 col-sm-9" value="<?= isset($old_inputs['nip'])? $old_inputs['nip'] : '' ?>" name="nip" data-validation="required" placeholder="Masukan NIP Kepala Dinas" onkeypress="return isNumberKey(event)"  />
+																				<input type="text" class="col-xs-12 col-sm-9" value="<?= $penerbitan['nip']; ?>" name="nip" data-validation="required" placeholder="Masukan NIP Kepala Dinas" onkeypress="return isNumberKey(event)"  />
 																				<p class="col-xs-12 col-sm-9 help-block">Masukan NIP Kepala Dinas, Contoh : 123456789012345</p>
 																			</div>
 																		</div>

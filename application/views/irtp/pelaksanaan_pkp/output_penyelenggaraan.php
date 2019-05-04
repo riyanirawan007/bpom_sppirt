@@ -100,7 +100,10 @@ $(document).ready(function() {
 							foreach ($datas as $field) {
 								if ($this->session->userdata('user_name') == 'admin') {
 													$button =
-						                    		''.anchor('pelaksanaan_pkp/delete/'.$field->nomor_permohonan_penyuluhan, '<i class="ace-icon fa fa-trash bigger-130 tooltip-red" data-rel="tooltip" data-placement="bottom" title="Hapus PKP"></i>
+						                    		'
+						                    		'.anchor('pelaksanaan_pkp/edit/'.$field->nomor_permohonan_penyuluhan, '<i class="ace-icon fa fa-pencil bigger-130 tooltip-blue" data-rel="tooltip" data-placement="bottom" title="Edit Peserta"></i>
+													', array("class" => "blue")).'
+						                    		'.anchor('pelaksanaan_pkp/delete/'.$field->nomor_permohonan_penyuluhan, '<i class="ace-icon fa fa-trash bigger-130 tooltip-red" data-rel="tooltip" data-placement="bottom" title="Hapus PKP"></i>
 															', array("class" => "red", "onclick"=>"return confirm('Apakah anda yakin ingin menghapus data ini?')")).'';
 												}
 												else{

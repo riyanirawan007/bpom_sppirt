@@ -107,6 +107,9 @@ $(document).ready(function() {
 													$button ='
 													<td>
 													<div class="action-buttons">
+													'.anchor('pencabutan_sppirt/edit/'.$field->id_urut_pencabutan_pirt, '<i class="ace-icon fa fa-pencil bigger-130 tooltip-blue" data-rel="tooltip" data-placement="top" title="Edit Pencabutan"></i>
+							 							', array("class" => "blue")).'
+													
 					                    			'.anchor('pencabutan_sppirt/delete/'.$field->id_urut_pencabutan_pirt, '<i class="ace-icon fa fa-trash bigger-130 tooltip-red" data-rel="tooltip" data-placement="bottom" title="Hapus Pencabutan"></i>
 														', array("class" => "red", "onclick"=>"return confirm('Apakah anda yakin ingin menghapus data ini?')")).'
 					                    			<div>
