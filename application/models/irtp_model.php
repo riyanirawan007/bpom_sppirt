@@ -1259,5 +1259,21 @@ LIMIT 1");
     $this->db->delete("tabel_pencabutan_pirt");
 	}
 
+	public function update_data_irtp_permohonan_perusahaan_siup($pemilik_usaha,$filename){
+		// $pemilik_usaha = $this->input->post('pemilik_usaha', TRUE);
+
+		$data = array(
+			// 'kode_r_perusahaan' => $pemilik_usaha,
+			'path_scan_data' => $filename,
+		);
+
+		$this->db->where('kode_r_perusahaan', $pemilik_usaha);
+		$query = $this->db->update('tabel_scan_data_pengajuan_siup', $data);
+		if($query){
+			return 1;
+		}
+		return 0;
+	}
+
 }
 ?>
