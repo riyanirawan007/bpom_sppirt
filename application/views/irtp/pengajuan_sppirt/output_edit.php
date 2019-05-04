@@ -607,9 +607,11 @@ $(document).delegate("#jenis_pangan", "change", function() {
 																				<div class="row data-strip">
 																					<div class="col-sm-4">
 																						<select style="max-width: 250px;" class="select2" name="komposisi_tambah[]" data-placeholder="Masukan Komposisi Tambahan">
-																				<?php foreach($js_komp_tmbh as $data): ?>
-												                                    <option value="<?=$data->no_urut_btp?>"><?php echo $data->nama_bahan_tambahan_pangan;?></option>
-												                                <?php endforeach ?>				
+																				<?php
+																				$query = $this->db->query("SELECT tabel_bahan_tambahan_pangan.*, tabel_grup_btp.* FROM tabel_bahan_tambahan_pangan INNER JOIN tabel_grup_btp ON tabel_bahan_tambahan_pangan.kode_r_grup_btp = tabel_grup_btp.kode_grup_btp");
+																				 foreach($query->result() as $data): ?>
+																					<option value="<?=$data->no_urut_btp?>"><?php echo $data->nama_grup_btp.' - '.$data->nama_bahan_tambahan_pangan;?></option>
+																				<?php endforeach ?>					
 												                                </select>
 																					</div>
 																					<div class="col-sm-2">
@@ -679,7 +681,7 @@ $(document).delegate("#jenis_pangan", "change", function() {
 
 																		<div class="col-xs-12 col-sm-9">
 																			<div class="clearfix">
-																				<input type="text" class="col-xs-12 col-sm-9" name="masa_simpan" id="masa_simpan" placeholder="Masukan Berat Bersih dengan angka." style="width: 416px;" data-validation="number" data-validation-allowing="range[0;99999]" onkeypress="return isNumberKey(event)"/>
+																				<input type="text" class="col-xs-12 col-sm-9" name="masa_simpan" id="masa_simpan" placeholder="Masukan masa simpan" style="width: 416px;" data-validation="number" data-validation-allowing="range[0;99999]" onkeypress="return isNumberKey(event)"/>
 																				<div class="col-sm-3">
 																					<select class="form-control" name="waktu" id="waktu">
 																							<option value="0">-Pilih-</option>

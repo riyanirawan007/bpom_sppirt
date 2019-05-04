@@ -129,14 +129,15 @@
 			data	: 'grup_jenis_pangan=' + grup_jenis_pangan,
 			success: function(html){
 				var temp;
-				temp = "<select class='chosen-select col-sm-6' name='jenis_pangan' id='jenis_pangan' data-validation='required'><option value=''>- Pilih Nama Jenis Pangan -</option>";
+				temp = "<select style='max-width : 600px' class='select2' name='jenis_pangan' id='jenis_pangan' data-validation='required'><option value=''>- Pilih Nama Jenis Pangan -</option>";
 				$.each(html, function(val, key){
 					temp += "<option value='" + key.id_urut_jenis_pangan + "'>" + key.jenis_pangan + "</option>";
 				});		
 				temp += "<option value='-'>Lainnya</option></select>";		
 				console.log(temp);
 				jenis_pangan.empty().append(temp);
-				jenis_pangan.find('#jenis_pangan').trigger('chosen:updated').chosen({'width' : '100%'});
+				//jenis_pangan.find('#jenis_pangan').trigger('chosen:updated').chosen({'width' : '100%'});
+				jenis_pangan.find('#jenis_pangan').trigger('select2:updated').select2({width : '100%'});
 
 				jQuery.ajax({
 					url	:	'<?=base_url()?>irtp/get_grup_jenis_pangan'	,
@@ -144,7 +145,8 @@
 					dataType : 'json',
 					data	: 'grup_jenis_pangan=' + grup_jenis_pangan,
 					success: function(html){
-						$('#label_jenis_pangan').html('Nama Jenis Pangan ('+html+')');
+						//$('#label_jenis_pangan').html('Nama Jenis Pangan ('+html+')');
+						$('#label_jenis_pangan').html('Nama Jenis Pangan <b>('+html+')</b>');
 					},error: function(e){
 						console.log(e);
 					}
@@ -341,16 +343,26 @@ function cek_permohonan(){
 														<div class="form-group">
 															<label class="control-label col-xs-12 col-sm-3 no-padding-right" id="label_jenis_pangan">Nama Jenis Pangan</label>
 
-															<div class="col-xs-12 col-sm-9">
+															<!-- <div class="col-xs-12 col-sm-9">
 																<div class="clearfix">
 																	<div class="dropdown">
-																		<select class="chosen-select col-sm-6" name="jenis_pangan" id="jenis_pangan" >
+																		<select style="max-width: 600px" class="select2" name="jenis_pangan" id="jenis_pangan" >
 																			<option value="">- Pilih Nama Jenis Pangan -</option>	
 																		</select>
 																		<p class="col-xs-12 col-sm-9 help-block">Pilih Nama Jenis Pangan sesuai dengan list rujukan, Contoh : Bihun</p>
 																	</div>
 																</div>
-															</div>
+															</div> -->
+															<div class="col-xs-12 col-sm-9">
+																			<div class="clearfix">
+																				<div class="dropdown">
+																				<select style="max-width: 600px" class="select2" name="jenis_pangan" id="jenis_pangan" data-validation="required">
+																					<option value="">- Pilih Nama Jenis Pangan -</option>	
+																				</select>
+																			</div>
+																				<p class="col-xs-12 col-sm-9 help-block">Pilih Nama Jenis Pangan sesuai dengan list rujukan, Contoh : Bihun</p>
+																			</div>
+																		</div>
 														</div>
 
 														<div class="form-group" id="box_jenis_pangan" style="display:none">
@@ -415,6 +427,26 @@ function cek_permohonan(){
 														</div>
 
 														<div class="form-group">
+																		<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="text">Berat Bersih / Isi Bersih</label>
+
+																		<div class="col-xs-12 col-sm-9">
+																			<div class="clearfix">
+																					<input type="text" class="col-xs-12 col-sm-9" name="berat_bersih" id="berat_bersih" placeholder="Masukan Berat Bersih dengan angka" data-validation="number" style="width: 416px;" data-validation-allowing="range[0;99999]" onkeypress="return isNumberKey(event)"/>
+																				<div class="col-sm-3">
+																					<select class="form-control" name="berat_bersih_satuan" id="berat_bersih_satuan">
+																							<option value="0"> Satuan</option>
+																							<option value="mL">mL</option>
+																							<option value="mg">mg</option>
+																							<option value="gram">gram</option>
+																							<option value="Kg">Kg</option>
+																					</select>
+																				</div>
+																				<p class="col-xs-12 col-sm-9 help-block">Masukan Berat Bersih / Isi Bersih, Contoh : 100</p>
+																			</div>
+																		</div>
+																	</div>
+
+														<!-- <div class="form-group">
 															<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="text">Berat Bersih / Isi Bersih</label>
 
 															<div class="col-xs-12 col-sm-9">
@@ -423,7 +455,7 @@ function cek_permohonan(){
 																	<p class="col-xs-12 col-sm-9 help-block">Masukan Berat Bersih / Isi Bersih, Contoh : 100 gram</p>
 																</div>
 															</div>
-														</div>
+														</div> -->
 
 														<div class="form-group">
 															<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="text">Komposisi Bahan Utama</label>
@@ -444,8 +476,10 @@ function cek_permohonan(){
 																	<div class="row data-strip">
 																		<div class="col-sm-4">
 																			<select style="max-width: 250px;" class="select2" name="komposisi_tambah[]" data-placeholder="Masukan Komposisi Tambahan">
-																				<?php foreach($js_komp_tmbh as $data): ?>
-																					<option value="<?=$data->no_urut_btp?>"><?php echo $data->nama_bahan_tambahan_pangan;?></option>
+																				<?php
+																				$query = $this->db->query("SELECT tabel_bahan_tambahan_pangan.*, tabel_grup_btp.* FROM tabel_bahan_tambahan_pangan INNER JOIN tabel_grup_btp ON tabel_bahan_tambahan_pangan.kode_r_grup_btp = tabel_grup_btp.kode_grup_btp");
+																				 foreach($query->result() as $data): ?>
+																					<option value="<?=$data->no_urut_btp?>"><?php echo $data->nama_grup_btp.' - '.$data->nama_bahan_tambahan_pangan;?></option>
 																				<?php endforeach ?>				
 																			</select>
 																		</div>
@@ -516,7 +550,7 @@ function cek_permohonan(){
 
 															<div class="col-xs-12 col-sm-9">
 																<div class="clearfix">
-																	<input type="text" class="col-xs-12 col-sm-9" name="masa_simpan" id="masa_simpan" placeholder="Masukan Berat Bersih dengan angka." style="width: 416px;" data-validation="number" data-validation-allowing="range[0;99999]" onkeypress="return isNumberKey(event)">
+																	<input type="text" class="col-xs-12 col-sm-9" name="masa_simpan" id="masa_simpan" placeholder="Masukan masa simpan" style="width: 416px;" data-validation-allowing="range[0;99999]" onkeypress="return isNumberKey(event)">
 																	<div class="col-sm-3">
 																		<select class="form-control" name="waktu">
 																			<option value="0">-Pilih-</option>
