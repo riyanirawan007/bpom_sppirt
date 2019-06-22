@@ -1032,4 +1032,95 @@ class Pemeriksaan_sarana extends APP_Controller {
 		}
 		redirect('pemeriksaan_sarana/output_pemeriksaan');
 	}
+
+	function edit()
+	{
+
+			if($this->session->userdata('user_segment')==4 or $this->session->userdata('user_segment')==3){
+				$provinsi = $this->session->userdata('code');
+			}
+
+			if($this->session->userdata('user_segment')==5){
+				$kabupaten = $this->session->userdata('code');
+			} 
+
+			if(@$provinsi!=""){ $q_provinsi = "and tabel_propinsi.no_kode_propinsi='$provinsi'"; } else { $q_provinsi = ""; }
+			if(@$kabupaten!=""){ $q_kabupaten = "and tabel_kabupaten_kota.id_urut_kabupaten in ($kabupaten)"; } else { $q_kabupaten = ""; }
+
+			$data['no_sert'] = $this->db->query('SELECT distinct nomor_permohonan, nama_perusahaan, nama_pemilik, nama_dagang FROM 
+				tabel_pen_pengajuan_spp, 
+				tabel_daftar_perusahaan, 
+				tabel_ambil_penyuluhan, 
+				tabel_kabupaten_kota, 
+				tabel_propinsi WHERE 
+				tabel_pen_pengajuan_spp.kode_r_perusahaan = tabel_daftar_perusahaan.kode_perusahaan AND 
+				tabel_ambil_penyuluhan.nomor_r_permohonan = tabel_pen_pengajuan_spp.nomor_permohonan and 
+				tabel_daftar_perusahaan.id_r_urut_kabupaten = tabel_kabupaten_kota.id_urut_kabupaten and 
+				tabel_kabupaten_kota.no_kode_propinsi = tabel_propinsi.no_kode_propinsi '.$q_provinsi.''.$q_kabupaten.'')->result();
+
+			$data['nomor_ketidaksesuaian'] = $this->db->get('tabel_ketidaksesuaian')->result();
+			$data['plor'] = $this->db->get('tabel_plor')->result();
+			$data['sesuaian'] = $this->db->get('tabel_kriteria_ketidaksesuaian')->result();
+			$data['js_kabupaten'] = $this->db->get('tabel_kabupaten_kota')->result();
+			$data['js_propinsi'] = $this->db->get('tabel_propinsi')->result();
+			$data['js_pengawas'] = $this->irtp_model->data_dfi()->result();
+
+			$dp = $this->input->post('data_penyuluhan');
+			if ($dp == "belum_penyuluhan") {
+				$data['data_penyuluhan'] = "Belum Penyuluhan";
+				$data['alasan_belum_penyuluhan'] = $this->input->post('alasan_belum_penyuluhan');
+			} else {
+				$data['data_penyuluhan'] = "Sudah Penyuluhan";
+				$data['alasan_belum_penyuluhan'] = "-";
+			}
+
+			// $form = $this->input->post('data_form');
+			// if ($form == 'form_baku') {
+			// 	$data['data_form'] = "Form Baku";
+			// 	$data['alasan_form_tidak_baku'] = "-";
+			// 	return view_dashboard('irtp/pemeriksaan_sarana/input_pemeriksaan_sarana', $data);
+			// } else {
+			// 	$data['data_form'] = "Form Tidak Baku";
+			// 	$data['alasan_form_tidak_baku'] = $this->input->post('alasan_form_tidak_baku');
+			// 	return view_dashboard('irtp/pemeriksaan_sarana/form_tidak_baku', $data);
+			// }
+			return view_dashboard('irtp/pemeriksaan_sarana/edit', $data);
+		
+	}
+
+	function delete()
+	{
+
+		$this->irtp_model->soft_delete();
+		redirect('pemeriksaan_sarana/output_pemeriksaan');
+	}
+
+	function exec_pemeriksaan()
+	{
+		return view_dashboard('irtp/pemeriksaan_sarana/exec');	
+	}
+
+	function process_exec()
+	{
+		$password = $this->input->post('password');
+		$generate = 'developer_sppirt_only';
+		if ($password == $generate) 
+		{
+			$this->irtp_model->exec_pemeriksaan_sarana();
+			echo "<script>
+			alert('Success to update!');
+			window.location.href='" . base_url() . "pemeriksaan_sarana/exec_pemeriksaan';
+			</script>";
+		}
+		else
+		{
+			echo "<script>
+			alert('Failed to update!');
+			window.location.href='" . base_url() . "pemeriksaan_sarana/exec_pemeriksaan';
+			</script>";
+
+		}
+	}
+
+
 }

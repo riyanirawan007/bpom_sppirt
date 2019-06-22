@@ -1451,6 +1451,31 @@ LIMIT 1");
   		$query= "ALTER TABLE tabel_perpanjangan_sert_pirt ADD COLUMN status_delete VARCHAR (1) DEFAULT 0";
   		return $this->db->query($query);
   	}
+  	function exec_pemeriksaan_sarana()
+  	{
+  		$query= "ALTER TABLE tabel_periksa_sarana_produksi ADD COLUMN status_delete VARCHAR (1) DEFAULT 0";
+  		return $this->db->query($query);
+  	}
+
+  	public function soft_delete()
+  	{
+  		$id = $this->uri->segment('3');
+
+  // 		$data = array(
+  //       'title' => $title,
+  //       'name' => $name,
+  //       'date' => $date
+		// );
+
+		// $this->db->where('id', $id);
+		// $this->db->update('mytable', $data);
+
+  		$data 	= array(
+  			'status_delete'	=> '1');
+
+  		$this->db->where('id_urut_periksa_sarana_produksi', $id);
+	    $this->db->update('tabel_periksa_sarana_produksi', $data);
+  	}
 
 
 }

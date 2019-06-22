@@ -64,6 +64,7 @@
 									<th rowspan="3">Tanggal Pemeriksaan</th>
 									<th rowspan="3">Status Penyuluhan</th>
 									<th rowspan="3">Jenis Form</th>
+									<th rowspan="3">Aksi</th>
 								</tr>
 								<tr>
 									<td colspan="2">Minor</td>
@@ -178,6 +179,16 @@
 											 } 
 											 ?>
 										</td>
+										<td>
+											<?php
+											$button =
+						                    		'
+						                    		'.anchor('pemeriksaan_sarana/edit/'.$row->nomor_r_permohonan, '<i class="ace-icon fa fa-pencil bigger-130 tooltip-blue" data-rel="tooltip" data-placement="bottom" title="Edit"></i>
+													', array("class" => "blue")).'
+						                    		'.anchor('pemeriksaan_sarana/delete/'.$row->id_urut_periksa_sarana_produksi, '<i class="ace-icon fa fa-trash bigger-130 tooltip-red" data-rel="tooltip" data-placement="bottom" title="Hapus"></i>
+															', array("class" => "red", "onclick"=>"return confirm('Apakah anda yakin ingin menghapus data ini?')")).'';
+															 ?>
+											<?= $button?></td>
 
 									</tr>
 									<?php
@@ -194,69 +205,3 @@
 </div>
 
 
-<div class="col-sm-6">
-	<div class="row">
-		<div class="col-xs-12">
-			<div class="widget-box">
-				<div class="widget-header widget-header-flat">
-					<h4 class="widget-title smaller">Jumlah SPP-IRT yang Terdapat Ketidaksesuaian</h4>
-
-
-				</div>
-
-				<div class="widget-body">
-					<div class="widget-main">
-
-						<dl id="dt-list-1">
-
-							<dd><ul class="list-unstyled spaced2">
-								<li><i class="ace-icon fa fa-circle green"></i>Jumlah Ketidaksesuaian Minor : <?php echo $list_jumlah_irtp_kriteria['Minor']; ?></li>
-								<li><i class="ace-icon fa fa-circle green"></i>Jumlah Ketidaksesuaian Mayor : <?php echo $list_jumlah_irtp_kriteria['Mayor']; ?></li>
-								<li><i class="ace-icon fa fa-circle green"></i>Jumlah Ketidaksesuaian Serius : <?php echo $list_jumlah_irtp_kriteria['Serius']; ?></li>
-								<li><i class="ace-icon fa fa-circle green"></i>Jumlah Ketidaksesuaian Serius : <?php echo $list_jumlah_irtp_kriteria['Serius']; ?></li>
-								<li><i class="ace-icon fa fa-circle green"></i>
-									Jumlah Ketidaksesuaian Kritis : <?php echo $list_jumlah_irtp_kriteria['Kritis']; ?></li>
-								</ul></dd>
-
-							</dl>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-sm-6">
-		<div class="row">
-			<div class="col-xs-12">
-				<div class="widget-box">
-					<div class="widget-header widget-header-flat">
-						<h4 class="widget-title smaller">Jumlah SPP-IRT Berdasarkan Level</h4>
-
-
-					</div>
-
-					<div class="widget-body">
-						<div class="widget-main">
-
-							<dl id="dt-list-1">
-
-								<dd><ul class="list-unstyled spaced2">
-									<li><i class="ace-icon fa fa-circle green"></i>Jumlah SPP-IRT Berdasarkan Level I : <?php echo $list_jumlah_irtp_level['Level I']; ?> </li>
-									<li><i class="ace-icon fa fa-circle green"></i>Jumlah SPP-IRT Berdasarkan Level II : <?php echo $list_jumlah_irtp_level['Level II']; ?> </li>
-									<li><i class="ace-icon fa fa-circle green"></i>Jumlah SPP-IRT Berdasarkan Level III : <?php echo $list_jumlah_irtp_level['Level III']; ?></li>
-									<li><i class="ace-icon fa fa-circle green"></i>Jumlah SPP-IRT Berdasarkan Level IV : <?php echo $list_jumlah_irtp_level['Level IV']; ?></li>
-								</ul></dd>
-
-							</dl>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<script>
-$(document).ready(function(){
-  $('[data-toggle="tooltip"]').tooltip();
-});
-</script>
