@@ -198,15 +198,15 @@ $(document).ready(function() {
 																	<?= @$this->session->flashdata('error'); ?>	
 																	<?= @$this->session->flashdata('message'); ?>
 																	<?php $attr_form = array('onsubmit' => 'return cek_form()'); ?>	
-																	<?=form_open_multipart('penerbitan_sertifikat/add', array('class' => 'form-horizontal','id'=>'validation-form'))?>
-
+																	<?=form_open_multipart('penerbitan_sertifikat/action_edit_penerbitan', array('class' => 'form-horizontal','id'=>'validation-form'))?>
+																	<input type="hidden" name="id" value="<?= $penerbitan['id_urut_penerbitan_sert']?>">
 																	<div class="form-group">
 																		<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="text">Tanggal Pemberian Nomor Sertifikat P-IRT</label>
 
 																		<div class="col-xs-12 col-sm-9">
 																			<div class="input-group col-xs-12 col-sm-9">
-																				<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="yyyy-dd-mm" name="tanggal_pemberian_pirt" required placeholder="Pilih Tanggal Pemberian Nomor Sertifikat PIRT" value="<?php
-																				echo $penerbitan['tanggal_pemberian_pirt'] ?>">
+																				<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="yyyy-mm-dd" name="tanggal_pemberian_pirt" required placeholder="Pilih Tanggal Pemberian Nomor Sertifikat PIRT" value="<?=
+																				 $penerbitan['tanggal_pemberian_pirt'] ?>">
 																				<span class="input-group-addon">
 																					<i class="fa fa-calendar bigger-110"></i>
 																				</span>
@@ -222,15 +222,9 @@ $(document).ready(function() {
 
 																		<div class="col-xs-12 col-sm-9">
 																			<div class="clearfix">
-																				<select class="select2" id="nomor_permohonan_irtp" data-validation="required" name="nomor_permohonan_irtp">
-																					<option value="">- Pilih Nomor Permohonan IRTP -</option>
-																					<?php foreach($no_irtp as $data): ?>
-																						<option <?php (isset($old_inputs['nomor_permohonan_irtp']) AND $old_inputs['nomor_permohonan_irtp'] == $data->nomor_permohonan)? 'selected' : '' ?> 
-																							value="<?=$data->nomor_permohonan?>">
-																								<?=$data->nomor_permohonan.' - '.$data->nama_perusahaan.' - '. $data->nama_pemilik.' - '.$data->nama_dagang?>
-																						</option>
-																					<?php endforeach ?>				
-																					</select>
+																				<select class="select2"  name="nomor_permohonan_irtp" id="nomor_permohonan_irtp">
+														                    	<option value="<?= $penerbitan['nomor_permohonan']?>"><?= $penerbitan['nomor_permohonan']?> - <?= $penerbitan['nama_perusahaan'] ?> - <?= $penerbitan['nama_pemilik'] ?> - <?= $penerbitan['nama_dagang'] ?></option>
+														                    </select>
 																				<p class="col-xs-12 col-sm-9 help-block">Keterangan Pilihan : Nomor Permohonan - Nama Perusahaan - Nama Pemilik - Nama Dagang, Contoh : 17331151114001 - Usaha Rivi - Rivi Anggara - Kentang Rivi</p>
 																			</div>
 																		</div>
@@ -241,7 +235,7 @@ $(document).ready(function() {
 
 																		<div class="col-xs-12 col-sm-9">
 																			<div class="clearfix">
-																				<input type="text" class="col-xs-12 col-sm-9" id="nomor_pirt" value="<?= isset($old_inputs['nomor_pirt'])? $old_inputs['nomor_pirt'] : '' ?>" name="nomor_pirt" data-validation="required length" placeholder="Masukan Nomor Sertifikat P-IRT" data-validation-length="max16" />
+																				<input type="text" class="col-xs-12 col-sm-9" id="nomor_pirt" name="nomor_pirt" data-validation="required length" placeholder="Masukan Nomor Sertifikat P-IRT" data-validation-length="max16" value="<?= $penerbitan['nomor_pirt']?>"/>
 																				<p class="col-xs-12 col-sm-9 help-block">Masukan Nomor Sertifikat P-IRT (Maksimum 15 digit). Nomor ini dapat disesuaikan dengan sistem penomoran di masing-masing Dinkes, Contoh : 1234567890123-45</p>
 																			</div>
 																		</div>
@@ -252,7 +246,7 @@ $(document).ready(function() {
 
 																		<div class="col-xs-12 col-sm-9">
 																			<div class="clearfix">
-																				<input type="text" class="col-xs-12 col-sm-9" value="<?= isset($old_inputs['provinsi'])? $old_inputs['provinsi'] : '' ?>" name="provinsi" id="provinsi" readonly />
+																				<input type="text" class="col-xs-12 col-sm-9" value="<?= $penerbitan['nama_propinsi'] ?>" name="provinsi" id="provinsi" readonly />
 																				<p class="col-xs-12 col-sm-9 help-block">Pilih Provinsi sesuai dengan list rujukan</p>
 																			</div>
 																		</div>
@@ -263,7 +257,7 @@ $(document).ready(function() {
 
 																		<div class="col-xs-12 col-sm-9">
 																			<div class="clearfix">
-																				<input type="text" class="col-xs-12 col-sm-9" value="<?= isset($old_inputs['kabupaten'])? $old_inputs['kabupaten'] : '' ?>" name="kabupaten" id="kabupaten" readonly />
+																				<input type="text" class="col-xs-12 col-sm-9" value="<?= $penerbitan['nm_kabupaten'] ?>" name="kabupaten" id="kabupaten" readonly />
 																				<p class="col-xs-12 col-sm-9 help-block">Pilih Kabupaten/Kota sesuai dengan list rujukan</p>
 																			</div>
 																		</div>
@@ -274,7 +268,7 @@ $(document).ready(function() {
 
 																		<div class="col-xs-12 col-sm-9">
 																			<div class="clearfix">
-																				<input type="text" class="col-xs-12 col-sm-9" id="nomor_hk" name="nomor_hk" data-validation="required" value="HK.03.1.23.04.12.2205" placeholder="HK.03.1.23.04.12.2205" />
+																				<input type="text" class="col-xs-12 col-sm-9" id="nomor_hk" name="nomor_hk" data-validation="required" value="<?= $penerbitan['nomor_hk'] ?>" placeholder="HK.03.1.23.04.12.2205" />
 																				
 																			</div>
 																		</div>
@@ -307,8 +301,9 @@ $(document).ready(function() {
 
 																		<div class="col-xs-12 col-sm-9">
 																			<div class="clearfix">
-																				<input type="file" class="col-xs-12 col-sm-9" value="<?= isset($old_inputs['file_foto'])? $old_inputs['file_foto'] : '' ?>" name="file_foto" data-validation="required" accept=".jpg,.png,.gif,.pdf" />
-																				<p class="col-xs-12 col-sm-9 help-block">Scan format PDF/JPG maksimal berukuran 2 Mb</p>
+																				<input type="file" class="col-xs-12 col-sm-9" value="<?= isset($old_inputs['file_foto'])? $old_inputs['file_foto'] : '' ?>" name="file_foto" accept=".jpg,.png,.gif,.pdf" />
+																				<p class="col-xs-12 col-sm-9 help-block">
+																					<a target="__blank" href="<?= base_url('uploads')."/".$penerbitan['label_final']?>"><?= $penerbitan['label_final'] ?></a> <br>Scan format PDF/JPG maksimal berukuran 2 Mb</p>
 																			</div>
 																		</div>
 																	</div>

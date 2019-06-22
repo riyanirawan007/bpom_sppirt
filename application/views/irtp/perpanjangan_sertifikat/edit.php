@@ -196,17 +196,17 @@ function isNumberKey(evt){
 																<?= @$this->session->flashdata('status'); ?>
 																<?= @$this->session->flashdata('error'); ?>	
 																<?= @$this->session->flashdata('message'); ?>	
-																<?=form_open_multipart('irtp/set_data_irtp_perpanjangan', array('class' => 'form-horizontal', 'id' => 'validation-form'))?>
+																<?=form_open_multipart('perpanjangan_sertifikat/action_edit_perpanjangan', array('class' => 'form-horizontal', 'id' => 'validation-form'))?>
+
+																<input type="hidden" name="id" value="<?= $perpanjangan['id_urut_penerbitan_sert']?>">
+
 																<div class="form-group">
 																	<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="text">Nomor Sertifikat P-IRT Lama</label>
 																	<div class="col-xs-12 col-sm-9">
 																		<div class="clearfix">
-																			<select class="select2" name="nomor_pirt" id="nomor_pirt">
-																				<option value="">- Pilih Nomor Sertifikat P-IRT Lama -</option>
-																				<?php foreach($irtp_lama as $data): ?>
-																					<option data-index="" value="<?=$data->nomor_pirt?>"><?=$data->nomor_pirt." . ".$data->nama_perusahaan.' - '.$data->nama_pemilik.' - '.$data->nama_dagang?></option>
-																				<?php endforeach ?>
-																			</select>
+																			<select class="select2"  name="nomor_pirt" id="nomor_pirt">
+														                    	<option value="<?= $perpanjangan['nomor_pirt']?>"><?= $perpanjangan['nomor_pirt']?> .<?= $perpanjangan['nama_perusahaan'] ?> - <?= $perpanjangan['nama_pemilik'] ?> - <?= $perpanjangan['nama_dagang'] ?></option>
+														                    </select>
 																			<p class="col-xs-12 col-sm-9 help-block">Keterangan Pilihan : No. Sertifikat P-IRT Lama . Nama Perusahaan - Nama Pemilik - Nama Dagang, Contoh : 1234567890123-45 . IRTP Rivi - Rivi Anggara - Kentang Rivi</p>
 																		</div>
 																	</div>
@@ -217,7 +217,7 @@ function isNumberKey(evt){
 
 																	<div class="col-xs-12 col-sm-9">
 																		<div class="clearfix">
-																			<input type="text" class="col-xs-12 col-sm-9" id="nomor_pirt_baru" name="nomor_pirt_baru" data-validation="required" placeholder="Pilih Nomor Sertifikat P-IRT Lama terlebih dahulu" />
+																			<input type="text" class="col-xs-12 col-sm-9" id="nomor_pirt_baru" name="nomor_pirt_baru" data-validation="required" placeholder="Pilih Nomor Sertifikat P-IRT Lama terlebih dahulu" value="<?= $perpanjangan['nomor_pirt_baru']?>" />
 																			<p class="col-xs-12 col-sm-9 help-block">Nomor Sertifikat P-IRT Lama akan terisi otomatis setelah memilih Nomor Sertifikat IRTP Lama, Contoh : 1234567890123-45</p>
 																		</div>
 																	</div>
@@ -228,7 +228,7 @@ function isNumberKey(evt){
 
 																	<div class="col-xs-12 col-sm-9">
 																		<div class="clearfix">
-																			<input type="text" class="col-xs-12 col-sm-9" id="nama_perusahaan" placeholder="Pilih Nomor Sertifikat P-IRT Lama terlebih dahulu" readonly />
+																			<input type="text" class="col-xs-12 col-sm-9" id="nama_perusahaan" placeholder="Pilih Nomor Sertifikat P-IRT Lama terlebih dahulu" readonly  value="<?= $perpanjangan['nama_perusahaan']?>" />
 																			<p class="col-xs-12 col-sm-9 help-block">Nama IRTP akan terisi otomatis setelah memilih Nomor Sertifikat IRTP Lama, Contoh : CV. Aroma</p>
 																		</div>
 																	</div>
@@ -239,7 +239,7 @@ function isNumberKey(evt){
 
 																	<div class="col-xs-12 col-sm-9">
 																		<div class="clearfix">
-																			<input type="text" class="col-xs-12 col-sm-9" id="pemilik" placeholder="Pilih Nomor Sertifikat P-IRT Lama terlebih dahulu" readonly />
+																			<input type="text" class="col-xs-12 col-sm-9" id="pemilik" placeholder="Pilih Nomor Sertifikat P-IRT Lama terlebih dahulu" readonly value="<?= $perpanjangan['nama_pemilik']?>"/>
 																			<p class="col-xs-12 col-sm-9 help-block">Nama Pemilik IRTP akan terisi otomatis setelah memilih Nomor Sertifikat IRTP Lama, Contoh : Rivi Anggara</p>
 																		</div>
 																	</div>
@@ -250,7 +250,7 @@ function isNumberKey(evt){
 
 																	<div class="col-xs-12 col-sm-9">
 																		<div class="clearfix">
-																			<input type="text" class="col-xs-12 col-sm-9" id="penanggung_jawab" placeholder="Pilih Nomor Sertifikat P-IRT Lama terlebih dahulu" readonly />
+																			<input type="text" class="col-xs-12 col-sm-9" id="penanggung_jawab" placeholder="Pilih Nomor Sertifikat P-IRT Lama terlebih dahulu" readonly  value="<?= $perpanjangan['nama_penanggung_jawab']?>"/>
 																			<p class="col-xs-12 col-sm-9 help-block">Nama Penanggung Jawab IRTP akan terisi otomatis setelah memilih Nomor Sertifikat IRTP Lama, Contoh : Ahmad Rivi</p>
 																		</div>
 																	</div>
@@ -261,7 +261,7 @@ function isNumberKey(evt){
 
 																	<div class="col-xs-12 col-sm-9">
 																		<div class="clearfix">
-																			<input type="text" class="col-xs-12 col-sm-9" id="telepon_irtp" placeholder="Pilih Nomor Sertifikat P-IRT Lama terlebih dahulu" readonly  />
+																			<input type="text" class="col-xs-12 col-sm-9" id="telepon_irtp" placeholder="Pilih Nomor Sertifikat P-IRT Lama terlebih dahulu" readonly value="<?= $perpanjangan['nomor_telefon_irtp']?>" />
 																			<p class="col-xs-12 col-sm-9 help-block">Nomor Telepon IRTP akan terisi otomatis setelah memilih Nomor Sertifikat P-IRT Lama, Contoh : 02111122211</p>
 																		</div>
 																	</div>
@@ -272,7 +272,7 @@ function isNumberKey(evt){
 
 																	<div class="col-xs-12 col-sm-9">
 																		<div class="clearfix">
-																			<textarea style="margin: 0px; width: 601px; height: 55px;" class="input-xlarge" id="alamat_irtp" placeholder="Pilih Nomor Sertifikat P-IRT Lama terlebih dahulu" readonly></textarea>
+																			<textarea style="margin: 0px; width: 601px; height: 55px;" class="input-xlarge" id="alamat_irtp" placeholder="Pilih Nomor Sertifikat P-IRT Lama terlebih dahulu" readonly><?= $perpanjangan['alamat_irtp']?></textarea>
 																			<p class="col-xs-12 col-sm-9 help-block">Alamat IRTP akan terisi otomatis setelah memilih Nomor Sertifikat P-IRT Lama, Contoh : Jl. Bangau No. 23</p>
 																		</div>
 																	</div>
@@ -283,7 +283,7 @@ function isNumberKey(evt){
 
 																	<div class="col-xs-12 col-sm-9">
 																		<div class="input-group col-xs-12 col-sm-9">
-																			<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="yyyy-mm-dd" name="tanggal_pengajuan_perpanjangan" placeholder="Masukan Tanggal Pengajuan Perpanjangan Nomor P-IRT" style="width: 560px;"/>
+																			<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="yyyy-mm-dd" name="tanggal_pengajuan_perpanjangan" placeholder="Masukan Tanggal Pengajuan Perpanjangan Nomor P-IRT" style="width: 560px;" value="<?= $perpanjangan['tanggal_pengajuan_perpanjangan']?>"/>
 																			<span class="input-group-addon">
 																				<i class="fa fa-calendar bigger-110"></i>
 																			</span>
@@ -298,21 +298,21 @@ function isNumberKey(evt){
 
 																	<div class="col-xs-12 col-sm-9">
 																		<div class="clearfix">
-																			<input type="text" class="col-xs-12 col-sm-9" name="no_permohonan" id="no_permohonan" placeholder="Masukan Nomor Permohonan" onkeypress="return isNumberKey(event)"/>
+																			<input type="text" class="col-xs-12 col-sm-9" name="no_permohonan" id="no_permohonan" placeholder="Masukan Nomor Permohonan" onkeypress="return isNumberKey(event)" value="<?= $perpanjangan['nomor_r_permohonan']?>"/>
 																			<p class="col-xs-12 col-sm-9 help-block">Masukan nomor permohonan SPP-IRT (Maksimum 18 digit), Contoh : ABS-2210.1213-2014</p>
 																		</div>
 																	</div>
 																</div>
-
-																<input type="hidden" name="id_urut_penerbitan_sert" id="id_urut_penerbitan_sert">
 
 																<div class="form-group">
 																	<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="text">Scan (Label Final)</label>
 
 																	<div class="col-xs-12 col-sm-9">
 																		<div class="clearfix">
-																			<input type="file" class="col-xs-12 col-sm-9" name="file_foto" data-validation="required"/>
-																			<p class="col-xs-12 col-sm-9 help-block">Scan format PDF/JPG maksimal berukuran 2 Mb</p>
+																			<input type="file" class="col-xs-12 col-sm-9" name="file_foto"/>
+																			<p class="col-xs-12 col-sm-9 help-block">
+																			<a target="__blank" href="<?= base_url('uploads')."/irtp_perpanjangan/".$perpanjangan['label_final']?>"><?= $perpanjangan['label_final'] ?></a> <br>
+																			Scan format PDF/JPG maksimal berukuran 2 Mb</p>
 																		</div>
 																	</div>
 																</div>

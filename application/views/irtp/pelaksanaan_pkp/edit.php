@@ -1,4 +1,207 @@
 
+<script>
+	$(document).ready(()=>{
+		Edit=function(){
+			var id='<?php echo $this->uri->segment(3);?>';
+			var site_url='<?php echo site_url()?>';
+			return {
+				id:id,
+				site_url:site_url,
+				getData:()=>{
+					$.post(site_url+'get_edit/pelaksanaan_pkp',{
+						id:id
+					},(data,status,xhr)=>{
+						console.log(data);
+						Edit.formTab1(data);
+						Edit.formTab2(data);
+					},'json');
+				},
+				formTab1:(data)=>{
+					var i=0;
+					var j=0;
+					$('input[name="id_urut[]"]').each(function()
+					{
+						if(data.daftar_narasumber[j]!=null && i+1==data.daftar_narasumber[j].kode_materi_penyuluhan)
+						{
+							$(this).val(data.daftar_narasumber[j].id_urut_ambil_penyuluhan);
+							j++;
+						}
+						else{
+							$(this).val('0');
+						}
+
+						i++;
+					});
+
+					$('#provinsi').select2('val',data.pkp.no_kode_propinsi).trigger('change');
+					$('#kota').select2('val',data.pkp.id_r_urut_kabupaten);
+					$('[name="tanggal_pelatihan_awal"]').val(data.pkp.tanggal_pelatihan_awal);
+					$('[name="tanggal_pelatihan_akhir"]').val(data.pkp.tanggal_pelatihan_akhir);
+					if(data.daftar_narasumber !=null && data.daftar_narasumber.length>0)
+					{
+						$('[id^="kd_materi_"]').each(function(index){
+							var id=$(this).attr('id').replace('kd_materi_','');
+							data.daftar_narasumber.forEach((val)=>{
+								if(val.kode_materi_penyuluhan==id)
+								{
+									$('#kd_materi_'+val.kode_materi_penyuluhan).attr('checked','checked');
+									//$('#select_narasumber_'+i).click();
+									$('#select_narasumber_'+id).select2('val',val.kode_materi_penyuluhan+'.'+val.kode_narasumber);
+								}
+							});
+						});
+					}
+
+					if(data.pkp.materi_tambahan!=null){
+						var materi=data.pkp.materi_tambahan.split(',');
+						$('#materi_tambahan').select2('val',materi);
+					}
+				},
+				formTab2:(data)=>{
+					
+					var i=0;
+					var form_peserta='';
+					if(data.peserta!=null && data.peserta.length>0)
+					{
+						data.peserta.forEach((val)=>{
+						form_peserta+='\
+						<tr>\
+							<td>\
+								<select style="max-width: 380px" class="select2 sel_per" id="nomor_permohonan_irtp'+i+'" data-validation="required"\
+									name="nomor_permohonan_irtp['+i+']">\
+									<option value="">- Pilih Nomor Permohonan IRTP -</option>\
+								</select>\
+							</td>\
+							<td>\
+								<label class="checkbox-inline">\
+									<input type="radio" class="ace status_pengajuan" id="pemilik'+i+'" name="status_peserta['+i+']"\
+										value="0">\
+									<span class="lbl"> Pemilik IRTP </span>\
+								</label>\
+								<label class="checkbox-inline">\
+									<input type="radio" class="ace status_pengajuan" id="penanggung_jawab'+i+'" name="status_peserta['+i+']"\
+										value="1">\
+									<span class="lbl"> Penanggung Jawab IRTP </span>\
+								</label>\
+								<label class="checkbox-inline">\
+									<input type="radio" class="ace status_pengajuan" id="lainnya'+i+'" name="status_peserta['+i+']"\
+										value="2"><span class="lbl"> Lainnya </span>\
+								</label>\
+							</td>\
+							<td>\
+								<input type="text" name="nama_peserta['+i+']" id="nama_peserta'+i+'"\
+									placeholder="Pilih Nomor Permohonan IRTP terlebih dahulu atau isi peserta lainnya" readonly />\
+							</td>\
+							<td>\
+								<input type="text" name="no_sert_pangan['+i+']" id="no_sert_pangan'+i+'" />\
+							</td>\
+							<td>\
+								<input type="text" name="nilai_pre_test['+i+']" data-validation="number"\
+									data-validation-allowing="range[0;99999]" onkeypress="return isNumberKey(event)" maxlength="3"\
+									placeholder="Masukan Nilai Pre Test" />\
+							</td>\
+							<td>\
+								<input type="text" name="nilai_post_test['+i+']" data-validation="number"\
+									data-validation-allowing="range[0;99999]" onkeypress="return isNumberKey(event)" maxlength="3"\
+									placeholder="Masukan Nilai Post Test" />\
+								<input name="id_urut_peserta[]" value="'+val.id_urut_ambil_materi+'" type="text"/>\
+							</td>\
+						</tr>';
+						
+						i++;
+						});
+						
+						$('#form_peserta').html(form_peserta);
+
+						$.get(site_url+'get_edit/pelaksanaan_irtp',{
+						provinsi:$('#provinsi').val(),
+						kabupaten:$('#kabupaten').val()
+						},(list,status,xhr)=>{
+							var opt='<option value="">- Pilih Nomor Permohonan IRTP -</option>';
+							list.forEach((val)=>{
+								opt+='<option value="'+val.nomor_permohonan+'">\
+								'+val.nomor_permohonan+' - '+val.nama_perusahaan+' - '+val.nama_pemilik+' - '+val.nama_dagang+'\
+								</option>';
+							});
+							$('.sel_per').html(opt);
+							$('.sel_per').select2();
+
+							$('[id^="nomor_permohonan_irtp"]').each(function(i){
+								$(this).select2('val',data.peserta[i].nomor_permohonan).trigger('change');
+								$('[name="status_peserta['+i+']"]').val([data.peserta[i].status_peserta]);
+								$('#nama_peserta'+i).val(data.peserta[i].nama_peserta);
+								$('#no_sert_pangan'+i).val(data.peserta[i].no_sert_pangan);
+								$('[name="nilai_pre_test['+i+']"').val(data.peserta[i].nilai_pre_test);
+								$('[name="nilai_post_test['+i+']"').val(data.peserta[i].nilai_post_test);
+
+								$(this).change(function(){
+									$('#nama_peserta'+i).val('');
+									$('#pemilik'+i).click();
+								});
+
+								$(document).on('click', '#pemilik'+i, function(evt, key){
+								var nama = $('#nama_peserta'+i);
+								var data = $('#nomor_permohonan_irtp'+i).val();
+								$.ajax({
+									url	: '<?=base_url()?>pelaksanaan_pkp/get_irtp_raw',
+									type	: 'POST',
+									dataType: 'json',
+									data	: 'nomor=' + data + '&mode=NULL',
+									success: function(html){
+										console.log(html);
+										$.each(html, function(key, value){
+											nama.val(value.nama_pemilik);
+											
+										});
+									},error: function(e){
+										console.log(e);
+									}
+								});
+								nama.attr('readonly',true);
+							});
+							
+							$(document).on('click', '#penanggung_jawab'+i, function(evt, key){
+								var nama = $('#nama_peserta'+i);
+								var data = $('#nomor_permohonan_irtp'+i).val();
+								
+								$.ajax({
+									url	: '<?=base_url()?>pelaksanaan_pkp/get_irtp_raw',
+									type	: 'POST',
+									dataType: 'json',
+									data	: 'nomor=' + data + '&mode=NULL',
+									success: function(html){
+										console.log(html);
+										$.each(html, function(key, value){					
+											nama.val(value.nama_penanggung_jawab);
+											
+										});
+									},error: function(e){
+										console.log(e);
+									}
+								});
+								nama.attr('readonly',true);
+							});
+							
+							$(document).on('click', '#lainnya'+i, function(evt, key){
+								var nama = $('#nama_peserta'+i);
+								nama.val('');
+								nama.removeAttr('readonly');
+								nama.focus();
+								
+							});
+							
+						});
+							
+						},'json');
+					}
+				}
+			}
+		}();
+		Edit.getData();
+
+	});
+</script>
+
 <script type="text/javascript">
 		jQuery(function($) {
 
@@ -24,7 +227,7 @@
 						password: {
 							required: true,
 							minlength: 5
-						}
+						},
 						phone: {
 							required: true,
 							phone: 'required'
@@ -102,11 +305,11 @@ function isNumberKey(evt){
 	return false;
 	return true;
 */
+
 	//nama perusahaan
     $(document).on('change', '#nomor_permohonan_penyuluhan', function(evt, key){
 		var tgl_awal = $('#tanggal_pelatihan_awal');
 		var tgl_akhir = $('#tanggal_pelatihan_akhir');
-		
 		var data = $(this).val();
 		$.ajax({
 			url	: '<?=base_url()?>pelaksanaan_pkp/get_penyuluhan_data',
@@ -151,9 +354,7 @@ function isNumberKey(evt){
 	
 	$(document).on('click', '#pemilik<?=$i?>', function(evt, key){
 		var nama = $('#nama_peserta<?=$i?>');
-		
 		var data = $('#nomor_permohonan_irtp<?=$i?>').val();
-		
 		$.ajax({
 			url	: '<?=base_url()?>pelaksanaan_pkp/get_irtp_raw',
 			type	: 'POST',
@@ -425,7 +626,43 @@ function isNumberKey(evt){
 																	<?= @$this->session->flashdata('error'); ?>	
 																	<?= @$this->session->flashdata('message'); ?>
 																	<?=form_open_multipart('#', array('class' => 'form-horizontal','id'=>'validation-form'))?>
+																	<input type="hidden" name="id" value="<?= $nomor; ?>">
 
+																	<?php if($this->session->userdata('user_segment') == 1 || $this->session->userdata('user_segment') == 2):?>
+																	<div class="form-group">
+						                                                <label class="control-label col-xs-12 col-sm-3 no-padding-right"
+						                                                    for="text">Propinsi</label>
+						                                                <div class="col-xs-12 col-sm-9">
+						                                                    <div class="input-group col-xs-12 col-sm-9">
+						                                                        <select class="select2" name="no_kode_propinsi"
+						                                                            id="provinsi">
+						                                                            <option value="">Pilih Propinsi</option>
+						                                                            <?php
+																						foreach ($provinsi as $prov) { ?>
+													                                     <option value="<?php echo $prov->no_kode_propinsi ?>">
+													                                     <?php echo $prov->nama_propinsi ?></option>
+													                                     <?php } ?>
+						                                                        </select>
+						                                                    </div>
+						                                                </div>
+						                                            </div>
+						                                            <div class="form-group">
+																	<label class="control-label col-xs-12 col-sm-3 no-padding-right"
+						                                                    for="text">Kabupaten / Kota</label>
+						                                                <div class="col-xs-12 col-sm-9">
+						                                                    <div class="input-group col-xs-12 col-sm-9">
+								                                                <select class="select2" name="nama_kabupaten" id="kota">
+								                                                    <option value="0">Pilih Kabupaten/kota</option>
+								                                                    <?php
+																						foreach ($kota as $kot) { ?>
+													                                    <option class="<?php echo $kot->no_kode_propinsi ?>" value="<?php echo $kot->id_urut_kabupaten ?>">
+													                                    <?php echo $kot->nm_kabupaten ?></option>
+													                                    <?php } ?>
+								                                                </select>
+						                                            		</div>
+						                                            	</div>
+																	</div>
+																	<?php endif; ?>
 																	<div class="form-group">
 																		<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="text">Tanggal Awal Penyuluhan</label>
 
@@ -462,29 +699,31 @@ function isNumberKey(evt){
 																		<tr class="row dropdown">
 
 																			<td style="width: 260px; text-align: right;">
-																				
 																				<?=$data->nama_materi_penyuluhan.$key?>
 																			</td>
 																			<td style="width: 15px">
-																				
 																			</td>
 																			<td>
-																				<input name="form-field-checkbox" type="checkbox" class="ace input-lg form-control check-active"  checked="checked" />
+																				<input id="<?='kd_materi_'.$data->kode_materi_penyuluhan?>" name="form-field-checkbox" type="checkbox" class="ace input-lg form-control check-active" />
+																				
 																			<span class="lbl bigger-120"></span>
 																			</td>
 
 																			<td style="width: 20px">
-																				
+																				<input name="id_urut[]" type="text"/>
 																			</td>
 
 																			<td style="width: 520px">
 																				 <select style="max-width: 550px;" id="select_narasumber_<?= $key ?>" class="select2" name="nama_narasumber[]" onchange="cek_narasumber(<?= $key ?>)">
 																			<?php foreach($js_narasumber as $data_cp1): ?>
 												                                <option value="<?=$data->kode_materi_penyuluhan.".".$data_cp1->kode_narasumber?>"><?=$data_cp1->nama_narasumber?></option>
+
+
 												                            <?php endforeach ?>
 												                            <option value="<?=$data->kode_materi_penyuluhan?>.-">Lainnya</option>			
 																			
 												                            </select>
+
 												                            
 																			</td>
 																			<tr>
@@ -504,7 +743,7 @@ function isNumberKey(evt){
 																		<div class="col-xs-12 col-sm-9">
 																			<div class="clearfix">
 																				<div class="dropdown">
-																				<select style="width: 600px" class="select2" multiple name="materi_tambahan[]" data-placeholder="Pilih Materi Penyuluhan Tambahan">
+																				<select style="width: 600px" id="materi_tambahan" class="select2" multiple name="materi_tambahan[]" data-placeholder="Pilih Materi Penyuluhan Tambahan">
 																				<?php foreach($js_materi_pendukung as $data): ?>
 																					<option value="<?=$data->kode_materi_penyuluhan?>"><?=$data->nama_materi_penyuluhan?></option>
 																				<?php endforeach ?>				
@@ -570,51 +809,8 @@ function isNumberKey(evt){
 																				<!-- <td><div class="btn btn-sm btn-primary" style="width:65px">Add</div></td> -->
 																			</tr>
 																		</thead>
-																		<tbody>
-																		<?php
-																		for($i=1; $i<=$jumlah_peserta;$i++){
-																		?>
-																			<tr>
-																				<td>
-																					<select style="max-width: 380px" class="select2" id="nomor_permohonan_irtp<?=$i?>" data-validation="required" name="nomor_permohonan_irtp[<?=$i?>]">
-																					<option value="">- Pilih Nomor Permohonan IRTP -</option>
-																					<?php foreach($no_irtp as $data): ?>
-																					<option value="<?=$data->nomor_permohonan?>"><?=$data->nomor_permohonan.' - '.$data->nama_perusahaan.' - '. $data->nama_pemilik.' - '.$data->nama_dagang?> </option>
-																					<?php endforeach ?>				
-																				</select>
-																				</td>
-																				<td>
-																					<label class="checkbox-inline">
-																						<input type="radio" class="ace status_pengajuan" id="pemilik<?=$i?>" name="status_peserta[<?=$i?>]" value="0" >
-																						<span class="lbl"> Pemilik IRTP </span>
-																					</label>
-																					<label class="checkbox-inline">
-																						<input type="radio" class="ace status_pengajuan" id="penanggung_jawab<?=$i?>" name="status_peserta[<?=$i?>]" value="1">
-																						<span class="lbl"> Penanggung Jawab IRTP </span>
-																					</label>
-																					<label class="checkbox-inline">
-																						<input type="radio" class="ace status_pengajuan" id="lainnya<?=$i?>" name="status_peserta[<?=$i?>]" value="2" ><span class="lbl">  Lainnya </span>
-																					</label>
-																				</td>
-																				
-																				<td>
-																					<input type="text" name="nama_peserta[<?=$i?>]" id="nama_peserta<?=$i?>" placeholder="Pilih Nomor Permohonan IRTP terlebih dahulu atau isi peserta lainnya" readonly />	
-																				</td>
-																				<td>
-																					<input type="text" name="no_sert_pangan[<?=$i?>]" id="no_sert_pangan<?=$i?>"/>	
-																				</td>
-																				<td >
-																					<input type="text" name="nilai_pre_test[<?=$i?>]" data-validation="number" data-validation-allowing="range[0;99999]" onkeypress="return isNumberKey(event)" maxlength="3" placeholder="Masukan Nilai Pre Test"/>
-																				</td>
-																				<td>
-																					<input type="text" name="nilai_post_test[<?=$i?>]" data-validation="number" data-validation-allowing="range[0;99999]" onkeypress="return isNumberKey(event)" maxlength="3" placeholder="Masukan Nilai Post Test"/>
-																				</td>
-																				<!-- <td></td> -->
-
-																			</tr>
-																			<?php
-																		}?>
-																		</tbody>
+																			<tbody id="form_peserta">
+																			</tbody>
 																		</table>	
 																	</div>
 													</div>
@@ -667,19 +863,20 @@ function isNumberKey(evt){
     function save_data()
     {
         $.ajax({
-           url:'<?php echo base_url()?>pelaksanaan_pkp/add',
+           url:'<?php echo base_url()?>pelaksanaan_pkp/proccess_edit',
            type:'POST',
            data:$("#validation-form").serialize(),
            dataType:'json',
            success:function(response){
-               if(response.success)
-               {
-                    //alert('Data Tersimpan!');
-                    window.location.href='<?php echo base_url()?>pelaksanaan_pkp/output_penyelenggaraan';
-               }
-               else{
-                   alert('Data Gagal Tersimpan');
-               }
+           console.log(response);
+           	// if(response.success)
+            //    {
+            //         //alert('Data Tersimpan!');
+            //         window.location.href='<?php echo base_url()?>pelaksanaan_pkp/output_penyelenggaraan';
+            //    }
+            //    else{
+            //        alert('Data Gagal Tersimpan');
+            //    }
            },
            error:function(stat,res,err)
            {

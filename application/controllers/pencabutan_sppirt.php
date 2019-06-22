@@ -561,10 +561,84 @@ public function __construct()
 			$data['js_pencabutan'] = $this->db->get('tabel_alasan_pencabutan')->result();
 
 			$param=array("id_urut_pencabutan_pirt"=>$this->uri->segment(3));
-      		$data['pencabutan'] = $this->irtp_model->edit_pencabutan($param)->row_array();
+      		$data['pencabutan'] = $this->irtp_model->get_pencabutan()->row_array();
 
 	    	return view_dashboard('irtp/pencabutan_sppirt/edit', $data);
 	    }
+
+function action_edit_pencabutan()
+  {
+  	$id = $this->uri->segment(3);
+  	$id_pirt = $this->input->post('id');
+    $nomor_pirt = $this->input->post('nomor_pirt');
+    $alasan_pencabutan = $this->input->post('alasan_pencabutan');
+    $alasan_pencabutan_lain = $this->input->post('alasan_pencabutan_lain');
+    $nomor_berita_acara = $this->input->post('nomor_berita_acara');
+    $tanggal_pencabutan = $this->input->post('tanggal_pencabutan');
+
+
+ 	$_image = $this->db->get_where('tabel_pencabutan_pirt',['id_urut_pencabutan_pirt' => $id_pirt])->row();
+ 	$config['upload_path'] = "./uploads/pencabutan/";
+	$config['allowed_types'] = "pdf|jpg|png|jpeg";
+	$this->load->library('upload', $config);
+
+	$this->upload->do_upload('file_foto');
+    $hasil  = $this->upload->data();
+
+    if($hasil['file_name']!=NULL || $hasil['file_name']!="")
+    {
+
+	$file_url=FCPATH.'uploads/pencabutan/'.$hasil['file_name'];
+	if(is_file($file_url)!=1)
+    {
+          $result=true;
+          echo "<script>
+          alert('Pastikan semua field terisi !');
+          window.location.href='".base_url('pencabutan_sppirt/edit/'.$id_pirt)."';
+          </script>";
+    }
+     else
+    {
+
+    $file_ext= explode('.',$hasil['file_name']);
+	$file_rename=FCPATH.'uploads/pencabutan/pencabutan-'.Date("Y-m-d-his").'.'.$file_ext[1];
+	rename($file_url,$file_rename);
+                
+    $data = array('tanggal_pencabutan'=> $this->input->post('tanggal_pencabutan'),
+                  'path_scan_pencabutan' => 'pencabutan-'.Date("Y-m-d-his").'.'.$file_ext[1],
+                  'id_r_urut_penerbitan_sert_pirt' => $nomor_pirt,
+                  'kode_alasan_pencabutan' => $alasan_pencabutan,
+                  'alasan_pencabutan_lain' => $alasan_pencabutan_lain,
+                 );
+    $query = $this->db->update('tabel_pencabutan_pirt', $data, array('id_urut_pencabutan_pirt' => $id_pirt));
+    if($query){
+    unlink("uploads/pencabutan/".$_image->path_scan_pencabutan);
+    }
+    echo "<script>
+	alert('Data behasil di ubah!');
+	window.location.href='".base_url('pencabutan_sppirt/output_pencabutan')."';
+	</script>";
+    }
+    }
+    else
+    {
+    	$data = array('tanggal_pencabutan'=> $this->input->post('tanggal_pencabutan'),
+                  'id_r_urut_penerbitan_sert_pirt' => $nomor_pirt,
+                  'kode_alasan_pencabutan' => $alasan_pencabutan,
+                  'alasan_pencabutan_lain' => $alasan_pencabutan_lain,
+                 );
+	    $query = $this->db->update('tabel_pencabutan_pirt', $data, array('id_urut_pencabutan_pirt' => $id_pirt));
+	    if($query)
+	    {
+	    	echo "<script>
+			alert('Data behasil di ubah!');
+			window.location.href='".base_url('pencabutan_sppirt/output_pencabutan')."';
+			</script>";
+	    }
+	    
+    }       
+          
+  }
 	    
 	
 }

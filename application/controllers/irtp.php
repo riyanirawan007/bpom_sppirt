@@ -798,8 +798,16 @@ class irtp extends APP_Controller {
 			// start status pengajuan baru 
 		} else if(($statusPengajuan == 'baru') & ($statusPerusahaan == 'perus_lama')){	
 			//$data['js_perus'] = $this->db->get('tabel_daftar_perusahaan')->result();
+			if ($this->session->userdata('user_segment') == '1') 
+			{
+				$data['js_perus'] = $this->db->get('tabel_daftar_perusahaan')->result();
+			}
+			else
+			{
+				$data['js_perus'] = $this->db->query("select * from tabel_daftar_perusahaan where id_r_urut_kabupaten = '".$kabupaten."'")->result();
+			}
+
 			
-			$data['js_perus'] = $this->db->query("select * from tabel_daftar_perusahaan where id_r_urut_kabupaten = '".$kabupaten."'")->result();
 			
 			$this->db->select('*');
 			$this->db->from('tabel_grup_jenis_pangan');
@@ -1522,7 +1530,12 @@ class irtp extends APP_Controller {
 		    window.location.href='".base_url()."irtp/output_permohonan';
 		    </script>";
 	    }
-
+  function exec_pencabutan()
+  {
+  	$this->irtp_model->exec_pencabutan();
+  	$this->irtp_model->exec_perpanjangan();
+  	$this->irtp_model->exec_penerbitan();
+  }
 
 }
 

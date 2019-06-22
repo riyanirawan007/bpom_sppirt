@@ -25,7 +25,7 @@
 						</div>
 					</div>
 					<div class="table-responsive">
-						<form action="<?= base_url() ?>pelaksanaan_pkp/input" method="post" onsubmit="return cek_add()">
+						<form action="<?= base_url() ?>pelaksanaan_pkp/input" method="post" id="form1">
 							<table class="table table-bordered">
 							
 								<tbody>
@@ -34,7 +34,8 @@
 
 											<div class="form-group">
                                               <label for="jumlah_peserta">Jumlah peserta</label>
-                                              <input type="text" name="jumlah_peserta" id="jumlah_peserta" class="form-control" placeholder="" aria-describedby="helpId">
+                                              <input required type="number" name="jumlah_peserta" id="jumlah_peserta" class="form-control" placeholder="" aria-describedby="helpId">
+											  <p id="err" style="color:red;"></p>
                                             </div>
 										</td>
 										</tr>
@@ -49,4 +50,3 @@
 			</div>
 		</div>
 	</div>
-

@@ -414,66 +414,190 @@ class irtp_model extends CI_Model {
     
     	#informasi penyelenggara
     	$tanggal_pelatihan_awal = $this->input->post('tanggal_pelatihan_awal');
-		$tanggal_pelatihan_akhir = $this->input->post('tanggal_pelatihan_akhir');
-		$id_narasumber = $this->input->post('nama_narasumber');
-    	$nama_narasumber_non_pkp = $this->input->post('nama_narasumber_non_pkp');
-    	$materi_tambahan = $this->input->post('materi_tambahan');
-    	$temp_jenis = $this->input->post('jenis_narasumber_lain');
-    	$nama_narasumber_lain = $this->input->post('nama_narasumber_lain');
-    	$nip_narasumber_lain = $this->input->post('nip_narasumber_lain');
-		if($materi_tambahan==""){
-			$materi_tambahan = "";
-		} else {
-			$materi_tambahan = implode(",",$materi_tambahan);
-		}
-    	$materi_penyuluhan_lainnya = $this->input->post('materi_lainnya');
-		$id_r_urut_kabupaten = $this->session->userdata('code');
-		
-		$query = $this->db->query("SELECT LPAD( IFNULL( nomor_permohonan_penyuluhan +1, 1 ) , 12,  '0' ) AS id FROM tabel_penyelenggara_penyuluhan ORDER BY  `nomor_permohonan_penyuluhan` DESC LIMIT 1");
-		
-		if($query->num_rows() == 0){
-			$getId = "000000000001";	
-		}else{
-			foreach($query->result() as $data){
-				$getId = $data->id;
+			$tanggal_pelatihan_akhir = $this->input->post('tanggal_pelatihan_akhir');
+			$id_narasumber = $this->input->post('nama_narasumber');
+				$nama_narasumber_non_pkp = $this->input->post('nama_narasumber_non_pkp');
+				$materi_tambahan = $this->input->post('materi_tambahan');
+				$temp_jenis = $this->input->post('jenis_narasumber_lain');
+				$nama_narasumber_lain = $this->input->post('nama_narasumber_lain');
+				$nip_narasumber_lain = $this->input->post('nip_narasumber_lain');
+			if($materi_tambahan==""){
+				$materi_tambahan = "";
+			} else {
+				$materi_tambahan = implode(",",$materi_tambahan);
 			}
-		}
-		
-		$data = array(
-			'nomor_permohonan_penyuluhan' => $getId,
-    		'tanggal_pelatihan_awal' => $tanggal_pelatihan_awal,
-    		'tanggal_pelatihan_akhir' => $tanggal_pelatihan_akhir,
-    		'nama_narasumber_non_pkp' => $nama_narasumber_non_pkp,
-    		'materi_pelatihan_lainnya' => $materi_penyuluhan_lainnya,
-			'id_r_urut_kabupaten' => $id_r_urut_kabupaten,
-			'materi_tambahan' => $materi_tambahan
-    	);
-
-		$jenis_narasumber_lain = array();
-    	$this->db->insert('tabel_penyelenggara_penyuluhan', $data);
-    	
-		foreach($id_narasumber as $key=>$nama){
-			$piece = explode('.', $nama);
-			$id_materi = $piece[0];
-			$narasumber = $piece[1];
+				$materi_penyuluhan_lainnya = $this->input->post('materi_lainnya');
+			if ($this->session->userdata('user_segment') == 1 || $this->session->userdata('user_segment') == 2) {
+				$id_r_urut_kabupaten = $this->input->post('nama_kabupaten');
+				
+			} else {
+				$id_r_urut_kabupaten = $this->session->userdata('code');
+			}
 			
-			if($narasumber=='-'){
-				// print_r($nama_narasumber_lain[$key]); exit();
-				$post_data = array('tot' => 'PKP BALAI', 'nama_narasumber'=>$nama_narasumber_lain[$key], 'nip_pkp_dfi'=>$nip_narasumber_lain[$key], 'dinkes_asal'=> $this->session->userdata('code'), 'sertifikat'=>$jenis_narasumber_lain[$key], 'file_sertifikat'=>$nama_file_sertifikat[$key]);
-	    		$this->db->insert('tabel_narasumber', $post_data);
-	   			$narasumber = $this->db->insert_id();
+			$query = $this->db->query("SELECT LPAD( IFNULL( nomor_permohonan_penyuluhan +1, 1 ) , 12,  '0' ) AS id FROM tabel_penyelenggara_penyuluhan ORDER BY  `nomor_permohonan_penyuluhan` DESC LIMIT 1");
+			
+			if($query->num_rows() == 0){
+				$getId = "000000000001";	
+			}else{
+				foreach($query->result() as $data){
+					$getId = $data->id;
+				}
 			}
-
+			
 			$data = array(
-				'nomor_r_permohonan_penyuluhan' => $getId,
-				'kode_r_materi_penyuluhan' => $id_materi,
-				'kode_r_narasumber' => $narasumber
-			);
-    		$this->db->insert('tabel_ambil_materi_penyuluhan', $data);
-		} 
-		// exit;
+				'nomor_permohonan_penyuluhan' => $getId,
+					'tanggal_pelatihan_awal' => $tanggal_pelatihan_awal,
+					'tanggal_pelatihan_akhir' => $tanggal_pelatihan_akhir,
+					'nama_narasumber_non_pkp' => $nama_narasumber_non_pkp,
+					'materi_pelatihan_lainnya' => $materi_penyuluhan_lainnya,
+				'id_r_urut_kabupaten' => $id_r_urut_kabupaten,
+				'materi_tambahan' => $materi_tambahan
+				);
 
-		return 1;
+			$jenis_narasumber_lain = array();
+				$this->db->insert('tabel_penyelenggara_penyuluhan', $data);
+				
+			foreach($id_narasumber as $key=>$nama){
+				$piece = explode('.', $nama);
+				$id_materi = $piece[0];
+				$narasumber = $piece[1];
+				
+				if($narasumber=='-'){
+					// print_r($nama_narasumber_lain[$key]); exit();
+					$post_data = array('tot' => 'PKP BALAI', 'nama_narasumber'=>$nama_narasumber_lain[$key]
+					, 'nip_pkp_dfi'=>$nip_narasumber_lain[$key], 'dinkes_asal'=> $this->session->userdata('code')
+					, 'sertifikat'=>$jenis_narasumber_lain[$key]
+					, 'file_sertifikat'=>$nama_file_sertifikat[$key]);
+						$this->db->insert('tabel_narasumber', $post_data);
+						$narasumber = $this->db->insert_id();
+				}
+
+				$data = array(
+					'nomor_r_permohonan_penyuluhan' => $getId,
+					'kode_r_materi_penyuluhan' => $id_materi,
+					'kode_r_narasumber' => $narasumber
+				);
+					$this->db->insert('tabel_ambil_materi_penyuluhan', $data);
+			} 
+			// exit;
+
+			return 1;
+    }
+
+    public function edit_data_pkp(){
+		
+    
+    	#informasi penyelenggara
+    	$id = $this->input->post('id');
+    	$tanggal_pelatihan_awal = $this->input->post('tanggal_pelatihan_awal');
+			$tanggal_pelatihan_akhir = $this->input->post('tanggal_pelatihan_akhir');
+			$id_narasumber = $this->input->post('nama_narasumber');
+				$nama_narasumber_non_pkp = $this->input->post('nama_narasumber_non_pkp');
+				$materi_tambahan = $this->input->post('materi_tambahan');
+				$temp_jenis = $this->input->post('jenis_narasumber_lain');
+				$nama_narasumber_lain = $this->input->post('nama_narasumber_lain');
+				$nip_narasumber_lain = $this->input->post('nip_narasumber_lain');
+			if($materi_tambahan==""){
+				$materi_tambahan = "";
+			} else {
+				$materi_tambahan = implode(",",$materi_tambahan);
+			}
+				$materi_penyuluhan_lainnya = $this->input->post('materi_lainnya');
+			if ($this->session->userdata('user_segment') == 1 || $this->session->userdata('user_segment') == 2) {
+				$id_r_urut_kabupaten = $this->input->post('nama_kabupaten');
+				
+			} else {
+				$id_r_urut_kabupaten = $this->session->userdata('code');
+			}
+			
+			$query = $this->db->query("SELECT LPAD( IFNULL( nomor_permohonan_penyuluhan +1, 1 ) , 12,  '0' ) AS id FROM tabel_penyelenggara_penyuluhan ORDER BY  `nomor_permohonan_penyuluhan` DESC LIMIT 1");
+			
+			if($query->num_rows() == 0){
+				$getId = "000000000001";	
+			}else{
+				foreach($query->result() as $data){
+					$getId = $data->id;
+				}
+			}
+			
+			$data_ = array(
+				'nomor_permohonan_penyuluhan' => $id,
+					'tanggal_pelatihan_awal' => $tanggal_pelatihan_awal,
+					'tanggal_pelatihan_akhir' => $tanggal_pelatihan_akhir,
+					'nama_narasumber_non_pkp' => $nama_narasumber_non_pkp,
+					'materi_pelatihan_lainnya' => $materi_penyuluhan_lainnya,
+					'id_r_urut_kabupaten' => $id_r_urut_kabupaten,
+					'materi_tambahan' => $materi_tambahan
+				);
+
+			$jenis_narasumber_lain = array();
+				
+				//update
+					 $this->db->where('nomor_permohonan_penyuluhan', $id);
+			    	 $query_ = $this->db->update('tabel_penyelenggara_penyuluhan', $data_);
+					
+					if($query_){
+			    		return 1;
+			    	}
+			    	return 0;
+
+			// $daftar_narasumber=$this->db->query("SELECT a.nomor_r_permohonan_penyuluhan,a.id_urut_ambil_penyuluhan,b.kode_materi_penyuluhan,b.nama_materi_penyuluhan,c.kode_narasumber
+   //      ,c.nama_narasumber FROM tabel_ambil_materi_penyuluhan a
+   //      INNER JOIN tabel_materi_penyuluhan b on a.kode_r_materi_penyuluhan=b.kode_materi_penyuluhan
+   //      INNER JOIN tabel_narasumber c on c.kode_narasumber=a.kode_r_narasumber
+   //      WHERE a.nomor_r_permohonan_penyuluhan='".$id."'")->result();
+
+			// foreach ($daftar_narasumber as $data) 
+			// {
+			// 	$query_data = array(
+			// 		'id_urut_ambil_penyuluhan' => $data->id_urut_ambil_penyuluhan,
+			// 		// 'kode_r_materi_penyuluhan' => $data->kode_materi_penyuluhan,
+			// 		'kode_r_narasumber' => $data->kode_narasumber
+			// 	);
+
+			// 	//update
+			// 	$this->db->where('id_urut_ambil_penyuluhan', $data->id_urut_ambil_penyuluhan);
+			//     $query = $this->db->update('tabel_ambil_materi_penyuluhan', $query_data);
+					
+			//     if($query)
+			//     {
+			//     	return 1;
+			//     }
+			//     	return 0;
+			// }
+
+			for($i = 0; i < count($id_narasumber) ; $i++){
+				$piece = explode('.', $id_narasumber[$i]);
+				$id_materi = $piece[0];
+				$narasumber = $piece[1];
+				
+				if($narasumber=='-'){
+					// print_r($nama_narasumber_lain[$key]); exit();
+					$post_data = array('tot' => 'PKP BALAI', 'nama_narasumber'=>$nama_narasumber_lain[$key]
+					, 'nip_pkp_dfi'=>$nip_narasumber_lain[$key], 'dinkes_asal'=> $this->session->userdata('code')
+					, 'sertifikat'=>$jenis_narasumber_lain[$key]
+					, 'file_sertifikat'=>$nama_file_sertifikat[$key]);
+						$this->db->insert('tabel_narasumber', $post_data);
+						$narasumber = $this->db->insert_id();
+				}
+
+				$data = array(
+					'nomor_r_permohonan_penyuluhan' => $id,
+					'kode_r_materi_penyuluhan' => $id_materi,
+					'kode_r_narasumber' => $narasumber
+				);
+					//update
+					$this->db->where('nomor_r_permohonan_penyuluhan', $id);
+			    	$query = $this->db->update('tabel_ambil_materi_penyuluhan', $data);
+					
+			    	if($query){
+			    		return 1;
+			    	}
+			    	return 0;
+
+			}
+			 
+
     }
 	
 	public function add_irtp_peserta(){
@@ -872,7 +996,7 @@ LIMIT 1");
 			return $this->db->query("SELECT * FROM tabel_penyelenggara_penyuluhan,
 			tabel_propinsi,tabel_kabupaten_kota WHERE 
 			tabel_propinsi.no_kode_propinsi = tabel_kabupaten_kota.no_kode_propinsi $q_provinsi $q_kabupaten and 
-			tabel_penyelenggara_penyuluhan.id_r_urut_kabupaten = tabel_kabupaten_kota.id_urut_kabupaten
+			tabel_penyelenggara_penyuluhan.id_r_urut_kabupaten = tabel_kabupaten_kota.id_urut_kabupaten order by tabel_penyelenggara_penyuluhan.nomor_permohonan_penyuluhan DESC
 			");
 		}
 	}
@@ -962,6 +1086,7 @@ LIMIT 1");
 			WHERE 
 				tabel_pen_pengajuan_spp.kode_r_perusahaan = tabel_daftar_perusahaan.kode_perusahaan and 
 				tabel_periksa_sarana_produksi.nomor_r_permohonan = tabel_pen_pengajuan_spp.nomor_permohonan and 
+				tabel_periksa_sarana_produksi.status_delete = '0' and
 				tabel_propinsi.no_kode_propinsi = tabel_kabupaten_kota.no_kode_propinsi $q_provinsi $q_kabupaten and 
 				tabel_daftar_perusahaan.id_r_urut_kabupaten=tabel_kabupaten_kota.id_urut_kabupaten and 
 				tabel_pen_pengajuan_spp.id_urut_jenis_pangan = tabel_jenis_pangan.id_urut_jenis_pangan AND
@@ -1275,40 +1400,56 @@ LIMIT 1");
 		return 0;
 	}
 
-	public function edit_pencabutan($param=array())
-	{
-	    if(count($param)<=0)
-	    {
-	      return $this->db->get("tabel_pencabutan_pirt");
-	    }
-	    else
-	    {
-	      return $this->db->get_where("tabel_pencabutan_pirt",$param);
-	    }
-  	}
-
-  	public function edit_perpanjangan($param=array())
-	{
-	    if(count($param)<=0)
-	    {
-	      return $this->db->get("tabel_perpanjangan_sert_pirt");
-	    }
-	    else
-	    {
-	      return $this->db->get_where("tabel_perpanjangan_sert_pirt",$param);
-	    }
-  	}
-
-  	public function edit_penerbitan($param=array())
+	// public function edit_pencabutan($param=array())
+	// {
+	//     if(count($param)<=0)
+	//     {
+	//       return $this->db->get("tabel_pencabutan_pirt");
+	//     }
+	//     else
+	//     {
+	//       return $this->db->get_where("tabel_pencabutan_pirt",$param);
+	//     }
+ //  	}
+  	public function get_pencabutan()
   	{
-  		if(count($param)<=0)
-	    {
-	      return $this->db->get("tabel_penerbitan_sert_pirt");
-	    }
-	    else
-	    {
-	      return $this->db->get_where("tabel_penerbitan_sert_pirt",$param);
-	    }
+  		$query = "
+  			SELECT tabel_pencabutan_pirt.*,tabel_penerbitan_sert_pirt.nomor_r_permohonan,tabel_penerbitan_sert_pirt.nomor_pirt, tabel_alasan_pencabutan.*, tabel_penerbitan_sert_pirt.id_urut_penerbitan_sert,tabel_pen_pengajuan_spp.nomor_permohonan,tabel_daftar_perusahaan.* FROM `tabel_pencabutan_pirt` INNER JOIN tabel_penerbitan_sert_pirt ON tabel_pencabutan_pirt.id_r_urut_penerbitan_sert_pirt = tabel_penerbitan_sert_pirt.id_urut_penerbitan_sert INNER JOIN tabel_alasan_pencabutan ON tabel_pencabutan_pirt.kode_alasan_pencabutan = tabel_alasan_pencabutan.kode_alasan_pencabutan INNER JOIN tabel_pen_pengajuan_spp ON tabel_penerbitan_sert_pirt.nomor_r_permohonan = tabel_pen_pengajuan_spp.nomor_permohonan INNER JOIN tabel_daftar_perusahaan ON tabel_daftar_perusahaan.kode_perusahaan = tabel_pen_pengajuan_spp.kode_r_perusahaan WHERE id_urut_pencabutan_pirt = ".$this->uri->segment(3);
+    return $this->db->query($query);
+  	}
+
+  	public function update_pencabutan($data,$where)
+  	{
+  		$this->db->update('tabel_pencabutan_pirt',$data,$where);
+  	}
+
+  	public function edit_perpanjangan()
+	{
+	    $query = "SELECT tabel_perpanjangan_sert_pirt.*, tabel_pen_pengajuan_spp.nama_dagang, tabel_pen_pengajuan_spp.kode_r_perusahaan, tabel_pen_pengajuan_spp.nomor_permohonan, tabel_daftar_perusahaan.* FROM tabel_perpanjangan_sert_pirt INNER JOIN tabel_pen_pengajuan_spp ON tabel_perpanjangan_sert_pirt.nomor_r_permohonan = tabel_pen_pengajuan_spp.nomor_permohonan INNER JOIN tabel_daftar_perusahaan ON tabel_daftar_perusahaan.kode_perusahaan = tabel_pen_pengajuan_spp.kode_r_perusahaan WHERE id_urut_penerbitan_sert = ".$this->uri->segment(3);
+    return $this->db->query($query);
+  	}
+
+  	public function edit_penerbitan()
+  	{
+    		$query = "SELECT tabel_penerbitan_sert_pirt.*, tabel_pen_pengajuan_spp.nomor_permohonan,tabel_pen_pengajuan_spp.nama_dagang, tabel_daftar_perusahaan.*,tabel_kabupaten_kota.* , tabel_propinsi.* FROM `tabel_penerbitan_sert_pirt` INNER JOIN tabel_pen_pengajuan_spp ON tabel_penerbitan_sert_pirt.nomor_r_permohonan = tabel_pen_pengajuan_spp.nomor_permohonan INNER JOIN tabel_daftar_perusahaan ON tabel_daftar_perusahaan.kode_perusahaan = tabel_pen_pengajuan_spp.kode_r_perusahaan INNER JOIN tabel_kabupaten_kota ON tabel_daftar_perusahaan.id_r_urut_kabupaten = tabel_kabupaten_kota.id_urut_kabupaten INNER JOIN tabel_propinsi ON tabel_kabupaten_kota.no_kode_propinsi = tabel_propinsi.no_kode_propinsi WHERE id_urut_penerbitan_sert = ".$this->uri->segment(3);
+    	
+    		 return $this->db->query($query);
+  	}
+
+  	function exec_pencabutan()
+  	{
+  		$query= "ALTER TABLE tabel_pencabutan_pirt ADD COLUMN status_delete VARCHAR (1) DEFAULT 0";
+  		return $this->db->query($query);
+  	}
+  	function exec_penerbitan()
+  	{
+  		$query= "ALTER TABLE tabel_penerbitan_sert_pirt ADD COLUMN status_delete VARCHAR (1) DEFAULT 0";
+  		return $this->db->query($query);
+  	}
+  	function exec_perpanjangan()
+  	{
+  		$query= "ALTER TABLE tabel_perpanjangan_sert_pirt ADD COLUMN status_delete VARCHAR (1) DEFAULT 0";
+  		return $this->db->query($query);
   	}
 
 

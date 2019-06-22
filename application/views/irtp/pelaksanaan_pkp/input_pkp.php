@@ -425,7 +425,41 @@ function isNumberKey(evt){
 																	<?= @$this->session->flashdata('error'); ?>	
 																	<?= @$this->session->flashdata('message'); ?>
 																	<?=form_open_multipart('#', array('class' => 'form-horizontal','id'=>'validation-form'))?>
-
+																	<?php if($this->session->userdata('user_segment') == 1 || $this->session->userdata('user_segment') == 2):?>
+																	<div class="form-group">
+						                                                <label class="control-label col-xs-12 col-sm-3 no-padding-right"
+						                                                    for="text">Propinsi</label>
+						                                                <div class="col-xs-12 col-sm-9">
+						                                                    <div class="input-group col-xs-12 col-sm-9">
+						                                                        <select class="select2" name="no_kode_propinsi"
+						                                                            id="provinsi">
+						                                                            <option value="">Pilih Propinsi</option>
+						                                                            <?php
+																						foreach ($provinsi as $prov) { ?>
+													                                     <option value="<?php echo $prov->no_kode_propinsi ?>">
+													                                     <?php echo $prov->nama_propinsi ?></option>
+													                                     <?php } ?>
+						                                                        </select>
+						                                                    </div>
+						                                                </div>
+						                                            </div>
+						                                            <div class="form-group">
+																	<label class="control-label col-xs-12 col-sm-3 no-padding-right"
+						                                                    for="text">Kabupaten / Kota</label>
+						                                                <div class="col-xs-12 col-sm-9">
+						                                                    <div class="input-group col-xs-12 col-sm-9">
+								                                                <select class="select2" name="nama_kabupaten" id="kota">
+								                                                    <option value="0">Pilih Kabupaten/kota</option>
+								                                                    <?php
+																						foreach ($kota as $kot) { ?>
+													                                    <option class="<?php echo $kot->no_kode_propinsi ?>" value="<?php echo $kot->id_urut_kabupaten ?>">
+													                                    <?php echo $kot->nm_kabupaten ?></option>
+													                                    <?php } ?>
+								                                                </select>
+						                                            		</div>
+						                                            	</div>
+																	</div>
+																	<?php endif; ?>
 																	<div class="form-group">
 																		<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="text">Tanggal Awal Penyuluhan</label>
 
@@ -576,38 +610,50 @@ function isNumberKey(evt){
 																		?>
 																			<tr>
 																				<td>
-																					<select style="max-width: 380px" class="select2" id="nomor_permohonan_irtp<?=$i?>" data-validation="required" name="nomor_permohonan_irtp[<?=$i?>]">
-																					<option value="">- Pilih Nomor Permohonan IRTP -</option>
-																					<?php foreach($no_irtp as $data): ?>
-																					<option value="<?=$data->nomor_permohonan?>"><?=$data->nomor_permohonan.' - '.$data->nama_perusahaan.' - '. $data->nama_pemilik.' - '.$data->nama_dagang?> </option>
-																					<?php endforeach ?>				
-																				</select>
+																					<select style="max-width: 380px" class="select2" id="nomor_permohonan_irtp<?=$i?>"
+																						data-validation="required" name="nomor_permohonan_irtp[<?=$i?>]">
+																						<option value="">- Pilih Nomor Permohonan IRTP -</option>
+																						<?php foreach($no_irtp as $data): ?>
+																						<option value="<?=$data->nomor_permohonan?>">
+																							<?=$data->nomor_permohonan.' - '.$data->nama_perusahaan.' - '. $data->nama_pemilik.' - '.$data->nama_dagang?>
+																						</option>
+																						<?php endforeach ?>
+																					</select>
 																				</td>
 																				<td>
 																					<label class="checkbox-inline">
-																						<input type="radio" class="ace status_pengajuan" id="pemilik<?=$i?>" name="status_peserta[<?=$i?>]" value="0" >
+																						<input type="radio" class="ace status_pengajuan" id="pemilik<?=$i?>"
+																							name="status_peserta[<?=$i?>]" value="0">
 																						<span class="lbl"> Pemilik IRTP </span>
 																					</label>
 																					<label class="checkbox-inline">
-																						<input type="radio" class="ace status_pengajuan" id="penanggung_jawab<?=$i?>" name="status_peserta[<?=$i?>]" value="1">
+																						<input type="radio" class="ace status_pengajuan" id="penanggung_jawab<?=$i?>"
+																							name="status_peserta[<?=$i?>]" value="1">
 																						<span class="lbl"> Penanggung Jawab IRTP </span>
 																					</label>
 																					<label class="checkbox-inline">
-																						<input type="radio" class="ace status_pengajuan" id="lainnya<?=$i?>" name="status_peserta[<?=$i?>]" value="2" ><span class="lbl">  Lainnya </span>
+																						<input type="radio" class="ace status_pengajuan" id="lainnya<?=$i?>"
+																							name="status_peserta[<?=$i?>]" value="2"><span class="lbl"> Lainnya </span>
 																					</label>
 																				</td>
-																				
+
 																				<td>
-																					<input type="text" name="nama_peserta[<?=$i?>]" id="nama_peserta<?=$i?>" placeholder="Pilih Nomor Permohonan IRTP terlebih dahulu atau isi peserta lainnya" readonly />	
+																					<input type="text" name="nama_peserta[<?=$i?>]" id="nama_peserta<?=$i?>"
+																						placeholder="Pilih Nomor Permohonan IRTP terlebih dahulu atau isi peserta lainnya"
+																						readonly />
 																				</td>
 																				<td>
-																					<input type="text" name="no_sert_pangan[<?=$i?>]" id="no_sert_pangan<?=$i?>"/>	
-																				</td>
-																				<td >
-																					<input type="text" name="nilai_pre_test[<?=$i?>]" data-validation="number" data-validation-allowing="range[0;99999]" onkeypress="return isNumberKey(event)" maxlength="3" placeholder="Masukan Nilai Pre Test"/>
+																					<input type="text" name="no_sert_pangan[<?=$i?>]" id="no_sert_pangan<?=$i?>" />
 																				</td>
 																				<td>
-																					<input type="text" name="nilai_post_test[<?=$i?>]" data-validation="number" data-validation-allowing="range[0;99999]" onkeypress="return isNumberKey(event)" maxlength="3" placeholder="Masukan Nilai Post Test"/>
+																					<input type="text" name="nilai_pre_test[<?=$i?>]" data-validation="number"
+																						data-validation-allowing="range[0;99999]" onkeypress="return isNumberKey(event)"
+																						maxlength="3" placeholder="Masukan Nilai Pre Test" />
+																				</td>
+																				<td>
+																					<input type="text" name="nilai_post_test[<?=$i?>]" data-validation="number"
+																						data-validation-allowing="range[0;99999]" onkeypress="return isNumberKey(event)"
+																						maxlength="3" placeholder="Masukan Nilai Post Test" />
 																				</td>
 																				<!-- <td></td> -->
 

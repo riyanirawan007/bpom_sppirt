@@ -11,6 +11,7 @@ public function __construct()
 		$this->load->library('form_validation');
 		$this->load->model('pelaksanaan_pkp_model','',TRUE);
 		$this->load->model('irtp_model','',TRUE);
+		$this->load->model('auth','',TRUE);
 	}
 
 	public function index()
@@ -187,9 +188,9 @@ public function __construct()
 			}
 			
 			$data['jumlah_industri_pangan'] = $this->db->query("SELECT (SELECT COUNT(tabel_ambil_penyuluhan.nomor_r_permohonan_penyuluhan) FROM tabel_ambil_penyuluhan WHERE tabel_ambil_penyuluhan.nomor_r_permohonan_penyuluhan=a.nomor_permohonan_penyuluhan) as banyak_peserta, a.*,b.*,c.*
-FROM tabel_penyelenggara_penyuluhan a
-INNER JOIN tabel_kabupaten_kota b ON a.id_r_urut_kabupaten=b.id_urut_kabupaten
-INNER JOIN tabel_propinsi c ON c.no_kode_propinsi=b.no_kode_propinsi")->num_rows();
+		FROM tabel_penyelenggara_penyuluhan a
+		INNER JOIN tabel_kabupaten_kota b ON a.id_r_urut_kabupaten=b.id_urut_kabupaten
+		INNER JOIN tabel_propinsi c ON c.no_kode_propinsi=b.no_kode_propinsi")->num_rows();
 		}
 		
 		//download
@@ -292,26 +293,24 @@ INNER JOIN tabel_propinsi c ON c.no_kode_propinsi=b.no_kode_propinsi")->num_rows
 
 	public function input()
 	{
+		// data peserta pkp
+		if($this->session->userdata('user_segment')==4 or $this->session->userdata('user_segment')==3){
+			$provinsi = $this->session->userdata('code');
+		}
+		
+		if($this->session->userdata('user_segment')==5){
+			$kabupaten = $this->session->userdata('code');
+		} 
+		if(@$provinsi!=""){ $q_provinsi = "and tabel_propinsi.no_kode_propinsi='$provinsi'"; } else { $q_provinsi = ""; }
+		if(@$kabupaten!=""){ $q_kabupaten = "and tabel_kabupaten_kota.id_urut_kabupaten in ($kabupaten)"; } else { $q_kabupaten = ""; }
+		
 		$data['js_materi'] = $this->db->get('tabel_materi_penyuluhan')->result();
 		$data['js_materi_utama'] = $this->db->query('SELECT * FROM tabel_materi_penyuluhan WHERE status_materi="utama"')->result();
 		$data['js_materi_pendukung'] = $this->db->query('SELECT * FROM tabel_materi_penyuluhan WHERE status_materi="pendukung"')->result();
 		$data['js_narasumber'] = $this->irtp_model->data_pkp()->result();
 		$data['jumlah_peserta'] = $this->input->post('jumlah_peserta');
-		
-		// data peserta pkp
-		if($this->session->userdata('user_segment')==4 or $this->session->userdata('user_segment')==3){
-			$provinsi = $this->session->userdata('code');
-			
-		}
-		
-		if($this->session->userdata('user_segment')==5){
-			
-			$kabupaten = $this->session->userdata('code');
-			
-		} 
-		if(@$provinsi!=""){ $q_provinsi = "and tabel_propinsi.no_kode_propinsi='$provinsi'"; } else { $q_provinsi = ""; }
-		if(@$kabupaten!=""){ $q_kabupaten = "and tabel_kabupaten_kota.id_urut_kabupaten in ($kabupaten)"; } else { $q_kabupaten = ""; }
-		
+		$data['provinsi'] = $this->auth->get_provinsi();
+	  	$data['kota'] = $this->auth->get_kota();
 		
 		//$data['no_penyuluhan'] = $this->db->get('tabel_penyelenggara_penyuluhan')->result();
 		$data['no_penyuluhan'] = $this->db->query('SELECT * from tabel_penyelenggara_penyuluhan, tabel_kabupaten_kota, tabel_propinsi where tabel_penyelenggara_penyuluhan.id_r_urut_kabupaten = tabel_kabupaten_kota.id_urut_kabupaten and tabel_kabupaten_kota.no_kode_propinsi = tabel_propinsi.no_kode_propinsi '.$q_provinsi.''.$q_kabupaten.'')->result();
@@ -436,6 +435,87 @@ INNER JOIN tabel_propinsi c ON c.no_kode_propinsi=b.no_kode_propinsi")->num_rows
 		}
 		return 0;
 		// redirect('pelaksanaan_pkp/output_penyelenggaraan');
+	}
+	
+	public function proccess_edit()
+	{	
+		$narasumber = $this->input->post('nama_narasumber');
+		$id_materi=array();
+		$kd_narsum=array();
+		$id_urut=$this->input->post('id_urut');
+
+		foreach($narasumber as $v)
+		{
+			$data=explode('.',$v);
+			$id_materi[]=$data[0];
+			$kd_narsum[]=$data[1];
+		}
+
+		$id=$this->input->post('id');
+
+		for($i=0;$i<count($id_urut);$i++)
+		{
+			if($id_urut[$i]=="0" && $kd_narsum[$i]!="12174")
+			{	
+				$data = array(
+						'nomor_r_permohonan_penyuluhan'=>$id,
+						'kode_r_materi_penyuluhan' => $id_materi[$i],
+						'kode_r_narasumber' => $kd_narsum[$i]
+				);
+				$this->db->insert('tabel_ambil_materi_penyuluhan',$data);
+				
+			}
+			else{
+				$data = array(
+						'kode_r_materi_penyuluhan' => $id_materi[$i],
+						'kode_r_narasumber' => $kd_narsum[$i]
+				);
+				$this->db->where('id_urut_ambil_penyuluhan',$id_urut[$i]);
+				$this->db->update('tabel_ambil_materi_penyuluhan',$data);
+			}
+			$i++;
+		}
+
+
+		// Edit peserta
+		$id_urut_peserta=$this->input->post('id_urut_peserta');
+		for($i=0;$i<count($id_urut_peserta);$i++)
+		{
+			$id_peserta=$id_urut_peserta[$i];
+			$nomor_permohonan=$this->input->post('nomor_permohonan_irtp['.$i.']');
+			$status=$this->input->post('status_peserta['.$i.']');
+			$nama=$this->input->post('nama_peserta['.$i.']');
+			$sertifikat=$this->input->post('no_sert_pangan['.$i.']');
+			$pre=$this->input->post('nilai_pre_test['.$i.']');
+			$post=$this->input->post('nilai_post_test['.$i.']');
+
+			$data=array(
+				'nomor_r_permohonan_penyuluhan' => $nomor_permohonan,
+				'status_peserta'=> $status,
+				'nama_peserta' => $nama,
+				'no_sert_pangan' => $sertifikat,
+				'nilai_pre_test' => $pre,
+				'nilai_post_test' => $post
+			);
+		}
+		
+
+
+		echo json_encode(array('success'=>true
+			,'id'=>$id,'id_urut'=>$id_urut
+			,'id_materi'=>$id_materi
+			,'kd'=>$kd_narsum
+		    , 'peserta'=>$this->input->post('nama_peserta[0]')));
+		
+		// if($this->irtp_model->edit_data_pkp())
+		// {
+		// 	echo json_encode(array('success'=>true,'id'=>$id,'id_urut'=>$id_urut,'id_materi'=>$id_materi,'kd'=>$kd_narsum));
+		// }
+		// else
+		// {
+		// 	echo json_encode(array('success'=>false));
+		// }
+
 	}
 
 	public function add()
@@ -680,34 +760,36 @@ INNER JOIN tabel_propinsi c ON c.no_kode_propinsi=b.no_kode_propinsi")->num_rows
 		    </script>";
 	    }
 
-	    function edit()
-	    {
-	    	$data['js_materi'] = $this->db->get('tabel_materi_penyuluhan')->result();
-		$data['js_materi_utama'] = $this->db->query('SELECT * FROM tabel_materi_penyuluhan WHERE status_materi="utama"')->result();
-		$data['js_materi_pendukung'] = $this->db->query('SELECT * FROM tabel_materi_penyuluhan WHERE status_materi="pendukung"')->result();
-		$data['js_narasumber'] = $this->irtp_model->data_pkp()->result();
-		$data['jumlah_peserta'] = $this->input->post('jumlah_peserta');
-		
-		// data peserta pkp
-		if($this->session->userdata('user_segment')==4 or $this->session->userdata('user_segment')==3){
-			$provinsi = $this->session->userdata('code');
+	function edit()
+	{
+		    $data['js_materi'] = $this->db->get('tabel_materi_penyuluhan')->result();
+			$data['js_materi_utama'] = $this->db->query('SELECT * FROM tabel_materi_penyuluhan WHERE status_materi="utama"')->result();
+			$data['js_materi_pendukung'] = $this->db->query('SELECT * FROM tabel_materi_penyuluhan WHERE status_materi="pendukung"')->result();
+			$data['js_narasumber'] = $this->irtp_model->data_pkp()->result();
+			$data['jumlah_peserta'] = $this->input->post('jumlah_peserta');
+			$data['provinsi'] = $this->auth->get_provinsi();
+	  		$data['kota'] = $this->auth->get_kota();
 			
-		}
-		
-		if($this->session->userdata('user_segment')==5){
+			// data peserta pkp
+			if($this->session->userdata('user_segment')==4 or $this->session->userdata('user_segment')==3){
+				$provinsi = $this->session->userdata('code');
+				
+			}
 			
-			$kabupaten = $this->session->userdata('code');
+			if($this->session->userdata('user_segment')==5){
+				
+				$kabupaten = $this->session->userdata('code');
+				
+			} 
+			if(@$provinsi!=""){ $q_provinsi = "and tabel_propinsi.no_kode_propinsi='$provinsi'"; } else { $q_provinsi = ""; }
+			if(@$kabupaten!=""){ $q_kabupaten = "and tabel_kabupaten_kota.id_urut_kabupaten in ($kabupaten)"; } else { $q_kabupaten = ""; }
 			
-		} 
-		if(@$provinsi!=""){ $q_provinsi = "and tabel_propinsi.no_kode_propinsi='$provinsi'"; } else { $q_provinsi = ""; }
-		if(@$kabupaten!=""){ $q_kabupaten = "and tabel_kabupaten_kota.id_urut_kabupaten in ($kabupaten)"; } else { $q_kabupaten = ""; }
-		
-		
-		//$data['no_penyuluhan'] = $this->db->get('tabel_penyelenggara_penyuluhan')->result();
-		$data['no_penyuluhan'] = $this->db->query('SELECT * from tabel_penyelenggara_penyuluhan, tabel_kabupaten_kota, tabel_propinsi where tabel_penyelenggara_penyuluhan.id_r_urut_kabupaten = tabel_kabupaten_kota.id_urut_kabupaten and tabel_kabupaten_kota.no_kode_propinsi = tabel_propinsi.no_kode_propinsi '.$q_provinsi.''.$q_kabupaten.'')->result();
-		
-		$data['no_irtp'] = $this->db->query('SELECT * FROM tabel_pen_pengajuan_spp, tabel_daftar_perusahaan, tabel_kabupaten_kota, tabel_propinsi WHERE tabel_pen_pengajuan_spp.kode_r_perusahaan = tabel_daftar_perusahaan.kode_perusahaan and tabel_daftar_perusahaan.id_r_urut_kabupaten = tabel_kabupaten_kota.id_urut_kabupaten and tabel_kabupaten_kota.no_kode_propinsi = tabel_propinsi.no_kode_propinsi '.$q_provinsi.''.$q_kabupaten.'')->result();
-
-	   return view_dashboard('irtp/pelaksanaan_pkp/edit', $data);
-	    }
+			
+			//$data['no_penyuluhan'] = $this->db->get('tabel_penyelenggara_penyuluhan')->result();
+			$data['no_penyuluhan'] = $this->db->query('SELECT * from tabel_penyelenggara_penyuluhan, tabel_kabupaten_kota, tabel_propinsi where tabel_penyelenggara_penyuluhan.id_r_urut_kabupaten = tabel_kabupaten_kota.id_urut_kabupaten and tabel_kabupaten_kota.no_kode_propinsi = tabel_propinsi.no_kode_propinsi '.$q_provinsi.''.$q_kabupaten.'')->result();
+			
+			$data['no_irtp'] = $this->db->query('SELECT * FROM tabel_pen_pengajuan_spp, tabel_daftar_perusahaan, tabel_kabupaten_kota, tabel_propinsi WHERE tabel_pen_pengajuan_spp.kode_r_perusahaan = tabel_daftar_perusahaan.kode_perusahaan and tabel_daftar_perusahaan.id_r_urut_kabupaten = tabel_kabupaten_kota.id_urut_kabupaten and tabel_kabupaten_kota.no_kode_propinsi = tabel_propinsi.no_kode_propinsi '.$q_provinsi.''.$q_kabupaten.'')->result();
+			$data['nomor'] = $this->uri->segment('3');
+		   return view_dashboard('irtp/pelaksanaan_pkp/edit', $data);
+	}
 }

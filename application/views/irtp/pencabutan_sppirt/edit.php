@@ -200,19 +200,17 @@ $(document).ready(function() {
 																	<?php $attr_form = array('onsubmit' => 'return cek_form()'); ?>	
 																	
 																	
-																	<?=form_open_multipart('pencabutan_sppirt/add', array('class' => 'form-horizontal','id'=>'validation-form'))?>
-																	<input type="hidden" name="">
+																	<?=form_open_multipart('pencabutan_sppirt/action_edit_pencabutan', array('class' => 'form-horizontal','id'=>'validation-form'))?>
+																	<input type="hidden" name="id" value="<?= $pencabutan['id_urut_pencabutan_pirt']?>">
 
 																	<div class="form-group">
 																		<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="text">Nomor Sertifikat P-IRT</label>
 
 																		<div class="col-xs-12 col-sm-9">
 																			<div class="clearfix">
-																				<select class="select2" data-validation="required" name="nomor_pirt" id="nomor_pirt">
-														                    	<option value="">- Pilih Nomor Sertifikat P-IRT -</option>
-														                        <?php foreach($irtp_lama as $data): ?>
-														                        <option value="<?=$data->id_urut_penerbitan_sert?>"><?=$data->nomor_pirt." . ".$data->nama_perusahaan?></option>
-														                        <?php endforeach ?>
+																				<select class="select2"  name="nomor_pirt" id="nomor_pirt">
+														                    	<option value="<?= $pencabutan['id_r_urut_penerbitan_sert_pirt']?>"><?= $pencabutan['nomor_pirt'] ?> - <?=$pencabutan['nama_perusahaan'] ?></option>
+														                    	
 														                    </select>
 																				<p class="col-xs-12 col-sm-9 help-block">Pilih Nomor Sertifikat P-IRT, Contoh : 1234567890123-45</p>
 																			</div>
@@ -224,7 +222,7 @@ $(document).ready(function() {
 
 																		<div class="col-xs-12 col-sm-9">
 																			<div class="clearfix">
-																				<input type="text" class="col-xs-12 col-sm-9" data-validation="required" id="nama_perusahaan" placeholder="Pilih Nomor Sertifikat P-IRT terlebih dahulu" readonly/>
+																				<input type="text" class="col-xs-12 col-sm-9"  id="nama_perusahaan" placeholder="Pilih Nomor Sertifikat P-IRT terlebih dahulu" readonly value="<?=$pencabutan['nama_perusahaan'] ?>" />
 																				<p class="col-xs-12 col-sm-9 help-block">Nama IRTP akan tampil setelah memilih Nomor Sertifikat P-IRT, Contoh : IRTP Rivi</p>
 																			</div>
 																		</div>
@@ -235,7 +233,7 @@ $(document).ready(function() {
 
 																		<div class="col-xs-12 col-sm-9">
 																			<div class="clearfix">
-																				<input type="text" class="col-xs-12 col-sm-9" data-validation="required" id="pemilik" placeholder="Pilih Nomor Sertifikat P-IRT terlebih dahulu" readonly  />
+																				<input type="text" class="col-xs-12 col-sm-9"  id="pemilik" placeholder="Pilih Nomor Sertifikat P-IRT terlebih dahulu" readonly value="<?= $pencabutan['nama_pemilik']?>" />
 																				<p class="col-xs-12 col-sm-9 help-block">Nama Pemilik IRTP akan tampil setelah memilih Nomor Sertifikat P-IRT, Contoh : Rivi Anggara</p>
 																			</div>
 																		</div>
@@ -246,7 +244,7 @@ $(document).ready(function() {
 
 																		<div class="col-xs-12 col-sm-9">
 																			<div class="clearfix">
-																				<input type="text" class="col-xs-12 col-sm-9" data-validation="required" id="penanggung_jawab" placeholder="Pilih Nomor Sertifikat P-IRT terlebih dahulu" readonly />
+																				<input type="text" class="col-xs-12 col-sm-9"  id="penanggung_jawab" placeholder="Pilih Nomor Sertifikat P-IRT terlebih dahulu" readonly value="<?= $pencabutan['nama_penanggung_jawab']?>"/>
 																				<p class="col-xs-12 col-sm-9 help-block">Nama Penanggung Jawab IRTP akan tampil setelah memilih Nomor Sertifikat P-IRT, Contoh : Ahmad Rivi</p>
 																			</div>
 																		</div>
@@ -257,7 +255,7 @@ $(document).ready(function() {
 
 																		<div class="col-xs-12 col-sm-9">
 																			<div class="clearfix">
-																				<input type="text" class="col-xs-12 col-sm-9" data-validation="required" id="telepon_irtp" placeholder="Pilih Nomor Sertifikat P-IRT terlebih dahulu" readonly />
+																				<input type="text" class="col-xs-12 col-sm-9"  id="telepon_irtp" placeholder="Pilih Nomor Sertifikat P-IRT terlebih dahulu" readonly value="<?= $pencabutan['nomor_telefon_irtp']?>" />
 																				<p class="col-xs-12 col-sm-9 help-block">Nomor Telepon IRTP akan tampil setelah memilih Nomor Sertifikat P-IRT, Contoh : 021111222</p>
 																			</div>
 																		</div>
@@ -268,7 +266,7 @@ $(document).ready(function() {
 
 																		<div class="col-xs-12 col-sm-9">
 																			<div class="clearfix">
-																				<textarea id="alamat_irtp" class="input-xlarge" data-validation="required" placeholder="Pilih Nomor Sertifikat P-IRT terlebih dahulu" readonly  ></textarea>
+																				<textarea id="alamat_irtp" class="input-xlarge"  placeholder="Pilih Nomor Sertifikat P-IRT terlebih dahulu" readonly><?php echo $pencabutan['alamat_irtp']?></textarea>
 																			<p class="col-xs-12 col-sm-9 help-block">Alamat Lengkap IRTP akan tampil setelah memilih Nomor Sertifikat P-IRT, Contoh : Jl. Dlima No. 101</p>
 																			</div>
 																		</div>
@@ -280,12 +278,17 @@ $(document).ready(function() {
 																		<div class="col-xs-12 col-sm-9">
 																			<div class="clearfix">
 																				<div class="dropdown">
-																					<select class="select2" id="alasan_pencabutan" name="alasan_pencabutan" data-validation="required">
-																						<option disabled selected>- Pilih Alasan Pencabutan Sertifikat P-IRT-</option>
-																					<?php foreach($js_pencabutan as $data): ?>
-																						<option value="<?=$data->kode_alasan_pencabutan?>"><?=$data->alasan_pencabutan?></option>
-																					<?php endforeach ?>	
-																						<option value="-">Alasan pencabutan (lainnya)</option>
+																					<select class="select2" id="alasan_pencabutan" name="alasan_pencabutan" >
+																						<option selected>- Pilih Alasan Pencabutan Sertifikat P-IRT-</option>
+																						
+																					<?php
+																					foreach ($js_pencabutan as $p)
+																					{
+																						echo "<option value='$p->kode_alasan_pencabutan'";
+																						echo $pencabutan['kode_alasan_pencabutan']==$p->kode_alasan_pencabutan?'selected':'';
+																						echo ">$p->alasan_pencabutan</option>";
+																					}
+																					?>
 																					</select>
 																				</div><!-- dropdown -->
 																			</div><!-- col-xs-12 -->
@@ -298,7 +301,7 @@ $(document).ready(function() {
 
 																		<div class="col-xs-12 col-sm-9">
 																			<div class="clearfix">
-																				<input type="text" class="col-xs-12 col-sm-9" name="alasan_pencabutan_lain" id="alasan_pencabutan_lain" placeholder="Isi Alasan Pencabutan lain" />
+																				<input type="text" class="col-xs-12 col-sm-9" name="alasan_pencabutan_lain" id="alasan_pencabutan_lain" placeholder="Isi Alasan Pencabutan lain" "/>
 																				<p class="col-xs-12 col-sm-9 help-block">Masukan Alasan Pencabutan Lainnya</p>
 																			</div>
 																		</div>
@@ -337,8 +340,10 @@ $(document).ready(function() {
 
 																		<div class="col-xs-12 col-sm-9">
 																			<div class="clearfix">
-																				<input type="file" class="col-xs-12 col-sm-9" value="<?= isset($old_inputs['file_foto'])? $old_inputs['file_foto'] : '' ?>" name="file_foto" data-validation="required" accept=".jpg,.png,.gif,.pdf,.jpeg"/>
-																				<p class="col-xs-12 col-sm-9 help-block">Scan format PDF/JPG maksimal berukuran 2 Mb</p>
+																				<input type="file" class="col-xs-12 col-sm-9" value="<?= isset($old_inputs['file_foto'])? $old_inputs['file_foto'] : '' ?>" name="file_foto"  accept=".jpg,.png,.gif,.pdf,.jpeg"/>
+																				<p class="col-xs-12 col-sm-9 help-block">
+																				<a target="__blank" href="<?= base_url('uploads')."/pencabutan/".$pencabutan['path_scan_pencabutan']?>"><?= $pencabutan['path_scan_pencabutan'] ?></a> <br>
+																			Scan format PDF/JPG maksimal berukuran 2 Mb</p>
 																			</div>
 																		</div>
 																	</div>

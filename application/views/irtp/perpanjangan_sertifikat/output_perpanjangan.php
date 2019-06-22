@@ -118,7 +118,7 @@ $(document).ready(function() {
 													$button = '';
 												}
 							$label_type = strtolower(pathinfo($field->label_final, PATHINFO_EXTENSION));
-							$label_url = base_url('uploads/'.$field->label_final);
+							$label_url = base_url('uploads/irtp_perpanjangan/'.$field->label_final);
 							$label = "-";
 							switch ($label_type) {
 								case 'png':
@@ -169,36 +169,4 @@ $(document).ready(function() {
 		</div>
 </div>
 
-</div>
-
-
-<div class="col-sm-12">
-										<div class="row">
-											<div class="col-xs-12">
-												<div class="widget-box">
-													<div class="widget-header widget-header-flat">
-														<h4 class="widget-title smaller">Information</h4>
-
-														
-													</div>
-
-													<div class="widget-body">
-														<div class="widget-main">
-															
-															<dl id="dt-list-1">
-																<dd><?php echo "Jumlah SPP-IRT Yang Mengajukan Perpanjangan : <b>".$jumlah_irtp. " SPP-IRT</b><br>";?></dd>
-																<dd><?php echo "Jumlah SPP-IRT Yang Belum Mengajukan Perpanjangan : <b>".$jumlah_irtp_tidak. " SPP-IRT</b><br>";?></dd>
-															</dl>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-
-<div class="row">
-	
-	
-	
-	</form>
 </div>

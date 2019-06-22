@@ -275,14 +275,11 @@ public function __construct()
 	public function input()
 	{
 		if($this->session->userdata('user_segment')==4 or $this->session->userdata('user_segment')==3){
-			$provinsi = $this->session->userdata('code');
-			
+			$provinsi = $this->session->userdata('code');	
 		}
-		
 		if($this->session->userdata('user_segment')==5){
 			
 			$kabupaten = $this->session->userdata('code');
-			
 		} 
 		
 		if(@$provinsi!=""){ $q_provinsi = "and tabel_propinsi.no_kode_propinsi='$provinsi'"; } else { $q_provinsi = ""; }
@@ -534,10 +531,81 @@ public function __construct()
 			/*and (year(tanggal_pemberian_pirt)+5-year(NOW())) = 1*/
 			ORDER BY nama_perusahaan ASC')->result();
 
-			$param=array("id_penerbitan_sert"=>$this->uri->segment(3));
-      		//$data['perpanjangan'] = $this->irtp_model->edit_perpanjangan($param)->row_array();
+			$param=array("id_urut_penerbitan_sert"=>$this->uri->segment(3));
+      		$data['perpanjangan'] = $this->irtp_model->edit_perpanjangan()->row_array();
 
 	    	return view_dashboard('irtp/perpanjangan_sertifikat/edit', $data);
 	    }
+
+  function action_edit_perpanjangan()
+  {
+  	$id = $this->uri->segment(3);
+  	$id_pirt = $this->input->post('id');
+    $nomor_pirt = $this->input->post('nomor_pirt');
+    $nomor_pirt_baru = $this->input->post('nomor_pirt_baru');
+    $tanggal_pengajuan_perpanjangan = $this->input->post('tanggal_pengajuan_perpanjangan');
+    $no_permohonan = $this->input->post('no_permohonan');
+
+
+ 	$_image = $this->db->get_where('tabel_perpanjangan_sert_pirt',['id_urut_penerbitan_sert' => $id_pirt])->row();
+ 	$config['upload_path'] = "./uploads/irtp_perpanjangan/";
+	$config['allowed_types'] = "pdf|jpg|png|jpeg";
+	$this->load->library('upload', $config);
+
+	$this->upload->do_upload('file_foto');
+    $hasil  = $this->upload->data();
+
+    if($hasil['file_name']!=NULL || $hasil['file_name']!="")
+    {
+
+	$file_url=FCPATH.'uploads/irtp_perpanjangan/'.$hasil['file_name'];
+	if(is_file($file_url)!=1)
+    {
+          $result=true;
+          echo "<script>
+          alert('Pastikan semua field terisi !');
+          window.location.href='".base_url('perpanjangan_sertifikat/edit/'.$id_pirt)."';
+          </script>";
+    }
+     else
+    {
+
+    $file_ext= explode('.',$hasil['file_name']);
+	$file_rename=FCPATH.'uploads/irtp_perpanjangan/perpanjangan-'.Date("Y-m-d-his").'.'.$file_ext[1];
+	rename($file_url,$file_rename);
+                
+    $data = array('nomor_r_permohonan'=> $no_permohonan,
+                  'label_final' => 'perpanjangan-'.Date("Y-m-d-his").'.'.$file_ext[1],
+                  'nomor_pirt_baru' => $nomor_pirt_baru,
+                  'tanggal_pengajuan_perpanjangan' => $tanggal_pengajuan_perpanjangan
+                 );
+    $query = $this->db->update('tabel_perpanjangan_sert_pirt', $data, array('id_urut_penerbitan_sert' => $id_pirt));
+    if($query){
+    unlink("uploads/irtp_perpanjangan/".$_image->label_final);
+    }
+    echo "<script>
+	alert('Data behasil di ubah!');
+	window.location.href='".base_url('perpanjangan_sertifikat/output_perpanjangan')."';
+	</script>";
+    }
+    }
+    else
+    {
+    	$data = array('nomor_r_permohonan'=> $no_permohonan,
+                  'nomor_pirt_baru' => $nomor_pirt_baru,
+                  'tanggal_pengajuan_perpanjangan' => $tanggal_pengajuan_perpanjangan
+                 );
+	    $query = $this->db->update('tabel_perpanjangan_sert_pirt', $data, array('id_urut_penerbitan_sert' => $id_pirt));
+	    if($query)
+	    {
+	    	echo "<script>
+			alert('Data behasil di ubah!');
+			window.location.href='".base_url('perpanjangan_sertifikat/output_perpanjangan')."';
+			</script>";
+	    }
+	    
+    }       
+          
+  }
 
 }

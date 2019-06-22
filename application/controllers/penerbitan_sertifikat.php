@@ -658,11 +658,83 @@ public function __construct()
 			tabel_daftar_perusahaan.id_r_urut_kabupaten = tabel_kabupaten_kota.id_urut_kabupaten and 
 			tabel_kabupaten_kota.no_kode_propinsi = tabel_propinsi.no_kode_propinsi '.$q_provinsi.''.$q_kabupaten.'')->result();
 			
-			$data['old_inputs'] = (array) $this->session->flashdata('inputs');
+			//$data['old_inputs'] = (array) $this->session->flashdata('inputs');
 
 			$param=array("id_urut_penerbitan_sert"=>$this->uri->segment(3));
-      		$data['penerbitan'] = $this->irtp_model->edit_penerbitan($param)->row_array();
+      		$data['penerbitan'] = $this->irtp_model->edit_penerbitan()->row_array();
 
 	    	return view_dashboard('irtp/penerbitan_sertifikat/edit', $data);
 	    }
+
+  function action_edit_penerbitan()
+  {
+  	$id = $this->uri->segment(3);
+  	$id_pirt = $this->input->post('id');
+    $nomor_pirt = $this->input->post('nomor_pirt');
+    $nomor_hk = $this->input->post('nomor_hk');
+    $tanggal_pemberian_pirt = $this->input->post('tanggal_pemberian_pirt');
+    $nama_kepala_dinas = $this->input->post('nama_kepala_dinas');
+
+
+ 	$_image = $this->db->get_where('tabel_penerbitan_sert_pirt',['id_urut_penerbitan_sert' => $id_pirt])->row();
+ 	$config['upload_path'] = "./uploads/";
+	$config['allowed_types'] = "pdf|jpg|png|jpeg";
+	$this->load->library('upload', $config);
+
+	$this->upload->do_upload('file_foto');
+    $hasil  = $this->upload->data();
+
+    if($hasil['file_name']!=NULL || $hasil['file_name']!="")
+    {
+
+	$file_url=FCPATH.'uploads/'.$hasil['file_name'];
+	if(is_file($file_url)!=1)
+    {
+          $result=true;
+          echo "<script>
+          alert('Pastikan semua field terisi !');
+          window.location.href='".base_url('perpanjangan_sertifikat/edit/'.$id_pirt)."';
+          </script>";
+    }
+     else
+    {
+
+    $file_ext= explode('.',$hasil['file_name']);
+	$file_rename=FCPATH.'uploads/penerbitan-'.Date("Y-m-d-his").'.'.$file_ext[1];
+	rename($file_url,$file_rename);
+                
+    $data = array('nomor_pirt'=> $nomor_pirt,
+                  'label_final' => 'penerbitan-'.Date("Y-m-d-his").'.'.$file_ext[1],
+                  'nomor_hk' => $nomor_hk,
+                  'tanggal_pemberian_pirt' => $tanggal_pemberian_pirt
+                 );
+    $query = $this->db->update('tabel_penerbitan_sert_pirt', $data, array('id_urut_penerbitan_sert' => $id_pirt));
+    if($query){
+    unlink("uploads/".$_image->label_final);
+    }
+    echo "<script>
+	alert('Data behasil di ubah!');
+	window.location.href='".base_url('penerbitan_sertifikat/output_penerbitan')."';
+	</script>";
+    }
+    }
+    else
+    {
+    	$data = array('nomor_pirt'=> $nomor_pirt,
+                  'nomor_hk' => $nomor_hk,
+                  'tanggal_pemberian_pirt' => $tanggal_pemberian_pirt
+                 );
+	    $query = $this->db->update('tabel_penerbitan_sert_pirt', $data, array('id_urut_penerbitan_sert' => $id_pirt));
+	    if($query)
+	    {
+	    	echo "<script>
+			alert('Data behasil di ubah!');
+			window.location.href='".base_url('penerbitan_sertifikat/output_penerbitan')."';
+			</script>";
+	    }
+	    
+    }       
+          
+  }
+
 }
