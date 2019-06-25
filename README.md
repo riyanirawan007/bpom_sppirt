@@ -4,4 +4,4 @@ SPPIRT UPDATE CODE:</br>
 LIST SPPIRT YANG BELUM:</br>
 1.~~MENU PELAKSANAAN PKP = edit pelaksanaan pkp kurang bagian Daftar Narasumber (yang form selectnya ada 7 di page 1) dan daftar peserta (di page 2)~~
 </br>
-**2. MENU PEMERIKSAAN SARANA = fungsi edit dan hapus belum.**
+**2. MENU PEMERIKSAAN SARANA = fungsi edit(save) dan hapus belum.**
