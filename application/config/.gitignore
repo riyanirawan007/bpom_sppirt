@@ -1,0 +1,3 @@
+# IGNORING DB Config for each user machine
+database.php
+email.php

@@ -607,7 +607,6 @@ function isNumberKey(evt){
 			</small>
 		</h1>
 	</div> -->
-
 	<div class="row">
 		<div class="col-xs-12">
 			<!-- PAGE CONTENT BEGINS -->
@@ -678,7 +677,7 @@ function isNumberKey(evt){
 
 												<div class="col-xs-12 col-sm-9">
 													<div class="clearfix">
-														<input type="text" class="col-xs-12 col-sm-9" value="Pemberian SPP-IRT Baru" readonly="" />
+														<input id="tujuan" type="text" class="col-xs-12 col-sm-9" value="Pemberian SPP-IRT Baru" readonly="" />
 														<input type="hidden" name="tujuan_pemeriksaan" value="1">
 														<p class="col-xs-12 col-sm-9 help-block"></p>
 													</div>
@@ -826,7 +825,7 @@ function isNumberKey(evt){
 																	<?php endforeach ?>				
 																</select>
 																<div class="col-sm-2 pull-right">
-																	<div class="btn-add btn button btn-primary" style="width:100%">Add</div>
+																	<div class="btn-add btn button btn-primary" id="add_anggota"  style="width:100%">Add</div>
 																</div>
 															</div>
 															<p class="help-block">Pilih Nama Anggota Pengawas Pangan sesuai dengan list rujukan.</p>
@@ -887,3 +886,79 @@ function isNumberKey(evt){
 
 
 
+<script>
+	$(document).ready(()=>{
+		var site_url='<?php echo site_url(); ?>';
+		var nomor_permohonan='<?php echo $this->uri->segment('3');?>';
+		var Edit=function(){
+			return {
+				getData:()=>{
+					$.ajax({
+						async:true,
+						url:site_url+'get_edit/pemeriksaan_sarana',
+						type:'GET',
+						dataType:'json',
+						data:{
+							nomor_permohonan:nomor_permohonan
+						}
+						,success:(res)=>{
+							console.log(res.data);
+							Edit.fillDataForm1(res);
+						}
+						,error:(xhr,res,err)=>
+						{
+							alert(err);
+						}
+					});
+				},
+				fillDataForm1:(data)=>{
+					var permohonan=data.permohonan[0];
+					var pemeriksaan=data.pemeriksaan.data[0];
+					$('#nomor_permohonan').select2('val',permohonan.nomor_permohonan).trigger('change');
+					// $('#nomor_permohonan').val(data.nomor_permohonan).trigger('change');
+					$('#id-date-picker-1').val(pemeriksaan.tanggal_pemeriksaan);
+					$('#nip_pengawas').select2('val',data.pemeriksaan.ketua[0].kode_narasumber);
+					
+					for(var i=0;i<data.pemeriksaan.anggota.length-1;i++)
+					{
+						$('[class="btn-add btn button btn-primary"]').click();	
+					}
+					$('[name="nip_anggota_pengawas[]"]').each(function(i){
+							$(this).chosen();
+							$(this).val(data.pemeriksaan.anggota[i][0].kode_narasumber);
+							$(this).trigger('chosen:updated');
+							$(this).trigger("liszt:updated");
+							// alert($(this).val());
+					});	
+
+					for(var i=0;i<data.pemeriksaan.observer.length-1;i++)
+					{
+						$('[class="btn-add-obs btn button btn-primary"]').click();	
+					}
+					$('[name="nip_observer_pengawas[]"]').each(function(i){
+							$(this).val(data.pemeriksaan.observer[i]);
+							// alert($(this).val());
+					});
+
+					$('[name="tujuan_pemeriksaan"]').val(pemeriksaan.tujuan_pemeriksaan);	
+					switch(pemeriksaan.tujuan_pemeriksaan)
+					{
+						case '1':{
+							$('#tujuan').val("Pemberian SPP-IRT Baru");
+							break;
+						}
+						case '2':{
+							$('#tujuan').val("Perpanjangan SPP-IRT");
+							break;
+						}
+					}
+
+					
+				}
+				
+			};
+		}();
+
+		Edit.getData();
+	});
+</script>

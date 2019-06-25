@@ -62,4 +62,45 @@ class get_edit extends CI_Controller{
 
         echo json_encode($data);
     }
+
+    function pemeriksaan_sarana()
+    {
+        $nomor_permohonan=$this->input->get('nomor_permohonan');
+
+        $sql="SELECT a.*,b.*,c.*,d.*,e.* FROM tabel_pen_pengajuan_spp a
+        INNER JOIN tabel_daftar_perusahaan b ON a.kode_r_perusahaan=b.kode_perusahaan
+        INNER JOIN tabel_jenis_pangan c ON a.id_urut_jenis_pangan=c.id_urut_jenis_pangan
+        INNER JOIN tabel_kemasan d ON a.kode_r_kemasan=d.kode_kemasan
+        INNER JOIN tabel_kabupaten_kota e ON e.id_urut_kabupaten=b.id_r_urut_kabupaten
+        INNER JOIN tabel_propinsi f ON f.no_kode_propinsi=e.no_kode_propinsi
+        WHERE a.nomor_permohonan='".$nomor_permohonan."'";
+        $permohonan=$this->db->query($sql)->result();
+        $sql="SELECT b.* FROM tabel_pen_pengajuan_spp a
+        INNER JOIN tabel_periksa_sarana_produksi b on a.nomor_permohonan=b.nomor_r_permohonan
+        WHERE a.nomor_permohonan='".$nomor_permohonan."'
+        ORDER BY b.tanggal_pemeriksaan DESC";
+        $pemeriksaan=$this->db->query($sql)->result();
+        $data['permohonan']=$permohonan;
+        $data['pemeriksaan']['data']=$pemeriksaan;
+        $sql="select kode_narasumber, nip_pkp_dfi, nama_narasumber from tabel_narasumber where tot like 'DFI%'
+        and nama_narasumber='".$pemeriksaan[0]->nama_pengawas."'
+        order by nama_narasumber asc";
+        $data['pemeriksaan']['ketua']=$this->db->query($sql)->result();
+        $anggota=$pemeriksaan[0]->nama_anggota_pengawas;
+        $anggotas=explode('|',$anggota);
+        $i=0;
+        do{
+            $sql="select kode_narasumber, nip_pkp_dfi, nama_narasumber from tabel_narasumber where tot like 'DFI%'
+            and nama_narasumber='".$anggotas[$i]."'
+            order by nama_narasumber asc limit 1";
+            $data['pemeriksaan']['anggota'][$i]=$this->db->query($sql)->result();
+            $i++;
+        }while($i<count($anggotas));
+
+        $anggota=$pemeriksaan[0]->nama_observer_pengawas;
+        $anggotas=explode('|',$anggota);
+        $data['pemeriksaan']['observer']=$anggotas;
+
+        echo json_encode($data);
+    }
 }

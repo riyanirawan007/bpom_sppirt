@@ -10,6 +10,7 @@
 /uploads
 /user_guide
 *.log
-
-# IGNORING DB Config for each user machine
-application/config/database.php
+*.zip
+*.rar
+*.ini
+__MACOSX/*
