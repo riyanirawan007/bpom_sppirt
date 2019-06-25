@@ -438,83 +438,22 @@ public function __construct()
 	}
 	
 	public function proccess_edit()
-	{	
-		$narasumber = $this->input->post('nama_narasumber');
-		$id_materi=array();
-		$kd_narsum=array();
-		$id_urut=$this->input->post('id_urut');
-
-		foreach($narasumber as $v)
-		{
-			$data=explode('.',$v);
-			$id_materi[]=$data[0];
-			$kd_narsum[]=$data[1];
-		}
-
-		$id=$this->input->post('id');
-
-		for($i=0;$i<count($id_urut);$i++)
-		{
-			if($id_urut[$i]=="0" && $kd_narsum[$i]!="12174")
-			{	
-				$data = array(
-						'nomor_r_permohonan_penyuluhan'=>$id,
-						'kode_r_materi_penyuluhan' => $id_materi[$i],
-						'kode_r_narasumber' => $kd_narsum[$i]
-				);
-				$this->db->insert('tabel_ambil_materi_penyuluhan',$data);
-				
-			}
-			else{
-				$data = array(
-						'kode_r_materi_penyuluhan' => $id_materi[$i],
-						'kode_r_narasumber' => $kd_narsum[$i]
-				);
-				$this->db->where('id_urut_ambil_penyuluhan',$id_urut[$i]);
-				$this->db->update('tabel_ambil_materi_penyuluhan',$data);
-			}
-			$i++;
-		}
-
-
-		// Edit peserta
-		$id_urut_peserta=$this->input->post('id_urut_peserta');
-		for($i=0;$i<count($id_urut_peserta);$i++)
-		{
-			$id_peserta=$id_urut_peserta[$i];
-			$nomor_permohonan=$this->input->post('nomor_permohonan_irtp['.$i.']');
-			$status=$this->input->post('status_peserta['.$i.']');
-			$nama=$this->input->post('nama_peserta['.$i.']');
-			$sertifikat=$this->input->post('no_sert_pangan['.$i.']');
-			$pre=$this->input->post('nilai_pre_test['.$i.']');
-			$post=$this->input->post('nilai_post_test['.$i.']');
-
-			$data=array(
-				'nomor_r_permohonan_penyuluhan' => $nomor_permohonan,
-				'status_peserta'=> $status,
-				'nama_peserta' => $nama,
-				'no_sert_pangan' => $sertifikat,
-				'nilai_pre_test' => $pre,
-				'nilai_post_test' => $post
-			);
-		}
+	{
+		// echo json_encode(array('success'=>true
+		// 	,'id'=>$id,'id_urut'=>$id_urut
+		// 	,'id_materi'=>$id_materi
+		// 	,'kd'=>$kd_narsum
+		// 	, 'peserta'=>$data)
+		// );
 		
-
-
-		echo json_encode(array('success'=>true
-			,'id'=>$id,'id_urut'=>$id_urut
-			,'id_materi'=>$id_materi
-			,'kd'=>$kd_narsum
-		    , 'peserta'=>$this->input->post('nama_peserta[0]')));
-		
-		// if($this->irtp_model->edit_data_pkp())
-		// {
-		// 	echo json_encode(array('success'=>true,'id'=>$id,'id_urut'=>$id_urut,'id_materi'=>$id_materi,'kd'=>$kd_narsum));
-		// }
-		// else
-		// {
-		// 	echo json_encode(array('success'=>false));
-		// }
+		if($this->irtp_model->edit_data_pkp())
+		{
+			echo json_encode(array('success'=>true));
+		}
+		else
+		{
+			echo json_encode(array('success'=>false));
+		}
 
 	}
 

@@ -67,8 +67,7 @@
 						form_peserta+='\
 						<tr>\
 							<td>\
-								<select style="max-width: 380px" class="select2 sel_per" id="nomor_permohonan_irtp'+i+'" data-validation="required"\
-									name="nomor_permohonan_irtp['+i+']">\
+								<select style="max-width: 380px" name="nomor_permohonan_irtp['+i+']" class="select2 sel_per" id="nomor_permohonan_irtp'+i+'" data-validation="required">\
 									<option value="">- Pilih Nomor Permohonan IRTP -</option>\
 								</select>\
 							</td>\
@@ -104,7 +103,7 @@
 								<input type="text" name="nilai_post_test['+i+']" data-validation="number"\
 									data-validation-allowing="range[0;99999]" onkeypress="return isNumberKey(event)" maxlength="3"\
 									placeholder="Masukan Nilai Post Test" />\
-								<input name="id_urut_peserta[]" value="'+val.id_urut_ambil_materi+'" type="text"/>\
+								<input name="id_urut_peserta[]" hidden value="'+val.id_urut_ambil_materi+'" type="text"/>\
 							</td>\
 						</tr>';
 						
@@ -556,7 +555,7 @@ function isNumberKey(evt){
 		<i class="ace-icon fa fa-home home-icon"></i>
 		<a href="dashboard">Dashboard</a>
 	</li>
-	<li class="active">Edit Data Pelaksanaan PKP</li>
+	<li class="active"><a href="<?php echo site_url('pelaksanaan_pkp/output_penyelenggaraan');?>">List Pelaksanaan PKP</a> > Edit Data Pelaksanaan PKP</li>
 </ul>
 
 </div>
@@ -620,207 +619,179 @@ function isNumberKey(evt){
 												<hr />
 
 										<div class="step-content pos-rel">
+												<?=form_open_multipart('#', array('class' => 'form-horizontal','id'=>'validation-form'))?>
+													
 													<div class="step-pane active" data-step="1">
 													
-																	<?= @$this->session->flashdata('status'); ?>
-																	<?= @$this->session->flashdata('error'); ?>	
-																	<?= @$this->session->flashdata('message'); ?>
-																	<?=form_open_multipart('#', array('class' => 'form-horizontal','id'=>'validation-form'))?>
-																	<input type="hidden" name="id" value="<?= $nomor; ?>">
-
-																	<?php if($this->session->userdata('user_segment') == 1 || $this->session->userdata('user_segment') == 2):?>
-																	<div class="form-group">
-						                                                <label class="control-label col-xs-12 col-sm-3 no-padding-right"
-						                                                    for="text">Propinsi</label>
-						                                                <div class="col-xs-12 col-sm-9">
-						                                                    <div class="input-group col-xs-12 col-sm-9">
-						                                                        <select class="select2" name="no_kode_propinsi"
-						                                                            id="provinsi">
-						                                                            <option value="">Pilih Propinsi</option>
-						                                                            <?php
-																						foreach ($provinsi as $prov) { ?>
-													                                     <option value="<?php echo $prov->no_kode_propinsi ?>">
-													                                     <?php echo $prov->nama_propinsi ?></option>
-													                                     <?php } ?>
-						                                                        </select>
-						                                                    </div>
-						                                                </div>
-						                                            </div>
-						                                            <div class="form-group">
-																	<label class="control-label col-xs-12 col-sm-3 no-padding-right"
-						                                                    for="text">Kabupaten / Kota</label>
-						                                                <div class="col-xs-12 col-sm-9">
-						                                                    <div class="input-group col-xs-12 col-sm-9">
-								                                                <select class="select2" name="nama_kabupaten" id="kota">
-								                                                    <option value="0">Pilih Kabupaten/kota</option>
-								                                                    <?php
-																						foreach ($kota as $kot) { ?>
-													                                    <option class="<?php echo $kot->no_kode_propinsi ?>" value="<?php echo $kot->id_urut_kabupaten ?>">
-													                                    <?php echo $kot->nm_kabupaten ?></option>
-													                                    <?php } ?>
-								                                                </select>
-						                                            		</div>
-						                                            	</div>
-																	</div>
-																	<?php endif; ?>
-																	<div class="form-group">
-																		<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="text">Tanggal Awal Penyuluhan</label>
-
-																		<div class="col-xs-12 col-sm-9">
-																			<div class="input-group col-xs-12 col-sm-9">
-																				<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="yyyy-mm-dd" name="tanggal_pelatihan_awal" placeholder="Pilih Tanggal Awal Penyuluhan" style="width: 560px;"/>
-																				<span class="input-group-addon">
-																					<i class="fa fa-calendar bigger-110"></i>
-																				</span>
-																				</div>
-
-																				<p class="col-xs-12 col-sm-9 help-block">Pilih Tanggal Awal Penyuluhan, Contoh : 2014/08/04</p>
-																		</div>
-																	</div>
-
-																	<div class="form-group">
-																		<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="text">Tanggal Akhir Penyuluhan</label>
-
-																		<div class="col-xs-12 col-sm-9">
-																			<div class="input-group col-xs-12 col-sm-9">
-																				<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="yyyy-mm-dd" name="tanggal_pelatihan_akhir" placeholder="Pilih Tanggal Akhir Penyuluhan" style="width: 560px;"/>
-																				<span class="input-group-addon">
-																					<i class="fa fa-calendar bigger-110"></i>
-																				</span>
-																				</div>
-
-																				<p class="col-xs-12 col-sm-9 help-block">Pilih Tanggal Akhir Penyuluhan, Contoh : 2014/08/06</p>
-																		</div>
-																		
-																	</div>
-																	<label class="cotrol-label col-xs-12 cold-sm-3 no-padding-right" for="text" style="padding-left:456px; font-size:18px"><b>Daftar Narasumber</b></label><br>
-																	<table border="0">
-																		<?php $key=0; foreach($js_materi_utama as $data): $key++; ?>
-																		<tr class="row dropdown">
-
-																			<td style="width: 260px; text-align: right;">
-																				<?=$data->nama_materi_penyuluhan.$key?>
-																			</td>
-																			<td style="width: 15px">
-																			</td>
-																			<td>
-																				<input id="<?='kd_materi_'.$data->kode_materi_penyuluhan?>" name="form-field-checkbox" type="checkbox" class="ace input-lg form-control check-active" />
-																				
-																			<span class="lbl bigger-120"></span>
-																			</td>
-
-																			<td style="width: 20px">
-																				<input name="id_urut[]" type="text"/>
-																			</td>
-
-																			<td style="width: 520px">
-																				 <select style="max-width: 550px;" id="select_narasumber_<?= $key ?>" class="select2" name="nama_narasumber[]" onchange="cek_narasumber(<?= $key ?>)">
-																			<?php foreach($js_narasumber as $data_cp1): ?>
-												                                <option value="<?=$data->kode_materi_penyuluhan.".".$data_cp1->kode_narasumber?>"><?=$data_cp1->nama_narasumber?></option>
-
-
-												                            <?php endforeach ?>
-												                            <option value="<?=$data->kode_materi_penyuluhan?>.-">Lainnya</option>			
-																			
-												                            </select>
-
-												                            
-																			</td>
-																			<tr>
-																				<td>&nbsp;</td>
-																				<td>&nbsp;</td>
-																				<td>&nbsp;</td>
-																				<td>&nbsp;</td>
-																			</tr>
-																		</tr>
-																		<?php endforeach ?>
-
-																	</table>
-
-																<div class="form-group">
-																		<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="text">Materi Penyuluhan Tambahan</label>
-
-																		<div class="col-xs-12 col-sm-9">
-																			<div class="clearfix">
-																				<div class="dropdown">
-																				<select style="width: 600px" id="materi_tambahan" class="select2" multiple name="materi_tambahan[]" data-placeholder="Pilih Materi Penyuluhan Tambahan">
-																				<?php foreach($js_materi_pendukung as $data): ?>
-																					<option value="<?=$data->kode_materi_penyuluhan?>"><?=$data->nama_materi_penyuluhan?></option>
-																				<?php endforeach ?>				
-																				</select>
-																			</div>
-																				<p class="col-xs-12 col-sm-9 help-block">Pilih Materi Penyuluhan Tambahan, Contoh : Pencantuman Label Halal</p>
-																			</div>
-																		</div>
-																	</div>
-
-																	<!-- <div class="form-group">
-																		<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="text">Materi Penyuluhan Lainnya</label>
-
-																		<div class="col-xs-12 col-sm-9">
-																			<div class="clearfix">
-																				<input type="text" class="col-xs-12 col-sm-9" name="materi_lainnya" placeholder="Masukan Materi Penyuluhan Lainnya" />
-																				<p class="col-xs-12 col-sm-9 help-block">Masukan Materi Penyuluhan Lainnya, Contoh : Pengolahan Makanan Yang Benar</p>
-																			</div>
-																		</div>
-																	</div>
-
-																	<div class="form-group">
-																		<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="text">Nama Peserta PKP</label>
-
-																		<div class="col-xs-12 col-sm-9">
-																			<div class="clearfix">
-																				<input type="text" class="col-xs-12 col-sm-9" name="nama_narasumber_non_pkp" placeholder="Masukan Nama Narasumber Non PKP"  />
-																				<p class="col-xs-12 col-sm-9 help-block">Masukan Nama Peserta PKP, Contoh : Dr. Sahidin</p>
-																			</div>
-																		</div>
-																	</div> -->
+													<?= @$this->session->flashdata('status'); ?>
+													<?= @$this->session->flashdata('error'); ?>	
+													<?= @$this->session->flashdata('message'); ?>
 																	
-																
-																	</div>
-																	
-													<div class="step-pane" data-step="2">
-																<!-- <div class="form-group">
-																		<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="text">Nama Narasumber</label>
+													<input type="hidden" name="id" value="<?= $nomor; ?>">
 
-																		<div class="col-xs-12 col-sm-9">
-																			<div class="input-group col-xs-12 col-sm-9">
-																				<select class="select2" id="nomor_permohonan_penyuluhan" data-validation="required" name="nomor_permohonan_penyuluhan">
-																				<option value="">- Pilih Nomor Penyuluhan -</option>
-																			<?php //foreach($no_penyuluhan as $data): ?>
-																				<option value="<?=$data->nomor_permohonan_penyuluhan?>"><?=$data->nama_narasumber_non_pkp?> </option>
-																			<?php //endforeach ?>				
-																			</select>
-																				</div>
-																				<p class="col-xs-12 col-sm-9 help-block"></p>
-																		</div>
-																	</div> -->
-																	<input type="hidden" name="jumlah_peserta" value="<?=$jumlah_peserta?>">
-																	<div class="table-responsive text-nowrap">
-																		<table border="1"  class="table table-striped table-bordered table-hover" >
-																		<thead>
-																			<tr>
-																				<td>Nomor Permohonan IRTP</td>
-																				<td>Status Peserta Penyuluhan</td>
-																				<td>Nama Peserta Penyuluhan</td>
-																				<td>Nomor sertfikat pangan</td>
-																				<td>Nilai Pre Test</td>
-																				<td>Nilai Post Test</td>
-																				<!-- <td><div class="btn btn-sm btn-primary" style="width:65px">Add</div></td> -->
-																			</tr>
-																		</thead>
-																			<tbody id="form_peserta">
-																			</tbody>
-																		</table>	
-																	</div>
+													<?php if($this->session->userdata('user_segment') == 1 || $this->session->userdata('user_segment') == 2):?>
+													<div class="form-group">
+														<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="text">Propinsi</label>
+														<div class="col-xs-12 col-sm-9">
+															<div class="input-group col-xs-12 col-sm-9">
+																<select class="select2" name="no_kode_propinsi" id="provinsi">
+																	<option value="">Pilih Propinsi</option>
+																	<?php
+																																			foreach ($provinsi as $prov) { ?>
+																	<option value="<?php echo $prov->no_kode_propinsi ?>">
+																		<?php echo $prov->nama_propinsi ?></option>
+																	<?php } ?>
+																</select>
+															</div>
+														</div>
 													</div>
-<?=form_close()?>
+													<div class="form-group">
+														<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="text">Kabupaten / Kota</label>
+														<div class="col-xs-12 col-sm-9">
+															<div class="input-group col-xs-12 col-sm-9">
+																<select class="select2" name="nama_kabupaten" id="kota">
+																	<option value="0">Pilih Kabupaten/kota</option>
+																	<?php
+																																			foreach ($kota as $kot) { ?>
+																	<option class="<?php echo $kot->no_kode_propinsi ?>" value="<?php echo $kot->id_urut_kabupaten ?>">
+																		<?php echo $kot->nm_kabupaten ?></option>
+																	<?php } ?>
+																</select>
+															</div>
+														</div>
+													</div>
+													<?php endif; ?>
+													<div class="form-group">
+														<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="text">Tanggal Awal Penyuluhan</label>
+
+														<div class="col-xs-12 col-sm-9">
+															<div class="input-group col-xs-12 col-sm-9">
+																<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="yyyy-mm-dd"
+																	name="tanggal_pelatihan_awal" placeholder="Pilih Tanggal Awal Penyuluhan" style="width: 560px;" />
+																<span class="input-group-addon">
+																	<i class="fa fa-calendar bigger-110"></i>
+																</span>
+															</div>
+
+															<p class="col-xs-12 col-sm-9 help-block">Pilih Tanggal Awal Penyuluhan, Contoh : 2014/08/04</p>
+														</div>
+													</div>
+
+													<div class="form-group">
+														<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="text">Tanggal Akhir Penyuluhan</label>
+
+														<div class="col-xs-12 col-sm-9">
+															<div class="input-group col-xs-12 col-sm-9">
+																<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="yyyy-mm-dd"
+																	name="tanggal_pelatihan_akhir" placeholder="Pilih Tanggal Akhir Penyuluhan" style="width: 560px;" />
+																<span class="input-group-addon">
+																	<i class="fa fa-calendar bigger-110"></i>
+																</span>
+															</div>
+
+															<p class="col-xs-12 col-sm-9 help-block">Pilih Tanggal Akhir Penyuluhan, Contoh : 2014/08/06</p>
+														</div>
+
+													</div>
+													<label class="cotrol-label col-xs-12 cold-sm-3 no-padding-right" for="text"
+														style="padding-left:456px; font-size:18px"><b>Daftar Narasumber</b></label><br>
+													<table border="0">
+														<?php $key=0; foreach($js_materi_utama as $data): $key++; ?>
+														<tr class="row dropdown">
+
+															<td style="width: 260px; text-align: right;">
+																<?=$data->nama_materi_penyuluhan.$key?>
+															</td>
+															<td style="width: 15px">
+															</td>
+															<td>
+																<input id="<?='kd_materi_'.$data->kode_materi_penyuluhan?>" name="form-field-checkbox" type="checkbox"
+																	class="ace input-lg form-control check-active" />
+
+																<span class="lbl bigger-120"></span>
+															</td>
+
+															<td style="width: 20px">
+																<input hidden name="id_urut[]" type="text" />
+															</td>
+
+															<td style="width: 520px">
+																<select style="max-width: 550px;" id="select_narasumber_<?= $key ?>" class="select2"
+																	name="nama_narasumber[]" onchange="cek_narasumber(<?= $key ?>)">
+																	<?php foreach($js_narasumber as $data_cp1): ?>
+																	<option value="<?=$data->kode_materi_penyuluhan.".".$data_cp1->kode_narasumber?>">
+																		<?=$data_cp1->nama_narasumber?></option>
+
+
+																	<?php endforeach ?>
+																	<option value="<?=$data->kode_materi_penyuluhan?>.-">Lainnya</option>
+
+																</select>
+
+
+															</td>
+														<tr>
+															<td>&nbsp;</td>
+															<td>&nbsp;</td>
+															<td>&nbsp;</td>
+															<td>&nbsp;</td>
+														</tr>
+														</tr>
+														<?php endforeach ?>
+
+													</table>
+
+													<div class="form-group">
+														<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="text">Materi Penyuluhan Tambahan</label>
+
+														<div class="col-xs-12 col-sm-9">
+															<div class="clearfix">
+																<div class="dropdown">
+																	<select style="width: 600px" id="materi_tambahan" class="select2" multiple name="materi_tambahan[]"
+																		data-placeholder="Pilih Materi Penyuluhan Tambahan">
+																		<?php foreach($js_materi_pendukung as $data): ?>
+																		<option value="<?=$data->kode_materi_penyuluhan?>"><?=$data->nama_materi_penyuluhan?></option>
+																		<?php endforeach ?>
+																	</select>
+																</div>
+																<p class="col-xs-12 col-sm-9 help-block">Pilih Materi Penyuluhan Tambahan, Contoh : Pencantuman Label Halal
+																</p>
+															</div>
+														</div>
+													</div>
+
+													</div>
+
+													<div class="step-pane" data-step="2">
+
+														<input type="hidden" name="jumlah_peserta" value="<?=$jumlah_peserta?>">
+														<div class="table-responsive text-nowrap">
+															<table border="1" class="table table-striped table-bordered table-hover">
+																<thead>
+																	<tr>
+																		<td>Nomor Permohonan IRTP</td>
+																		<td>Status Peserta Penyuluhan</td>
+																		<td>Nama Peserta Penyuluhan</td>
+																		<td>Nomor sertfikat pangan</td>
+																		<td>Nilai Pre Test</td>
+																		<td>Nilai Post Test</td>
+																		<!-- <td><div class="btn btn-sm btn-primary" style="width:65px">Add</div></td> -->
+																	</tr>
+																</thead>
+																<tbody id="form_peserta">
+																</tbody>
+															</table>
+														</div>
+														<button id="real_submit" hidden type="submit">Save</button>
+													
+													</div>
+													<?=form_close()?>
 
 													<div class="step-pane" data-step="3">
-																<div class="center">
-																	<h3 class="green">Data Anda Sudah Terisi Semua.</h3>
-																	<b>Pastikan data inputan yang Anda masukkan sudah benar. Silahkan lakukan pengecekan jika terdapat kesalahan input. <br>Tekan tombol Selesai di bawah ini untuk mengakhiri proses inputan dan menyimpan data inputan.</b>
-																</div>
+														<div class="center">
+															<h3 class="green">Data Anda Sudah Terisi Semua.</h3>
+															<b>Pastikan data inputan yang Anda masukkan sudah benar. Silahkan lakukan pengecekan jika terdapat kesalahan input. <br>Tekan tombol Selesai di bawah ini untuk mengakhiri proses inputan dan menyimpan data inputan.</b>
+														</div>
 													</div>
 
 												</div>
@@ -856,42 +827,33 @@ function isNumberKey(evt){
     
     $('#btn-submit').click(function(){
         if($(this).html().includes($(this).attr('data-last'))){
-            save_data();
+            $("#real_submit").click();
         }
-    });
-    
-    function save_data()
-    {
-        $.ajax({
+	});
+	
+	$("#validation-form").submit(function(e){
+		e.preventDefault();
+		$.ajax({
            url:'<?php echo base_url()?>pelaksanaan_pkp/proccess_edit',
            type:'POST',
-           data:$("#validation-form").serialize(),
+           data:$(this).serialize(),
            dataType:'json',
            success:function(response){
-           console.log(response);
-           	// if(response.success)
-            //    {
-            //         //alert('Data Tersimpan!');
-            //         window.location.href='<?php echo base_url()?>pelaksanaan_pkp/output_penyelenggaraan';
-            //    }
-            //    else{
-            //        alert('Data Gagal Tersimpan');
-            //    }
+        	//console.log(response);
+           	if(response.success)
+            {
+                //alert('Data Tersimpan!');
+                location.reload();
+            }
+            else{
+                alert('Data Gagal Tersimpan');
+            }
            },
            error:function(stat,res,err)
            {
                alert(err);
            }
         });
-    }
-    
-    /*
-    Non file
-    data:JSON.stringify($('#form-input'))
-    
-    File
-    new FormData($('#form-input'))
-    
-    */
+	});
     
 </script>
