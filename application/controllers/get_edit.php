@@ -82,24 +82,33 @@ class get_edit extends CI_Controller{
         $pemeriksaan=$this->db->query($sql)->result();
         $data['permohonan']=$permohonan;
         $data['pemeriksaan']['data']=$pemeriksaan;
-        $sql="select kode_narasumber, nip_pkp_dfi, nama_narasumber from tabel_narasumber where tot like 'DFI%'
-        and nama_narasumber='".$pemeriksaan[0]->nama_pengawas."'
-        order by nama_narasumber asc";
-        $data['pemeriksaan']['ketua']=$this->db->query($sql)->result();
-        $anggota=$pemeriksaan[0]->nama_anggota_pengawas;
-        $anggotas=explode('|',$anggota);
-        $i=0;
-        do{
+        
+        if(count($pemeriksaan)>0){
             $sql="select kode_narasumber, nip_pkp_dfi, nama_narasumber from tabel_narasumber where tot like 'DFI%'
-            and nama_narasumber='".$anggotas[$i]."'
-            order by nama_narasumber asc limit 1";
-            $data['pemeriksaan']['anggota'][$i]=$this->db->query($sql)->result();
-            $i++;
-        }while($i<count($anggotas));
+            and nama_narasumber='".$pemeriksaan[0]->nama_pengawas."'
+            order by nama_narasumber asc";
+            $data['pemeriksaan']['ketua']=$this->db->query($sql)->result();
+            $anggota=$pemeriksaan[0]->nama_anggota_pengawas;
+            $anggotas=explode('|',$anggota);
+            $i=0;
+            do{
+                $sql="select kode_narasumber, nip_pkp_dfi, nama_narasumber from tabel_narasumber where tot like 'DFI%'
+                and nama_narasumber='".$anggotas[$i]."'
+                order by nama_narasumber asc limit 1";
+                $data['pemeriksaan']['anggota'][$i]=$this->db->query($sql)->result();
+                $i++;
+            }while($i<count($anggotas));
 
-        $anggota=$pemeriksaan[0]->nama_observer_pengawas;
-        $anggotas=explode('|',$anggota);
-        $data['pemeriksaan']['observer']=$anggotas;
+            $anggota=$pemeriksaan[0]->nama_observer_pengawas;
+            $anggotas=explode('|',$anggota);
+            $data['pemeriksaan']['observer']=$anggotas;
+        }
+        else
+        {
+            $data['pemeriksaan']['anggota']=[];
+            $data['pemeriksaan']['observer']=[];
+        }
+        
 
         echo json_encode($data);
     }

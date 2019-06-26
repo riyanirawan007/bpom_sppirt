@@ -948,11 +948,10 @@ function isNumberKey(evt){
 							break;
 						}
 						case '2':{
-							$('#tujuan').val("Perpanjangan SPP-IRT");
+							$('#tujuan').val("Pemberian SPP-IRT Baru");
 							break;
 						}
 					}
-
 					
 				}
 				
