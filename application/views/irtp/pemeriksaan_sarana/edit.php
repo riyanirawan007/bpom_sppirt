@@ -288,6 +288,7 @@ function isNumberKey(evt){
 		var kabupaten_kota = $('#kabupaten_kota');
 		
 		var data = $(this).val();
+		$('#nomor_permohonan_hide').val(data);
 		$('.nomor_permohonan').val(data);
 		$.ajax({
 			url	: '<?=base_url()?>pemeriksaan_sarana/get_irtp_raw',
@@ -689,7 +690,8 @@ function isNumberKey(evt){
 
 												<div class="col-xs-12 col-sm-9">
 													<div class="clearfix">
-														<select disabled id="nomor_permohonan" data-validation="required" name="nomor_permohonan" class="select2">
+														<input type="text" name="nomor_permohonan_hide" hidden id="nomor_permohonan_hide">
+														<select id="nomor_permohonan" disabled data-validation="required" name="nomor_permohonan" class="select2">
 															<option value="">- Pilih Nomor Permohonan IRTP -</option>
 															<?php foreach($no_sert as $data): ?>
 																<option value="<?=$data->nomor_permohonan?>"><?=$data->nomor_permohonan.' - '.$data->nama_perusahaan.' - '. $data->nama_pemilik.' - '.$data->nama_dagang?></option>
@@ -968,6 +970,7 @@ function isNumberKey(evt){
 				,dataType:'json'
 				,data:$(this).serialize()
 				,success:(res)=>{
+					//console.log(res);
 					alert('Data berhasil disimpan!');
 					window.location.href="<?php site_url('pemeriksaan_sarana/edit/');?>"+$("#nomor_permohonan").val();
 				}

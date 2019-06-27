@@ -117,7 +117,7 @@ class get_edit extends CI_Controller{
         $response=array();
         $response['success']=true;
         
-        $nomor_permohonan=$this->input->post('nomor_permohonan');
+        $nomor_permohonan=$this->input->post('nomor_permohonan_hide');
         $data=$this->db->query("SELECT a.*,b.* FROM tabel_pen_pengajuan_spp a
         INNER JOIN tabel_periksa_sarana_produksi b on a.nomor_permohonan=b.nomor_r_permohonan
         WHERE a.nomor_permohonan='".$nomor_permohonan."'
