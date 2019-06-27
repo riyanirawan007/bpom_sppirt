@@ -78,7 +78,7 @@ class get_edit extends CI_Controller{
         $sql="SELECT b.* FROM tabel_pen_pengajuan_spp a
         INNER JOIN tabel_periksa_sarana_produksi b on a.nomor_permohonan=b.nomor_r_permohonan
         WHERE a.nomor_permohonan='".$nomor_permohonan."'
-        ORDER BY b.tanggal_pemeriksaan DESC";
+        ORDER BY b.id_urut_periksa_sarana_produksi DESC";
         $pemeriksaan=$this->db->query($sql)->result();
         $data['permohonan']=$permohonan;
         $data['pemeriksaan']['data']=$pemeriksaan;
@@ -111,5 +111,82 @@ class get_edit extends CI_Controller{
         
 
         echo json_encode($data);
+    }
+
+    function edit_pemeriksaan_sarana(){
+        $response=array();
+        $response['success']=true;
+        
+        $nomor_permohonan=$this->input->post('nomor_permohonan');
+        $data=$this->db->query("SELECT a.*,b.* FROM tabel_pen_pengajuan_spp a
+        INNER JOIN tabel_periksa_sarana_produksi b on a.nomor_permohonan=b.nomor_r_permohonan
+        WHERE a.nomor_permohonan='".$nomor_permohonan."'
+        ORDER BY b.id_urut_periksa_sarana_produksi DESC LIMIT 1")->row();
+
+        //alamat
+        // $this->db->where('kode_perusahaan',$data->kode_r_perusahaan)
+        // ->update('tabel_daftar_perusahaan'
+        // ,['alamat_irtp'=>$this->input->post('alamat_fasilitas_periksa')]);
+
+        //tanggal
+        $tgl_periksa=date_format(date_create($this->input->post('tanggal_pemeriksaan')),'Y-m-d');
+        $this->db->where('id_urut_periksa_sarana_produksi',$data->id_urut_periksa_sarana_produksi)
+        ->update('tabel_periksa_sarana_produksi',['tanggal_pemeriksaan'=>$tgl_periksa]);
+
+        //ketua
+        $ketua=$this->db->query('select * from tabel_narasumber where kode_narasumber=? limit 1',[$this->input->post('nip_pengawas')])
+        ->row();
+        if($ketua!=null){
+            $this->db->where('id_urut_periksa_sarana_produksi',$data->id_urut_periksa_sarana_produksi)
+            ->update('tabel_periksa_sarana_produksi',[
+                'nip_pengawas'=>$ketua->nip_pkp_dfi
+                ,'nama_pengawas'=>$ketua->nama_narasumber
+            ]);
+        }
+
+        //anggota
+        $anggota=$this->input->post('nip_anggota_pengawas');
+        $nip_anggota=[];
+        $nama_anggota=[];
+        for($i=0;$i<count($anggota);$i++)
+        {
+            $detail=$this->db->query('select * from tabel_narasumber where kode_narasumber=? limit 1',[$anggota[$i]])
+            ->row();
+            if($detail!=null)
+            {
+                $nip_anggota[$i]=$detail->nip_pkp_dfi;
+                $nama_anggota[$i]=$detail->nama_narasumber;
+            }
+        }
+        $nip_anggota_str="";
+        $nama_anggota_str="";
+        for($i=0;$i<count($nama_anggota);$i++)
+        {
+            if($i!=0)
+            {
+                $nip_anggota_str.="|";
+                $nama_anggota_str.="|";
+            }
+            $nip_anggota_str.=($nip_anggota[$i]!='')?$nip_anggota[$i]:'-';
+            $nama_anggota_str.=$nama_anggota[$i];
+        }
+
+        //observer
+        $observer_str="";
+        $observer=$this->input->post('nip_observer_pengawas');
+        for($i=0;$i<count($observer);$i++)
+        {
+            if($i!=0){$observer_str.="|";}
+            $observer_str.=$observer[$i];
+        }
+
+        $this->db->where('id_urut_periksa_sarana_produksi',$data->id_urut_periksa_sarana_produksi)
+        ->update('tabel_periksa_sarana_produksi',[
+                'nip_anggota_pengawas'=>$nip_anggota_str
+                ,'nama_anggota_pengawas'=>$nama_anggota_str
+                ,'nama_observer_pengawas'=>$observer_str
+        ]);
+
+        echo json_encode($response);
     }
 }

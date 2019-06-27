@@ -990,3 +990,81 @@ table.center tr th{
 																	<?=form_close()?>
 																</section>
 															</div>
+
+															<script>
+$(document).ready(()=>{
+		var site_url='<?php echo site_url(); ?>';
+		var nomor_permohonan='<?php echo $record[0]['nomor_r_permohonan']; ?>';
+		var Edit=function(){
+			return {
+				getData:()=>{
+					$.ajax({
+						async:true,
+						url:site_url+'get_edit/pemeriksaan_sarana',
+						type:'GET',
+						dataType:'json',
+						data:{
+							nomor_permohonan:nomor_permohonan
+						}
+						,success:(res)=>{
+							console.log(res.data);
+							Edit.fillDataForm1(res);
+						}
+						,error:(xhr,res,err)=>
+						{
+							alert(err);
+						}
+					});
+				},
+				fillDataForm1:(data)=>{
+					console.log(data);
+					var permohonan=data.permohonan[0];
+					var pemeriksaan=data.pemeriksaan.data[0];
+					$('#nomor_permohonan').select2('val',permohonan.nomor_permohonan).trigger('change');
+					// $('#nomor_permohonan').val(data.nomor_permohonan).trigger('change');
+					$('#tanggal_pemeriksaan').val(pemeriksaan.tanggal_pemeriksaan);
+					$('#nip_pengawas').val(data.pemeriksaan.ketua[0].kode_narasumber);
+					$('#nip_pengawas').trigger('liszt:updated');
+					
+					for(var i=0;i<data.pemeriksaan.anggota.length-1;i++)
+					{
+						$('[class="btn-add btn button btn-primary"]').click();	
+					}
+					$('[name="nip_anggota_pengawas[]"]').each(function(i){
+							$(this).chosen();
+							$(this).val(data.pemeriksaan.anggota[i][0].kode_narasumber);
+							$(this).trigger('chosen:updated');
+							$(this).trigger("liszt:updated");
+							// alert($(this).val());
+					});	
+
+					for(var i=0;i<data.pemeriksaan.observer.length-1;i++)
+					{
+						$('[class="btn-add-obs btn button btn-primary"]').click();	
+					}
+					$('[name="nip_observer_pengawas[]"]').each(function(i){
+							$(this).val(data.pemeriksaan.observer[i]);
+							// alert($(this).val());
+					});
+
+					$('[name="tujuan_pemeriksaan"]').val(pemeriksaan.tujuan_pemeriksaan);	
+					switch(pemeriksaan.tujuan_pemeriksaan)
+					{
+						case '1':{
+							$('#tujuan').val("Pemberian SPP-IRT Baru");
+							break;
+						}
+						case '2':{
+							$('#tujuan').val("Pemberian SPP-IRT Baru");
+							break;
+						}
+					}
+					
+				}
+				
+			};
+		}();
+
+		Edit.getData();
+	});
+</script>

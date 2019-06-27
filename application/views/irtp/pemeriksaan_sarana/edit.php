@@ -667,7 +667,7 @@ function isNumberKey(evt){
 									<div class="step-content pos-rel">
 										<div class="step-pane active" data-step="1">
 											<?php $attr_form = array('onsubmit' => 'return cek_form()'); ?>	
-											<?=form_open_multipart('pemeriksaan_sarana/input_form_tidak_baku', array('class' => 'form-horizontal', 'id' => 'sample-form'), $attr_form)?>
+											<?=form_open_multipart('#', array('class' => 'form-horizontal', 'id' => 'sample-form'), $attr_form)?>
 											<?= @$this->session->flashdata('status'); ?>
 											<?= @$this->session->flashdata('error'); ?>	
 											<?= @$this->session->flashdata('message'); ?>
@@ -689,7 +689,7 @@ function isNumberKey(evt){
 
 												<div class="col-xs-12 col-sm-9">
 													<div class="clearfix">
-														<select id="nomor_permohonan" data-validation="required" name="nomor_permohonan" class="select2">
+														<select disabled id="nomor_permohonan" data-validation="required" name="nomor_permohonan" class="select2">
 															<option value="">- Pilih Nomor Permohonan IRTP -</option>
 															<?php foreach($no_sert as $data): ?>
 																<option value="<?=$data->nomor_permohonan?>"><?=$data->nomor_permohonan.' - '.$data->nama_perusahaan.' - '. $data->nama_pemilik.' - '.$data->nama_dagang?></option>
@@ -868,9 +868,7 @@ function isNumberKey(evt){
 
 									<hr />
 									<div class="wizard-actions">
-
-
-										<button class="btn btn-primary" data-last="Selesai" type="submit" name="submit">
+										<button class="btn btn-primary" data-last="Selesai" type="submit" id="submit">
 											Kirim
 										</button>
 									</div>
@@ -959,5 +957,25 @@ function isNumberKey(evt){
 		}();
 
 		Edit.getData();
+	});
+
+	$(document).ready(()=>{
+		$('#sample-form').submit(function(e){
+			e.preventDefault();
+			$.ajax({
+				url:'<?php echo site_url("get_edit/edit_pemeriksaan_sarana")?>'
+				,type:'POST'
+				,dataType:'json'
+				,data:$(this).serialize()
+				,success:(res)=>{
+					alert('Data berhasil disimpan!');
+					window.location.href="<?php site_url('pemeriksaan_sarana/edit/');?>"+$("#nomor_permohonan").val();
+				}
+				,error:(res,stat,err)=>
+				{
+					alert(err);
+				}
+			})
+		});
 	});
 </script>
